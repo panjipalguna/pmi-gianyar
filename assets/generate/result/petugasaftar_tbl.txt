@@ -1,0 +1,7 @@
+CREATE TABLE petugasaftar (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  petugasaftar_nama VARCHAR(255) NULL, petugasaftar_no_hp INT NULL, petugasaftar_alamat VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,7 @@
+CREATE TABLE necklace choker (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  image varchar(20) NULL, price DOUBLE NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

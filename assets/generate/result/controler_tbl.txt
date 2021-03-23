@@ -1,0 +1,17 @@
+CREATE TABLE table (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  asdf INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (asdf)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_tablelist as 
+              select 
+                table.row_id 
+                ,table.asdf 
+,df.asdf as df_asdf 
+ 
+              from table 
+              inner join df on df.asd = table.asdf 
+ 
+            

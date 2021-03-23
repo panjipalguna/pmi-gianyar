@@ -1,0 +1,1284 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Donor extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = "donor_1";
+    public $controller = "donor";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            'rs_jeniskelamin' => getByQuery('select * from jeniskelamin'),
+                'rs_status' => getByQuery('select * from status'),
+                'rs_kelurahan' => getByQuery('select * from kelurahan'),
+                'rs_kecamatan' => getByQuery('select * from kecamatan'),
+                'rs_wilayah' => getByQuery('select * from wilayah'),
+                'rs_pekerjaan' => getByQuery('select * from pekerjaan'),
+                'rs_apharesis' => getByQuery('select * from apharesis'),
+                'rs_penghargaan' => getByQuery('select * from penghargaan'),
+                'rs_puasa' => getByQuery('select * from puasa'),
+                'rs_butuh' => getByQuery('select * from butuh'),
+                'rs_dokter' => getByQuery('select * from dokter'),
+                'rs_kantong' => getByQuery('select * from kantong'),
+                'rs_petugasadministrasi' => getByQuery('select * from petugasadministrasi'),
+                'rs_petugashb' => getByQuery('select * from petugashb'),
+                'rs_macamdonor' => getByQuery('select * from macamdonor'),
+                'rs_metode_ambil_darah' => getByQuery('select * from metode_ambil_darah'),
+                'rs_goldar' => getByQuery('select * from goldar'),
+                'rs_petugasaftar' => getByQuery('select * from petugasaftar'),
+                'rs_lengan' => getByQuery('select * from lengan'),
+                'rs_penusukanulang' => getByQuery('select * from penusukanulang'),
+                'rs_lamapengambilan' => getByQuery('select * from lamapengambilan'),
+                
+        );
+        $this->layout->display('page/donor_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'donor_id', 'donor_no_ktp', 'donor_nama', 'donor_jeniskelamin', 'donor_status', 'donor_alamat', 'donor_nohp', 'donor_kelurahan', 'donor_kecamatan', 'donor_wilayah', 'donor_alamatkantor', 'donor_pekerjaan', 'donor_tempatkelahiran', 'donor_apharesis', 'donor_penghargaan', 'donor_puasa', 'donor_butuh', 'donor_terakhir', 'donor_ke', 'donor_namadokter', 'donor_riwayatmedis', 'donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#', 'donor_kantong', 'donor_tekanandarah', 'donor_alattekanandarah', 'donor_nadi', 'donor_beratbadan', 'donor_alatberatbadan', 'donor_suhu', 'donor_alatsuhu', 'donor_keadaanumum', 'donor_petugasadministrasi', 'donor_validasi', 'donor_petugashb', 'donor_macamdonor', 'donor_metodepangambilan', 'donor_hb', 'donor_goldar', 'donor_namapetugasaftar', 'donor_lengan', 'donor_kodekantong', 'donor_penusukanulang', 'donor_lamapengambilan', 'No Kantong', 'No Kantong Ganti I', 'No Kantong Ganti II', 'Donor');
+        $table = "vw_donor_1list";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.$line->donor_id.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_no_ktp.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->jeniskelamin_jeniskelamin_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->status_status_nama.'</div>'; 
+$row[] = '<div style="text-align:left">'.$line->donor_alamat.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_nohp.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->kelurahan_kelurahan_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->kecamatan_kecamatan_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->wilayah_wilayah_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_alamatkantor.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->pekerjaan_pekerjaan_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_tempatkelahiran.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->apharesis_apharesis_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->penghargaan_penghargaan_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->puasa_puasa_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->butuh_butuh_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.date("m/d/Y", strtotime($line->donor_terakhir)).'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_ke.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->dokter_dokter_nama.'</div>'; 
+$row[] = '<div style="text-align:left">'.$line->donor_riwayatmedis.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->kantong_kantong_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_tekanandarah.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_alattekanandarah.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_nadi.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_beratbadan.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_alatberatbadan.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_suhu.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_alatsuhu.'</div>'; 
+$row[] = '<div style="text-align:left">'.$line->donor_keadaanumum.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->petugasadministrasi_petugasadministrasi_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_validasi.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->petugashb_petugashb_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->macamdonor_macamdonor_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->metode_ambil_darah_metode_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_hb.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->goldar_goldar_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->petugasaftar_petugasaftar_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->lengan_lengan_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->donor_kodekantong.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->penusukanulang_penusukanulang_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->lamapengambilan_lamapengambilan_nama.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->No Kantong.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->No Kantong Ganti I.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->No Kantong Ganti II.'</div>'; 
+$row[] = '<div style="text-align:center">'.date("m/d/Y", strtotime($line->Donor)).'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtdonorid = ''; 
+$txtdonornoktp = ''; 
+$txtdonornama = ''; 
+$txtdonorjeniskelamin = ''; 
+$jeniskelamin_list = "";$txtjeniskelaminjeniskelaminnama = ''; 
+$txtdonorstatus = ''; 
+$status_list = "";$txtstatusstatusnama = ''; 
+$txtdonoralamat = ''; 
+$txtdonornohp = ''; 
+$txtdonorkelurahan = ''; 
+$kelurahan_list = "";$txtkelurahankelurahannama = ''; 
+$txtdonorkecamatan = ''; 
+$kecamatan_list = "";$txtkecamatankecamatannama = ''; 
+$txtdonorwilayah = ''; 
+$wilayah_list = "";$txtwilayahwilayahnama = ''; 
+$txtdonoralamatkantor = ''; 
+$txtdonorpekerjaan = ''; 
+$pekerjaan_list = "";$txtpekerjaanpekerjaannama = ''; 
+$txtdonortempatkelahiran = ''; 
+$txtdonorapharesis = ''; 
+$apharesis_list = "";$txtapharesisapharesisnama = ''; 
+$txtdonorpenghargaan = ''; 
+$penghargaan_list = "";$txtpenghargaanpenghargaannama = ''; 
+$txtdonorpuasa = ''; 
+$puasa_list = "";$txtpuasapuasanama = ''; 
+$txtdonorbutuh = ''; 
+$butuh_list = "";$txtbutuhbutuhnama = ''; 
+$txtdonorterakhir = ''; 
+$txtdonorke = ''; 
+$txtdonornamadokter = ''; 
+$dokter_list = "";$txtdokterdokternama = ''; 
+$txtdonorriwayatmedis = ''; 
+$txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# = ''; 
+$txtdonorkantong = ''; 
+$kantong_list = "";$txtkantongkantongnama = ''; 
+$txtdonortekanandarah = ''; 
+$txtdonoralattekanandarah = ''; 
+$txtdonornadi = ''; 
+$txtdonorberatbadan = ''; 
+$txtdonoralatberatbadan = ''; 
+$txtdonorsuhu = ''; 
+$txtdonoralatsuhu = ''; 
+$txtdonorkeadaanumum = ''; 
+$txtdonorpetugasadministrasi = ''; 
+$petugasadministrasi_list = "";$txtpetugasadministrasipetugasadministrasinama = ''; 
+$txtdonorvalidasi = ''; 
+$txtdonorpetugashb = ''; 
+$petugashb_list = "";$txtpetugashbpetugashbnama = ''; 
+$txtdonormacamdonor = ''; 
+$macamdonor_list = "";$txtmacamdonormacamdonornama = ''; 
+$txtdonormetodepangambilan = ''; 
+$metode_ambil_darah_list = "";$txtmetodeambildarahmetodenama = ''; 
+$txtdonorhb = ''; 
+$txtdonorgoldar = ''; 
+$goldar_list = "";$txtgoldargoldarnama = ''; 
+$txtdonornamapetugasaftar = ''; 
+$petugasaftar_list = "";$txtpetugasaftarpetugasaftarnama = ''; 
+$txtdonorlengan = ''; 
+$lengan_list = "";$txtlenganlengannama = ''; 
+$txtdonorkodekantong = ''; 
+$txtdonorpenusukanulang = ''; 
+$penusukanulang_list = "";$txtpenusukanulangpenusukanulangnama = ''; 
+$txtdonorlamapengambilan = ''; 
+$lamapengambilan_list = "";$txtlamapengambilanlamapengambilannama = ''; 
+$txtNo Kantong = ''; 
+$txtNo Kantong Ganti I = ''; 
+$txtNo Kantong Ganti II = ''; 
+$txtDonor = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from vw_donor_1list where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtdonorid = $rs[0]->donor_id; 
+$txtdonornoktp = $rs[0]->donor_no_ktp; 
+$txtdonornama = $rs[0]->donor_nama; 
+$txtdonorjeniskelamin = $rs[0]->donor_jeniskelamin; 
+$txtjeniskelaminjeniskelaminnama = $rs[0]->jeniskelamin_jeniskelamin_nama; 
+$txtdonorstatus = $rs[0]->donor_status; 
+$txtstatusstatusnama = $rs[0]->status_status_nama; 
+$txtdonoralamat = $rs[0]->donor_alamat; 
+$txtdonornohp = $rs[0]->donor_nohp; 
+$txtdonorkelurahan = $rs[0]->donor_kelurahan; 
+$txtkelurahankelurahannama = $rs[0]->kelurahan_kelurahan_nama; 
+$txtdonorkecamatan = $rs[0]->donor_kecamatan; 
+$txtkecamatankecamatannama = $rs[0]->kecamatan_kecamatan_nama; 
+$txtdonorwilayah = $rs[0]->donor_wilayah; 
+$txtwilayahwilayahnama = $rs[0]->wilayah_wilayah_nama; 
+$txtdonoralamatkantor = $rs[0]->donor_alamatkantor; 
+$txtdonorpekerjaan = $rs[0]->donor_pekerjaan; 
+$txtpekerjaanpekerjaannama = $rs[0]->pekerjaan_pekerjaan_nama; 
+$txtdonortempatkelahiran = $rs[0]->donor_tempatkelahiran; 
+$txtdonorapharesis = $rs[0]->donor_apharesis; 
+$txtapharesisapharesisnama = $rs[0]->apharesis_apharesis_nama; 
+$txtdonorpenghargaan = $rs[0]->donor_penghargaan; 
+$txtpenghargaanpenghargaannama = $rs[0]->penghargaan_penghargaan_nama; 
+$txtdonorpuasa = $rs[0]->donor_puasa; 
+$txtpuasapuasanama = $rs[0]->puasa_puasa_nama; 
+$txtdonorbutuh = $rs[0]->donor_butuh; 
+$txtbutuhbutuhnama = $rs[0]->butuh_butuh_nama; 
+$txtdonorterakhir = date('Y-m-d', strtotime($rs[0]->donor_terakhir)); 
+$txtdonorke = $rs[0]->donor_ke; 
+$txtdonornamadokter = $rs[0]->donor_namadokter; 
+$txtdokterdokternama = $rs[0]->dokter_dokter_nama; 
+$txtdonorriwayatmedis = $rs[0]->donor_riwayatmedis; 
+$txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# = $rs[0]->donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#; 
+$txtdonorkantong = $rs[0]->donor_kantong; 
+$txtkantongkantongnama = $rs[0]->kantong_kantong_nama; 
+$txtdonortekanandarah = $rs[0]->donor_tekanandarah; 
+$txtdonoralattekanandarah = $rs[0]->donor_alattekanandarah; 
+$txtdonornadi = $rs[0]->donor_nadi; 
+$txtdonorberatbadan = $rs[0]->donor_beratbadan; 
+$txtdonoralatberatbadan = $rs[0]->donor_alatberatbadan; 
+$txtdonorsuhu = $rs[0]->donor_suhu; 
+$txtdonoralatsuhu = $rs[0]->donor_alatsuhu; 
+$txtdonorkeadaanumum = $rs[0]->donor_keadaanumum; 
+$txtdonorpetugasadministrasi = $rs[0]->donor_petugasadministrasi; 
+$txtpetugasadministrasipetugasadministrasinama = $rs[0]->petugasadministrasi_petugasadministrasi_nama; 
+$txtdonorvalidasi = $rs[0]->donor_validasi; 
+$txtdonorpetugashb = $rs[0]->donor_petugashb; 
+$txtpetugashbpetugashbnama = $rs[0]->petugashb_petugashb_nama; 
+$txtdonormacamdonor = $rs[0]->donor_macamdonor; 
+$txtmacamdonormacamdonornama = $rs[0]->macamdonor_macamdonor_nama; 
+$txtdonormetodepangambilan = $rs[0]->donor_metodepangambilan; 
+$txtmetodeambildarahmetodenama = $rs[0]->metode_ambil_darah_metode_nama; 
+$txtdonorhb = $rs[0]->donor_hb; 
+$txtdonorgoldar = $rs[0]->donor_goldar; 
+$txtgoldargoldarnama = $rs[0]->goldar_goldar_nama; 
+$txtdonornamapetugasaftar = $rs[0]->donor_namapetugasaftar; 
+$txtpetugasaftarpetugasaftarnama = $rs[0]->petugasaftar_petugasaftar_nama; 
+$txtdonorlengan = $rs[0]->donor_lengan; 
+$txtlenganlengannama = $rs[0]->lengan_lengan_nama; 
+$txtdonorkodekantong = $rs[0]->donor_kodekantong; 
+$txtdonorpenusukanulang = $rs[0]->donor_penusukanulang; 
+$txtpenusukanulangpenusukanulangnama = $rs[0]->penusukanulang_penusukanulang_nama; 
+$txtdonorlamapengambilan = $rs[0]->donor_lamapengambilan; 
+$txtlamapengambilanlamapengambilannama = $rs[0]->lamapengambilan_lamapengambilan_nama; 
+$txtNo Kantong = $rs[0]->No Kantong; 
+$txtNo Kantong Ganti I = $rs[0]->No Kantong Ganti I; 
+$txtNo Kantong Ganti II = $rs[0]->No Kantong Ganti II; 
+$txtDonor = date('Y-m-d', strtotime($rs[0]->Donor)); 
+
+            }
+        }
+
+        
+                  $rs_jeniskelamin = getByQuery("select * from jeniskelamin");
+                  if($rs_jeniskelamin != "") {
+                      foreach($rs_jeniskelamin as $row_jeniskelamin) {
+                          $selected = ($row_jeniskelamin->jeniskelamin_id == $txtdonorjeniskelamin) ? "selected" : "";
+                          $jeniskelamin_list .= "<option value='".$row_jeniskelamin->jeniskelamin_id."' ".$selected." >".$row_jeniskelamin->jeniskelamin_nama."</option>";
+                      }
+                  }
+                
+                  $rs_status = getByQuery("select * from status");
+                  if($rs_status != "") {
+                      foreach($rs_status as $row_status) {
+                          $selected = ($row_status->status_id == $txtdonorstatus) ? "selected" : "";
+                          $status_list .= "<option value='".$row_status->status_id."' ".$selected." >".$row_status->status_nama."</option>";
+                      }
+                  }
+                
+                  $rs_kelurahan = getByQuery("select * from kelurahan");
+                  if($rs_kelurahan != "") {
+                      foreach($rs_kelurahan as $row_kelurahan) {
+                          $selected = ($row_kelurahan->kelurahan_id == $txtdonorkelurahan) ? "selected" : "";
+                          $kelurahan_list .= "<option value='".$row_kelurahan->kelurahan_id."' ".$selected." >".$row_kelurahan->kelurahan_nama."</option>";
+                      }
+                  }
+                
+                  $rs_kecamatan = getByQuery("select * from kecamatan");
+                  if($rs_kecamatan != "") {
+                      foreach($rs_kecamatan as $row_kecamatan) {
+                          $selected = ($row_kecamatan->kecamatan_id == $txtdonorkecamatan) ? "selected" : "";
+                          $kecamatan_list .= "<option value='".$row_kecamatan->kecamatan_id."' ".$selected." >".$row_kecamatan->kecamatan_nama."</option>";
+                      }
+                  }
+                
+                  $rs_wilayah = getByQuery("select * from wilayah");
+                  if($rs_wilayah != "") {
+                      foreach($rs_wilayah as $row_wilayah) {
+                          $selected = ($row_wilayah->wilayah_id == $txtdonorwilayah) ? "selected" : "";
+                          $wilayah_list .= "<option value='".$row_wilayah->wilayah_id."' ".$selected." >".$row_wilayah->wilayah_nama."</option>";
+                      }
+                  }
+                
+                  $rs_pekerjaan = getByQuery("select * from pekerjaan");
+                  if($rs_pekerjaan != "") {
+                      foreach($rs_pekerjaan as $row_pekerjaan) {
+                          $selected = ($row_pekerjaan->pekerjaan_Id == $txtdonorpekerjaan) ? "selected" : "";
+                          $pekerjaan_list .= "<option value='".$row_pekerjaan->pekerjaan_Id."' ".$selected." >".$row_pekerjaan->pekerjaan_nama."</option>";
+                      }
+                  }
+                
+                  $rs_apharesis = getByQuery("select * from apharesis");
+                  if($rs_apharesis != "") {
+                      foreach($rs_apharesis as $row_apharesis) {
+                          $selected = ($row_apharesis->apharesis_id == $txtdonorapharesis) ? "selected" : "";
+                          $apharesis_list .= "<option value='".$row_apharesis->apharesis_id."' ".$selected." >".$row_apharesis->apharesis_nama."</option>";
+                      }
+                  }
+                
+                  $rs_penghargaan = getByQuery("select * from penghargaan");
+                  if($rs_penghargaan != "") {
+                      foreach($rs_penghargaan as $row_penghargaan) {
+                          $selected = ($row_penghargaan->penghargaan_id == $txtdonorpenghargaan) ? "selected" : "";
+                          $penghargaan_list .= "<option value='".$row_penghargaan->penghargaan_id."' ".$selected." >".$row_penghargaan->penghargaan_nama."</option>";
+                      }
+                  }
+                
+                  $rs_puasa = getByQuery("select * from puasa");
+                  if($rs_puasa != "") {
+                      foreach($rs_puasa as $row_puasa) {
+                          $selected = ($row_puasa->puasa_id == $txtdonorpuasa) ? "selected" : "";
+                          $puasa_list .= "<option value='".$row_puasa->puasa_id."' ".$selected." >".$row_puasa->puasa_nama."</option>";
+                      }
+                  }
+                
+                  $rs_butuh = getByQuery("select * from butuh");
+                  if($rs_butuh != "") {
+                      foreach($rs_butuh as $row_butuh) {
+                          $selected = ($row_butuh->butuh_id == $txtdonorbutuh) ? "selected" : "";
+                          $butuh_list .= "<option value='".$row_butuh->butuh_id."' ".$selected." >".$row_butuh->butuh_nama."</option>";
+                      }
+                  }
+                
+                  $rs_dokter = getByQuery("select * from dokter");
+                  if($rs_dokter != "") {
+                      foreach($rs_dokter as $row_dokter) {
+                          $selected = ($row_dokter->row_id == $txtdonornamadokter) ? "selected" : "";
+                          $dokter_list .= "<option value='".$row_dokter->row_id."' ".$selected." >".$row_dokter->dokter_nama."</option>";
+                      }
+                  }
+                
+                  $rs_kantong = getByQuery("select * from kantong");
+                  if($rs_kantong != "") {
+                      foreach($rs_kantong as $row_kantong) {
+                          $selected = ($row_kantong->kantong_id == $txtdonorkantong) ? "selected" : "";
+                          $kantong_list .= "<option value='".$row_kantong->kantong_id."' ".$selected." >".$row_kantong->kantong_nama."</option>";
+                      }
+                  }
+                
+                  $rs_petugasadministrasi = getByQuery("select * from petugasadministrasi");
+                  if($rs_petugasadministrasi != "") {
+                      foreach($rs_petugasadministrasi as $row_petugasadministrasi) {
+                          $selected = ($row_petugasadministrasi->petugasadministrasi_id == $txtdonorpetugasadministrasi) ? "selected" : "";
+                          $petugasadministrasi_list .= "<option value='".$row_petugasadministrasi->petugasadministrasi_id."' ".$selected." >".$row_petugasadministrasi->petugasadministrasi_nama."</option>";
+                      }
+                  }
+                
+                  $rs_petugashb = getByQuery("select * from petugashb");
+                  if($rs_petugashb != "") {
+                      foreach($rs_petugashb as $row_petugashb) {
+                          $selected = ($row_petugashb->row_id == $txtdonorpetugashb) ? "selected" : "";
+                          $petugashb_list .= "<option value='".$row_petugashb->row_id."' ".$selected." >".$row_petugashb->petugashb_nama."</option>";
+                      }
+                  }
+                
+                  $rs_macamdonor = getByQuery("select * from macamdonor");
+                  if($rs_macamdonor != "") {
+                      foreach($rs_macamdonor as $row_macamdonor) {
+                          $selected = ($row_macamdonor->macamdonor_id == $txtdonormacamdonor) ? "selected" : "";
+                          $macamdonor_list .= "<option value='".$row_macamdonor->macamdonor_id."' ".$selected." >".$row_macamdonor->macamdonor_nama."</option>";
+                      }
+                  }
+                
+                  $rs_metode_ambil_darah = getByQuery("select * from metode_ambil_darah");
+                  if($rs_metode_ambil_darah != "") {
+                      foreach($rs_metode_ambil_darah as $row_metode_ambil_darah) {
+                          $selected = ($row_metode_ambil_darah->metode_id == $txtdonormetodepangambilan) ? "selected" : "";
+                          $metode_ambil_darah_list .= "<option value='".$row_metode_ambil_darah->metode_id."' ".$selected." >".$row_metode_ambil_darah->metode_nama."</option>";
+                      }
+                  }
+                
+                  $rs_goldar = getByQuery("select * from goldar");
+                  if($rs_goldar != "") {
+                      foreach($rs_goldar as $row_goldar) {
+                          $selected = ($row_goldar->row_id == $txtdonorgoldar) ? "selected" : "";
+                          $goldar_list .= "<option value='".$row_goldar->row_id."' ".$selected." >".$row_goldar->goldar_nama."</option>";
+                      }
+                  }
+                
+                  $rs_petugasaftar = getByQuery("select * from petugasaftar");
+                  if($rs_petugasaftar != "") {
+                      foreach($rs_petugasaftar as $row_petugasaftar) {
+                          $selected = ($row_petugasaftar->row_id == $txtdonornamapetugasaftar) ? "selected" : "";
+                          $petugasaftar_list .= "<option value='".$row_petugasaftar->row_id."' ".$selected." >".$row_petugasaftar->petugasaftar_nama."</option>";
+                      }
+                  }
+                
+                  $rs_lengan = getByQuery("select * from lengan");
+                  if($rs_lengan != "") {
+                      foreach($rs_lengan as $row_lengan) {
+                          $selected = ($row_lengan->lengan_id == $txtdonorlengan) ? "selected" : "";
+                          $lengan_list .= "<option value='".$row_lengan->lengan_id."' ".$selected." >".$row_lengan->lengan_nama."</option>";
+                      }
+                  }
+                
+                  $rs_penusukanulang = getByQuery("select * from penusukanulang");
+                  if($rs_penusukanulang != "") {
+                      foreach($rs_penusukanulang as $row_penusukanulang) {
+                          $selected = ($row_penusukanulang->penusukanulang_id == $txtdonorpenusukanulang) ? "selected" : "";
+                          $penusukanulang_list .= "<option value='".$row_penusukanulang->penusukanulang_id."' ".$selected." >".$row_penusukanulang->penusukanulang_nama."</option>";
+                      }
+                  }
+                
+                  $rs_lamapengambilan = getByQuery("select * from lamapengambilan");
+                  if($rs_lamapengambilan != "") {
+                      foreach($rs_lamapengambilan as $row_lamapengambilan) {
+                          $selected = ($row_lamapengambilan->lamapengambilan_id == $txtdonorlamapengambilan) ? "selected" : "";
+                          $lamapengambilan_list .= "<option value='".$row_lamapengambilan->lamapengambilan_id."' ".$selected." >".$row_lamapengambilan->lamapengambilan_nama."</option>";
+                      }
+                  }
+                
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No Kartu Donor: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="1" " id="txtdonorid" name="txtdonorid" class="form-control" value="'.$txtdonorid.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No KTP: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="1" " id="txtdonornoktp" name="txtdonornoktp" class="form-control" value="'.$txtdonornoktp.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Nama Lengkap: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonornama" name="txtdonornama" class="form-control" value="'.$txtdonornama.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Jenis Kelamin: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorjeniskelamin" name="txtdonorjeniskelamin" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$jeniskelamin_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Status: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorstatus" name="txtdonorstatus" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$status_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Alamat Rumah: <span style="color: #ff0000">*</span></label>
+                        <textarea id="txtdonoralamat" name="txtdonoralamat" rows="4" class="form-control">'.$txtdonoralamat.'</textarea>
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No HP: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="1" " id="txtdonornohp" name="txtdonornohp" class="form-control" value="'.$txtdonornohp.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Kelurahan: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorkelurahan" name="txtdonorkelurahan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$kelurahan_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Kecamatan: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorkecamatan" name="txtdonorkecamatan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$kecamatan_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Wilayah: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorwilayah" name="txtdonorwilayah" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$wilayah_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Alamat Kantor: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonoralamatkantor" name="txtdonoralamatkantor" class="form-control" value="'.$txtdonoralamatkantor.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pekerjaan: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorpekerjaan" name="txtdonorpekerjaan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$pekerjaan_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Tempat Lahir: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonortempatkelahiran" name="txtdonortempatkelahiran" class="form-control" value="'.$txtdonortempatkelahiran.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Apharesis: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorapharesis" name="txtdonorapharesis" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$apharesis_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Penghargaan Donor: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorpenghargaan" name="txtdonorpenghargaan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$penghargaan_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Puasa: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorpuasa" name="txtdonorpuasa" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$puasa_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Butuh Donor: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorbutuh" name="txtdonorbutuh" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$butuh_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Terakhir Donor: <span style="color: #ff0000">*</span></label>
+                        <input type="date" id="txtdonorterakhir" name="txtdonorterakhir" class="form-control" value="'.$txtdonorterakhir.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Sekarang Donor Ke-: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonorke" name="txtdonorke" class="form-control" value="'.$txtdonorke.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Dokter: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonornamadokter" name="txtdonornamadokter" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$dokter_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Riwayat Medis: <span style="color: #ff0000">*</span></label>
+                        <textarea id="txtdonorriwayatmedis" name="txtdonorriwayatmedis" rows="4" class="form-control">'.$txtdonorriwayatmedis.'</textarea>
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Diambil Sebanyak: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#" name="txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#" class="form-control" value="'.$txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Kantong: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorkantong" name="txtdonorkantong" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$kantong_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Tekanan Darah: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="1" " id="txtdonortekanandarah" name="txtdonortekanandarah" class="form-control" value="'.$txtdonortekanandarah.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Kode Alat Tekanan Darah:</label>
+                        <input type="number" step="1" " id="txtdonoralattekanandarah" name="txtdonoralattekanandarah" class="form-control" value="'.$txtdonoralattekanandarah.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Nadi: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="1" " id="txtdonornadi" name="txtdonornadi" class="form-control" value="'.$txtdonornadi.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Berat Badan: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonorberatbadan" name="txtdonorberatbadan" class="form-control" value="'.$txtdonorberatbadan.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Kode Alat Berat Badan:</label>
+                        <input type="text" id="txtdonoralatberatbadan" name="txtdonoralatberatbadan" class="form-control" value="'.$txtdonoralatberatbadan.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Suhu: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonorsuhu" name="txtdonorsuhu" class="form-control" value="'.$txtdonorsuhu.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Kode Alat Suhu:</label>
+                        <input type="text" id="txtdonoralatsuhu" name="txtdonoralatsuhu" class="form-control" value="'.$txtdonoralatsuhu.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Keadaan Umum Donor: <span style="color: #ff0000">*</span></label>
+                        <textarea id="txtdonorkeadaanumum" name="txtdonorkeadaanumum" rows="4" class="form-control">'.$txtdonorkeadaanumum.'</textarea>
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Petugas Administrasi: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorpetugasadministrasi" name="txtdonorpetugasadministrasi" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$petugasadministrasi_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Cara Validasi: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonorvalidasi" name="txtdonorvalidasi" class="form-control" value="'.$txtdonorvalidasi.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Petugashb: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorpetugashb" name="txtdonorpetugashb" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$petugashb_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Macam Donor: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonormacamdonor" name="txtdonormacamdonor" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$macamdonor_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Metode Pengambilan Darah: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonormetodepangambilan" name="txtdonormetodepangambilan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$metode_ambil_darah_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Hb: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="1" " id="txtdonorhb" name="txtdonorhb" class="form-control" value="'.$txtdonorhb.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Golongan Darah: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorgoldar" name="txtdonorgoldar" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$goldar_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Petugas Aftar: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonornamapetugasaftar" name="txtdonornamapetugasaftar" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$petugasaftar_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Posisi Lengan: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorlengan" name="txtdonorlengan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$lengan_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Kode Timbangan Kantong: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtdonorkodekantong" name="txtdonorkodekantong" class="form-control" value="'.$txtdonorkodekantong.'" />
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Penusukan Ulang Ganti Kantong: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorpenusukanulang" name="txtdonorpenusukanulang" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$penusukanulang_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Lama Pengambilan: <span style="color: #ff0000">*</span></label>
+                      <select id="txtdonorlamapengambilan" name="txtdonorlamapengambilan" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$lamapengambilan_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No Kantong:</label>
+                        <input type="text" id="txtNo Kantong" name="txtNo Kantong" class="form-control" value="'.$txtNo Kantong.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No Kantong Ganti I:</label>
+                        <input type="text" id="txtNo Kantong Ganti I" name="txtNo Kantong Ganti I" class="form-control" value="'.$txtNo Kantong Ganti I.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>No Kantong Ganti II:</label>
+                        <input type="text" id="txtNo Kantong Ganti II" name="txtNo Kantong Ganti II" class="form-control" value="'.$txtNo Kantong Ganti II.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Tanggal Donor: <span style="color: #ff0000">*</span></label>
+                        <input type="date" id="txtDonor" name="txtDonor" class="form-control" value="'.$txtDonor.'" />
+                      </div>
+                    </div>
+                  
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtdonorid = ''; 
+$txtdonornoktp = ''; 
+$txtdonornama = ''; 
+$txtdonorjeniskelamin = ''; 
+$jeniskelamin_list = "";$txtjeniskelaminjeniskelaminnama = ''; 
+$txtdonorstatus = ''; 
+$status_list = "";$txtstatusstatusnama = ''; 
+$txtdonoralamat = ''; 
+$txtdonornohp = ''; 
+$txtdonorkelurahan = ''; 
+$kelurahan_list = "";$txtkelurahankelurahannama = ''; 
+$txtdonorkecamatan = ''; 
+$kecamatan_list = "";$txtkecamatankecamatannama = ''; 
+$txtdonorwilayah = ''; 
+$wilayah_list = "";$txtwilayahwilayahnama = ''; 
+$txtdonoralamatkantor = ''; 
+$txtdonorpekerjaan = ''; 
+$pekerjaan_list = "";$txtpekerjaanpekerjaannama = ''; 
+$txtdonortempatkelahiran = ''; 
+$txtdonorapharesis = ''; 
+$apharesis_list = "";$txtapharesisapharesisnama = ''; 
+$txtdonorpenghargaan = ''; 
+$penghargaan_list = "";$txtpenghargaanpenghargaannama = ''; 
+$txtdonorpuasa = ''; 
+$puasa_list = "";$txtpuasapuasanama = ''; 
+$txtdonorbutuh = ''; 
+$butuh_list = "";$txtbutuhbutuhnama = ''; 
+$txtdonorterakhir = ''; 
+$txtdonorke = ''; 
+$txtdonornamadokter = ''; 
+$dokter_list = "";$txtdokterdokternama = ''; 
+$txtdonorriwayatmedis = ''; 
+$txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# = ''; 
+$txtdonorkantong = ''; 
+$kantong_list = "";$txtkantongkantongnama = ''; 
+$txtdonortekanandarah = ''; 
+$txtdonoralattekanandarah = ''; 
+$txtdonornadi = ''; 
+$txtdonorberatbadan = ''; 
+$txtdonoralatberatbadan = ''; 
+$txtdonorsuhu = ''; 
+$txtdonoralatsuhu = ''; 
+$txtdonorkeadaanumum = ''; 
+$txtdonorpetugasadministrasi = ''; 
+$petugasadministrasi_list = "";$txtpetugasadministrasipetugasadministrasinama = ''; 
+$txtdonorvalidasi = ''; 
+$txtdonorpetugashb = ''; 
+$petugashb_list = "";$txtpetugashbpetugashbnama = ''; 
+$txtdonormacamdonor = ''; 
+$macamdonor_list = "";$txtmacamdonormacamdonornama = ''; 
+$txtdonormetodepangambilan = ''; 
+$metode_ambil_darah_list = "";$txtmetodeambildarahmetodenama = ''; 
+$txtdonorhb = ''; 
+$txtdonorgoldar = ''; 
+$goldar_list = "";$txtgoldargoldarnama = ''; 
+$txtdonornamapetugasaftar = ''; 
+$petugasaftar_list = "";$txtpetugasaftarpetugasaftarnama = ''; 
+$txtdonorlengan = ''; 
+$lengan_list = "";$txtlenganlengannama = ''; 
+$txtdonorkodekantong = ''; 
+$txtdonorpenusukanulang = ''; 
+$penusukanulang_list = "";$txtpenusukanulangpenusukanulangnama = ''; 
+$txtdonorlamapengambilan = ''; 
+$lamapengambilan_list = "";$txtlamapengambilanlamapengambilannama = ''; 
+$txtNo Kantong = ''; 
+$txtNo Kantong Ganti I = ''; 
+$txtNo Kantong Ganti II = ''; 
+$txtDonor = ''; 
+
+        
+        $qry = "select * from vw_donor_1list where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtdonorid = $rs[0]->donor_id; 
+$txtdonornoktp = $rs[0]->donor_no_ktp; 
+$txtdonornama = $rs[0]->donor_nama; 
+$txtdonorjeniskelamin = $rs[0]->donor_jeniskelamin; 
+$txtjeniskelaminjeniskelaminnama = $rs[0]->jeniskelamin_jeniskelamin_nama; 
+$txtdonorstatus = $rs[0]->donor_status; 
+$txtstatusstatusnama = $rs[0]->status_status_nama; 
+$txtdonoralamat = $rs[0]->donor_alamat; 
+$txtdonornohp = $rs[0]->donor_nohp; 
+$txtdonorkelurahan = $rs[0]->donor_kelurahan; 
+$txtkelurahankelurahannama = $rs[0]->kelurahan_kelurahan_nama; 
+$txtdonorkecamatan = $rs[0]->donor_kecamatan; 
+$txtkecamatankecamatannama = $rs[0]->kecamatan_kecamatan_nama; 
+$txtdonorwilayah = $rs[0]->donor_wilayah; 
+$txtwilayahwilayahnama = $rs[0]->wilayah_wilayah_nama; 
+$txtdonoralamatkantor = $rs[0]->donor_alamatkantor; 
+$txtdonorpekerjaan = $rs[0]->donor_pekerjaan; 
+$txtpekerjaanpekerjaannama = $rs[0]->pekerjaan_pekerjaan_nama; 
+$txtdonortempatkelahiran = $rs[0]->donor_tempatkelahiran; 
+$txtdonorapharesis = $rs[0]->donor_apharesis; 
+$txtapharesisapharesisnama = $rs[0]->apharesis_apharesis_nama; 
+$txtdonorpenghargaan = $rs[0]->donor_penghargaan; 
+$txtpenghargaanpenghargaannama = $rs[0]->penghargaan_penghargaan_nama; 
+$txtdonorpuasa = $rs[0]->donor_puasa; 
+$txtpuasapuasanama = $rs[0]->puasa_puasa_nama; 
+$txtdonorbutuh = $rs[0]->donor_butuh; 
+$txtbutuhbutuhnama = $rs[0]->butuh_butuh_nama; 
+$txtdonorterakhir = date('Y-m-d', strtotime($rs[0]->donor_terakhir)); 
+$txtdonorke = $rs[0]->donor_ke; 
+$txtdonornamadokter = $rs[0]->donor_namadokter; 
+$txtdokterdokternama = $rs[0]->dokter_dokter_nama; 
+$txtdonorriwayatmedis = $rs[0]->donor_riwayatmedis; 
+$txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# = $rs[0]->donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#; 
+$txtdonorkantong = $rs[0]->donor_kantong; 
+$txtkantongkantongnama = $rs[0]->kantong_kantong_nama; 
+$txtdonortekanandarah = $rs[0]->donor_tekanandarah; 
+$txtdonoralattekanandarah = $rs[0]->donor_alattekanandarah; 
+$txtdonornadi = $rs[0]->donor_nadi; 
+$txtdonorberatbadan = $rs[0]->donor_beratbadan; 
+$txtdonoralatberatbadan = $rs[0]->donor_alatberatbadan; 
+$txtdonorsuhu = $rs[0]->donor_suhu; 
+$txtdonoralatsuhu = $rs[0]->donor_alatsuhu; 
+$txtdonorkeadaanumum = $rs[0]->donor_keadaanumum; 
+$txtdonorpetugasadministrasi = $rs[0]->donor_petugasadministrasi; 
+$txtpetugasadministrasipetugasadministrasinama = $rs[0]->petugasadministrasi_petugasadministrasi_nama; 
+$txtdonorvalidasi = $rs[0]->donor_validasi; 
+$txtdonorpetugashb = $rs[0]->donor_petugashb; 
+$txtpetugashbpetugashbnama = $rs[0]->petugashb_petugashb_nama; 
+$txtdonormacamdonor = $rs[0]->donor_macamdonor; 
+$txtmacamdonormacamdonornama = $rs[0]->macamdonor_macamdonor_nama; 
+$txtdonormetodepangambilan = $rs[0]->donor_metodepangambilan; 
+$txtmetodeambildarahmetodenama = $rs[0]->metode_ambil_darah_metode_nama; 
+$txtdonorhb = $rs[0]->donor_hb; 
+$txtdonorgoldar = $rs[0]->donor_goldar; 
+$txtgoldargoldarnama = $rs[0]->goldar_goldar_nama; 
+$txtdonornamapetugasaftar = $rs[0]->donor_namapetugasaftar; 
+$txtpetugasaftarpetugasaftarnama = $rs[0]->petugasaftar_petugasaftar_nama; 
+$txtdonorlengan = $rs[0]->donor_lengan; 
+$txtlenganlengannama = $rs[0]->lengan_lengan_nama; 
+$txtdonorkodekantong = $rs[0]->donor_kodekantong; 
+$txtdonorpenusukanulang = $rs[0]->donor_penusukanulang; 
+$txtpenusukanulangpenusukanulangnama = $rs[0]->penusukanulang_penusukanulang_nama; 
+$txtdonorlamapengambilan = $rs[0]->donor_lamapengambilan; 
+$txtlamapengambilanlamapengambilannama = $rs[0]->lamapengambilan_lamapengambilan_nama; 
+$txtNo Kantong = $rs[0]->No Kantong; 
+$txtNo Kantong Ganti I = $rs[0]->No Kantong Ganti I; 
+$txtNo Kantong Ganti II = $rs[0]->No Kantong Ganti II; 
+$txtDonor = date('Y-m-d', strtotime($rs[0]->Donor)); 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">No Kartu Donor:</td>
+                        <td class="view-txt">'.$txtdonorid.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">No KTP:</td>
+                        <td class="view-txt">'.$txtdonornoktp.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Nama Lengkap:</td>
+                        <td class="view-txt">'.$txtdonornama.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Jenis Kelamin:</td>
+                      <td class="view-txt">'.$txtjeniskelaminjeniskelaminnama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Status:</td>
+                      <td class="view-txt">'.$txtstatusstatusnama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Alamat Rumah:</td>
+                        <td class="view-txt">'.$txtdonoralamat.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">No HP:</td>
+                        <td class="view-txt">'.$txtdonornohp.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Kelurahan:</td>
+                      <td class="view-txt">'.$txtkelurahankelurahannama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Kecamatan:</td>
+                      <td class="view-txt">'.$txtkecamatankecamatannama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Wilayah:</td>
+                      <td class="view-txt">'.$txtwilayahwilayahnama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Alamat Kantor:</td>
+                        <td class="view-txt">'.$txtdonoralamatkantor.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Pekerjaan:</td>
+                      <td class="view-txt">'.$txtpekerjaanpekerjaannama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Tempat Lahir:</td>
+                        <td class="view-txt">'.$txtdonortempatkelahiran.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Apharesis:</td>
+                      <td class="view-txt">'.$txtapharesisapharesisnama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Penghargaan Donor:</td>
+                      <td class="view-txt">'.$txtpenghargaanpenghargaannama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Puasa:</td>
+                      <td class="view-txt">'.$txtpuasapuasanama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Butuh Donor:</td>
+                      <td class="view-txt">'.$txtbutuhbutuhnama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Terakhir Donor:</td>
+                        <td class="view-txt">'.$txtdonorterakhir.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Sekarang Donor Ke-:</td>
+                        <td class="view-txt">'.$txtdonorke.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Nama Dokter:</td>
+                      <td class="view-txt">'.$txtdokterdokternama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Riwayat Medis:</td>
+                        <td class="view-txt">'.$txtdonorriwayatmedis.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Diambil Sebanyak:</td>
+                        <td class="view-txt">'.$txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Kantong:</td>
+                      <td class="view-txt">'.$txtkantongkantongnama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Tekanan Darah:</td>
+                        <td class="view-txt">'.$txtdonortekanandarah.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Kode Alat Tekanan Darah:</td>
+                        <td class="view-txt">'.$txtdonoralattekanandarah.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Nadi:</td>
+                        <td class="view-txt">'.$txtdonornadi.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Berat Badan:</td>
+                        <td class="view-txt">'.$txtdonorberatbadan.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Kode Alat Berat Badan:</td>
+                        <td class="view-txt">'.$txtdonoralatberatbadan.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Suhu:</td>
+                        <td class="view-txt">'.$txtdonorsuhu.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Kode Alat Suhu:</td>
+                        <td class="view-txt">'.$txtdonoralatsuhu.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Keadaan Umum Donor:</td>
+                        <td class="view-txt">'.$txtdonorkeadaanumum.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Nama Petugas Administrasi:</td>
+                      <td class="view-txt">'.$txtpetugasadministrasipetugasadministrasinama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Cara Validasi:</td>
+                        <td class="view-txt">'.$txtdonorvalidasi.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Nama Petugashb:</td>
+                      <td class="view-txt">'.$txtpetugashbpetugashbnama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Macam Donor:</td>
+                      <td class="view-txt">'.$txtmacamdonormacamdonornama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Metode Pengambilan Darah:</td>
+                      <td class="view-txt">'.$txtmetodeambildarahmetodenama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Hb:</td>
+                        <td class="view-txt">'.$txtdonorhb.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Golongan Darah:</td>
+                      <td class="view-txt">'.$txtgoldargoldarnama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Nama Petugas Aftar:</td>
+                      <td class="view-txt">'.$txtpetugasaftarpetugasaftarnama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Posisi Lengan:</td>
+                      <td class="view-txt">'.$txtlenganlengannama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Kode Timbangan Kantong:</td>
+                        <td class="view-txt">'.$txtdonorkodekantong.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Penusukan Ulang Ganti Kantong:</td>
+                      <td class="view-txt">'.$txtpenusukanulangpenusukanulangnama.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Lama Pengambilan:</td>
+                      <td class="view-txt">'.$txtlamapengambilanlamapengambilannama.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">No Kantong:</td>
+                        <td class="view-txt">'.$txtNo Kantong.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">No Kantong Ganti I:</td>
+                        <td class="view-txt">'.$txtNo Kantong Ganti I.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">No Kantong Ganti II:</td>
+                        <td class="view-txt">'.$txtNo Kantong Ganti II.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Tanggal Donor:</td>
+                        <td class="view-txt">'.$txtDonor.'</td>
+                    </tr>
+                  
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtdonorid = $this->input->post("txtdonorid"); $txtdonornoktp = $this->input->post("txtdonornoktp"); $txtdonornama = $this->input->post("txtdonornama"); $txtdonorjeniskelamin = $this->input->post("txtdonorjeniskelamin"); $txtdonorstatus = $this->input->post("txtdonorstatus"); $txtdonoralamat = $this->input->post("txtdonoralamat"); $txtdonornohp = $this->input->post("txtdonornohp"); $txtdonorkelurahan = $this->input->post("txtdonorkelurahan"); $txtdonorkecamatan = $this->input->post("txtdonorkecamatan"); $txtdonorwilayah = $this->input->post("txtdonorwilayah"); $txtdonoralamatkantor = $this->input->post("txtdonoralamatkantor"); $txtdonorpekerjaan = $this->input->post("txtdonorpekerjaan"); $txtdonortempatkelahiran = $this->input->post("txtdonortempatkelahiran"); $txtdonorapharesis = $this->input->post("txtdonorapharesis"); $txtdonorpenghargaan = $this->input->post("txtdonorpenghargaan"); $txtdonorpuasa = $this->input->post("txtdonorpuasa"); $txtdonorbutuh = $this->input->post("txtdonorbutuh"); $txtdonorterakhir = $this->input->post("txtdonorterakhir"); $txtdonorke = $this->input->post("txtdonorke"); $txtdonornamadokter = $this->input->post("txtdonornamadokter"); $txtdonorriwayatmedis = $this->input->post("txtdonorriwayatmedis"); $txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# = $this->input->post("txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#"); $txtdonorkantong = $this->input->post("txtdonorkantong"); $txtdonortekanandarah = $this->input->post("txtdonortekanandarah"); $txtdonoralattekanandarah = $this->input->post("txtdonoralattekanandarah"); $txtdonornadi = $this->input->post("txtdonornadi"); $txtdonorberatbadan = $this->input->post("txtdonorberatbadan"); $txtdonoralatberatbadan = $this->input->post("txtdonoralatberatbadan"); $txtdonorsuhu = $this->input->post("txtdonorsuhu"); $txtdonoralatsuhu = $this->input->post("txtdonoralatsuhu"); $txtdonorkeadaanumum = $this->input->post("txtdonorkeadaanumum"); $txtdonorpetugasadministrasi = $this->input->post("txtdonorpetugasadministrasi"); $txtdonorvalidasi = $this->input->post("txtdonorvalidasi"); $txtdonorpetugashb = $this->input->post("txtdonorpetugashb"); $txtdonormacamdonor = $this->input->post("txtdonormacamdonor"); $txtdonormetodepangambilan = $this->input->post("txtdonormetodepangambilan"); $txtdonorhb = $this->input->post("txtdonorhb"); $txtdonorgoldar = $this->input->post("txtdonorgoldar"); $txtdonornamapetugasaftar = $this->input->post("txtdonornamapetugasaftar"); $txtdonorlengan = $this->input->post("txtdonorlengan"); $txtdonorkodekantong = $this->input->post("txtdonorkodekantong"); $txtdonorpenusukanulang = $this->input->post("txtdonorpenusukanulang"); $txtdonorlamapengambilan = $this->input->post("txtdonorlamapengambilan"); $txtNo Kantong = $this->input->post("txtNo Kantong"); $txtNo Kantong Ganti I = $this->input->post("txtNo Kantong Ganti I"); $txtNo Kantong Ganti II = $this->input->post("txtNo Kantong Ganti II"); $txtDonor = $this->input->post("txtDonor"); 
+        
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'donor_id' => $txtdonorid, 'donor_no_ktp' => $txtdonornoktp, 'donor_nama' => $txtdonornama, 'donor_jeniskelamin' => $txtdonorjeniskelamin, 'donor_status' => $txtdonorstatus, 'donor_alamat' => $txtdonoralamat, 'donor_nohp' => $txtdonornohp, 'donor_kelurahan' => $txtdonorkelurahan, 'donor_kecamatan' => $txtdonorkecamatan, 'donor_wilayah' => $txtdonorwilayah, 'donor_alamatkantor' => $txtdonoralamatkantor, 'donor_pekerjaan' => $txtdonorpekerjaan, 'donor_tempatkelahiran' => $txtdonortempatkelahiran, 'donor_apharesis' => $txtdonorapharesis, 'donor_penghargaan' => $txtdonorpenghargaan, 'donor_puasa' => $txtdonorpuasa, 'donor_butuh' => $txtdonorbutuh, 'donor_terakhir' => date("Y-m-d H:i:s", strtotime($txtdonorterakhir)), 'donor_ke' => $txtdonorke, 'donor_namadokter' => $txtdonornamadokter, 'donor_riwayatmedis' => $txtdonorriwayatmedis, 'donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#' => $txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#, 'donor_kantong' => $txtdonorkantong, 'donor_tekanandarah' => $txtdonortekanandarah, 'donor_alattekanandarah' => $txtdonoralattekanandarah, 'donor_nadi' => $txtdonornadi, 'donor_beratbadan' => $txtdonorberatbadan, 'donor_alatberatbadan' => $txtdonoralatberatbadan, 'donor_suhu' => $txtdonorsuhu, 'donor_alatsuhu' => $txtdonoralatsuhu, 'donor_keadaanumum' => $txtdonorkeadaanumum, 'donor_petugasadministrasi' => $txtdonorpetugasadministrasi, 'donor_validasi' => $txtdonorvalidasi, 'donor_petugashb' => $txtdonorpetugashb, 'donor_macamdonor' => $txtdonormacamdonor, 'donor_metodepangambilan' => $txtdonormetodepangambilan, 'donor_hb' => $txtdonorhb, 'donor_goldar' => $txtdonorgoldar, 'donor_namapetugasaftar' => $txtdonornamapetugasaftar, 'donor_lengan' => $txtdonorlengan, 'donor_kodekantong' => $txtdonorkodekantong, 'donor_penusukanulang' => $txtdonorpenusukanulang, 'donor_lamapengambilan' => $txtdonorlamapengambilan, 'No Kantong' => $txtNo Kantong, 'No Kantong Ganti I' => $txtNo Kantong Ganti I, 'No Kantong Ganti II' => $txtNo Kantong Ganti II, 'Donor' => date("Y-m-d H:i:s", strtotime($txtDonor)),         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'donor_id' => $txtdonorid, 'donor_no_ktp' => $txtdonornoktp, 'donor_nama' => $txtdonornama, 'donor_jeniskelamin' => $txtdonorjeniskelamin, 'donor_status' => $txtdonorstatus, 'donor_alamat' => $txtdonoralamat, 'donor_nohp' => $txtdonornohp, 'donor_kelurahan' => $txtdonorkelurahan, 'donor_kecamatan' => $txtdonorkecamatan, 'donor_wilayah' => $txtdonorwilayah, 'donor_alamatkantor' => $txtdonoralamatkantor, 'donor_pekerjaan' => $txtdonorpekerjaan, 'donor_tempatkelahiran' => $txtdonortempatkelahiran, 'donor_apharesis' => $txtdonorapharesis, 'donor_penghargaan' => $txtdonorpenghargaan, 'donor_puasa' => $txtdonorpuasa, 'donor_butuh' => $txtdonorbutuh, 'donor_terakhir' => date("Y-m-d H:i:s", strtotime($txtdonorterakhir)), 'donor_ke' => $txtdonorke, 'donor_namadokter' => $txtdonornamadokter, 'donor_riwayatmedis' => $txtdonorriwayatmedis, 'donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#' => $txtdonordiambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate#, 'donor_kantong' => $txtdonorkantong, 'donor_tekanandarah' => $txtdonortekanandarah, 'donor_alattekanandarah' => $txtdonoralattekanandarah, 'donor_nadi' => $txtdonornadi, 'donor_beratbadan' => $txtdonorberatbadan, 'donor_alatberatbadan' => $txtdonoralatberatbadan, 'donor_suhu' => $txtdonorsuhu, 'donor_alatsuhu' => $txtdonoralatsuhu, 'donor_keadaanumum' => $txtdonorkeadaanumum, 'donor_petugasadministrasi' => $txtdonorpetugasadministrasi, 'donor_validasi' => $txtdonorvalidasi, 'donor_petugashb' => $txtdonorpetugashb, 'donor_macamdonor' => $txtdonormacamdonor, 'donor_metodepangambilan' => $txtdonormetodepangambilan, 'donor_hb' => $txtdonorhb, 'donor_goldar' => $txtdonorgoldar, 'donor_namapetugasaftar' => $txtdonornamapetugasaftar, 'donor_lengan' => $txtdonorlengan, 'donor_kodekantong' => $txtdonorkodekantong, 'donor_penusukanulang' => $txtdonorpenusukanulang, 'donor_lamapengambilan' => $txtdonorlamapengambilan, 'No Kantong' => $txtNo Kantong, 'No Kantong Ganti I' => $txtNo Kantong Ganti I, 'No Kantong Ganti II' => $txtNo Kantong Ganti II, 'Donor' => date("Y-m-d H:i:s", strtotime($txtDonor)),              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

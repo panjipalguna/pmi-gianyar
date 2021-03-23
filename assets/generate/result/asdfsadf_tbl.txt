@@ -1,0 +1,20 @@
+CREATE TABLE sdaf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  asdf INT NULL, asdf INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_sdaflist as 
+              select 
+                sdaf.row_id 
+                ,sdaf.asdf 
+,sadf.asdf as sadf_asdf 
+,sdaf.asdf 
+,asdf.asdf as asdf_asdf 
+ 
+              from sdaf 
+              left join sadf on sadf.asdf = sdaf.asdf 
+left join asdf on asdf.asdf = sdaf.asdf 
+ 
+            

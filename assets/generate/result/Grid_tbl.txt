@@ -1,0 +1,7 @@
+CREATE TABLE Root (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Field TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Field)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

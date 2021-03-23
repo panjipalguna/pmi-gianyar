@@ -1,0 +1,7 @@
+CREATE TABLE nas (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  azaZA VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (azaZA)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

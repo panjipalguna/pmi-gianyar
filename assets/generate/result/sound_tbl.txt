@@ -1,0 +1,7 @@
+CREATE TABLE sound (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, sound VARCHAR(255) NULL, status INT NULL, created_at DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

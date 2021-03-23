@@ -1,0 +1,7 @@
+CREATE TABLE vendor (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  vendor_id INT NULL, vendor_name INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,7 @@
+CREATE TABLE expense (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  expense_id INT NULL, name VARCHAR(255) NULL, total DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

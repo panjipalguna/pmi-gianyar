@@ -1,0 +1,22 @@
+CREATE TABLE Accounting (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, parentID INT NULL, title VARCHAR(255) NULL, debit DOUBLE NULL, credit DOUBLE NULL, comment TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Accountinglist as 
+              select 
+                Accounting.row_id 
+                ,Accounting.id 
+,Accounting.parentID 
+,Accounting. as Accounting_ 
+,Accounting.title 
+,Accounting.debit 
+,Accounting.credit 
+,Accounting.comment 
+ 
+              from Accounting 
+              inner join Accounting on Accounting.id = Accounting.parentID 
+ 
+            

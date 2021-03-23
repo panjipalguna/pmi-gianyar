@@ -1,0 +1,7 @@
+CREATE TABLE perangkat_daerah (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_pd INT NULL, nama_pd VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_pd)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

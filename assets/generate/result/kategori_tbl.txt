@@ -1,0 +1,7 @@
+CREATE TABLE kategori (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, kategori VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

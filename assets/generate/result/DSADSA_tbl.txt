@@ -1,0 +1,17 @@
+CREATE TABLE DSADSADSA (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sa INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_DSADSADSAlist as 
+              select 
+                DSADSADSA.row_id 
+                ,DSADSADSA.sa 
+,saSA.sasa as saSA_sasa 
+ 
+              from DSADSADSA 
+              left join saSA on saSA.saSA = DSADSADSA.sa 
+ 
+            

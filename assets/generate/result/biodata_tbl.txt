@@ -1,0 +1,7 @@
+CREATE TABLE biodata (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id VARCHAR(255) NULL, name VARCHAR(255) NULL, image1 varchar(20) NULL, image2 varchar(20) NULL, mobile INT NULL, email VARCHAR(255) NULL, address VARCHAR(255) NULL, dob DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

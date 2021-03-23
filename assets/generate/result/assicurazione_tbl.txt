@@ -1,0 +1,7 @@
+CREATE TABLE damiano (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nome TEXT NULL, quietanza VARCHAR(255) NULL, documento varchar(20) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

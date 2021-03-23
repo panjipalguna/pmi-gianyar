@@ -1,0 +1,386 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Damage extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = "damagetable";
+    public $controller = "damage";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            'rs_garagetable' => getByQuery('select * from garagetable'),
+                
+        );
+        $this->layout->display('page/damage_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'transaction_date', 'transaction_time_hour', 'transaction_time_minute', 'damage_description', 'garage_id', 'file_1', 'file_2', 'file_3', 'file_4');
+        $table = "vw_damagetablelist";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.date("m/d/Y", strtotime($line->transaction_date)).'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->transaction_time_hour.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->transaction_time_minute.'</div>'; 
+$row[] = '<div style="text-align:left">'.$line->damage_description.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->garagetable_name.'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txttransactiondate = ''; 
+$txttransactiontimehour = ''; 
+$txttransactiontimeminute = ''; 
+$txtdamagedescription = ''; 
+$txtgarageid = ''; 
+$garagetable_list = "";$txtgaragetablename = ''; 
+$txtfile1 = ''; 
+$txtfile2 = ''; 
+$txtfile3 = ''; 
+$txtfile4 = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from vw_damagetablelist where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txttransactiondate = date('Y-m-d', strtotime($rs[0]->transaction_date)); 
+$txttransactiontimehour = $rs[0]->transaction_time_hour; 
+$txttransactiontimeminute = $rs[0]->transaction_time_minute; 
+$txtdamagedescription = $rs[0]->damage_description; 
+$txtgarageid = $rs[0]->garage_id; 
+$txtgaragetablename = $rs[0]->garagetable_name; 
+$txtfile1 = $rs[0]->file_1; 
+$txtfile1_hdn = $rs[0]->file_1; 
+$txtfile2 = $rs[0]->file_2; 
+$txtfile2_hdn = $rs[0]->file_2; 
+$txtfile3 = $rs[0]->file_3; 
+$txtfile3_hdn = $rs[0]->file_3; 
+$txtfile4 = $rs[0]->file_4; 
+$txtfile4_hdn = $rs[0]->file_4; 
+
+            }
+        }
+
+        
+                  $rs_garagetable = getByQuery("select * from garagetable");
+                  if($rs_garagetable != "") {
+                      foreach($rs_garagetable as $row_garagetable) {
+                          $selected = ($row_garagetable->row_id == $txtgarageid) ? "selected" : "";
+                          $garagetable_list .= "<option value='".$row_garagetable->row_id."' ".$selected." >".$row_garagetable->name."</option>";
+                      }
+                  }
+                
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Transaction Date: <span style="color: #ff0000">*</span></label>
+                        <input type="date" id="txttransactiondate" name="txttransactiondate" class="form-control" value="'.$txttransactiondate.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Time Hour: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txttransactiontimehour" name="txttransactiontimehour" class="form-control" value="'.$txttransactiontimehour.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Time Minute: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txttransactiontimeminute" name="txttransactiontimeminute" class="form-control" value="'.$txttransactiontimeminute.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Damage Description: <span style="color: #ff0000">*</span></label>
+                        <textarea id="txtdamagedescription" name="txtdamagedescription" rows="4" class="form-control">'.$txtdamagedescription.'</textarea>
+                      </div>
+                    </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Parking Garage: <span style="color: #ff0000">*</span></label>
+                      <select id="txtgarageid" name="txtgarageid" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$garagetable_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>File Upload: <span style="color: #ff0000">*</span> <span style="font-size:10px">(leave it blank if you do not want to update)</span></label>
+                        <input type="file" id="txtfile1" name="txtfile1" class="form-control" />
+                        <input type="hidden" id="txtfile1_hdn" name="txtfile1_hdn" class="form-control" value="'.$txtfile1.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>File Upload: <span style="color: #ff0000">*</span> <span style="font-size:10px">(leave it blank if you do not want to update)</span></label>
+                        <input type="file" id="txtfile2" name="txtfile2" class="form-control" />
+                        <input type="hidden" id="txtfile2_hdn" name="txtfile2_hdn" class="form-control" value="'.$txtfile2.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>File Upload: <span style="color: #ff0000">*</span> <span style="font-size:10px">(leave it blank if you do not want to update)</span></label>
+                        <input type="file" id="txtfile3" name="txtfile3" class="form-control" />
+                        <input type="hidden" id="txtfile3_hdn" name="txtfile3_hdn" class="form-control" value="'.$txtfile3.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>File Upload: <span style="font-size:10px">(leave it blank if you do not want to update)</span></label>
+                        <input type="file" id="txtfile4" name="txtfile4" class="form-control" />
+                        <input type="hidden" id="txtfile4_hdn" name="txtfile4_hdn" class="form-control" value="'.$txtfile4.'" />
+                      </div>
+                    </div>
+                  
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txttransactiondate = ''; 
+$txttransactiontimehour = ''; 
+$txttransactiontimeminute = ''; 
+$txtdamagedescription = ''; 
+$txtgarageid = ''; 
+$garagetable_list = "";$txtgaragetablename = ''; 
+$txtfile1 = ''; 
+$txtfile2 = ''; 
+$txtfile3 = ''; 
+$txtfile4 = ''; 
+
+        
+        $qry = "select * from vw_damagetablelist where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txttransactiondate = date('Y-m-d', strtotime($rs[0]->transaction_date)); 
+$txttransactiontimehour = $rs[0]->transaction_time_hour; 
+$txttransactiontimeminute = $rs[0]->transaction_time_minute; 
+$txtdamagedescription = $rs[0]->damage_description; 
+$txtgarageid = $rs[0]->garage_id; 
+$txtgaragetablename = $rs[0]->garagetable_name; 
+$txtfile1 = $rs[0]->file_1; 
+$txtfile1_hdn = $rs[0]->file_1; 
+$txtfile2 = $rs[0]->file_2; 
+$txtfile2_hdn = $rs[0]->file_2; 
+$txtfile3 = $rs[0]->file_3; 
+$txtfile3_hdn = $rs[0]->file_3; 
+$txtfile4 = $rs[0]->file_4; 
+$txtfile4_hdn = $rs[0]->file_4; 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Transaction Date:</td>
+                        <td class="view-txt">'.$txttransactiondate.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Time Hour:</td>
+                        <td class="view-txt">'.$txttransactiontimehour.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Time Minute:</td>
+                        <td class="view-txt">'.$txttransactiontimeminute.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Damage Description:</td>
+                        <td class="view-txt">'.$txtdamagedescription.'</td>
+                    </tr>
+                  
+                  <tr>
+                      <td class="view-title" style="width: 30%">Parking Garage:</td>
+                      <td class="view-txt">'.$txtgaragetablename.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">File Upload:</td>
+                        <td class="view-txt"><img style="width:100px" src="'.base_url("uploaded/".$txtfile1).'" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">File Upload:</td>
+                        <td class="view-txt"><img style="width:100px" src="'.base_url("uploaded/".$txtfile2).'" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">File Upload:</td>
+                        <td class="view-txt"><img style="width:100px" src="'.base_url("uploaded/".$txtfile3).'" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">File Upload:</td>
+                        <td class="view-txt"><img style="width:100px" src="'.base_url("uploaded/".$txtfile4).'" /></td>
+                    </tr>
+                  
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txttransactiondate = $this->input->post("txttransactiondate"); $txttransactiontimehour = $this->input->post("txttransactiontimehour"); $txttransactiontimeminute = $this->input->post("txttransactiontimeminute"); $txtdamagedescription = $this->input->post("txtdamagedescription"); $txtgarageid = $this->input->post("txtgarageid"); $txtfile1 = $this->input->post("txtfile1"); $txtfile1_hdn = $this->input->post("txtfile1_hdn"); $txtfile2 = $this->input->post("txtfile2"); $txtfile2_hdn = $this->input->post("txtfile2_hdn"); $txtfile3 = $this->input->post("txtfile3"); $txtfile3_hdn = $this->input->post("txtfile3_hdn"); $txtfile4 = $this->input->post("txtfile4"); $txtfile4_hdn = $this->input->post("txtfile4_hdn"); 
+        
+                $txtfile4 =  $txtfile4_hdn;
+                if($_FILES['txtfile4']['name'] != '')
+                {
+                     $ext = pathinfo($_FILES['txtfile4']['name'], PATHINFO_EXTENSION);
+                     $file_name = date('YmdHis').'.'.$ext;
+                     $config = array(
+                        'upload_path' => 'uploaded',
+                        'allowed_types' => 'gif|jpg|png|jpeg|pdf|docx|xls|xlsx|doc|txt',
+                        'overwrite' => TRUE,
+                        'file_name' =>  $file_name
+                    );
+                     $this->upload->initialize( $config);
+                    if( $this->upload->do_upload('txtfile4'))
+                    {
+                         $data = $this->upload->data();
+                        $txtfile4 =  $file_name;
+                        if($txtfile4_hdn != '')
+                          unlink('uploaded/'.$txtfile4_hdn);
+                    }
+                    else
+                    {
+                        $data['msg'] = $this->upload->display_errors();
+                        $data['type'] = 0;
+                        echo json_encode($data);
+                        exit();
+                    }
+                }
+              
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'transaction_date' => date("Y-m-d H:i:s", strtotime($txttransactiondate)), 'transaction_time_hour' => $txttransactiontimehour, 'transaction_time_minute' => $txttransactiontimeminute, 'damage_description' => $txtdamagedescription, 'garage_id' => $txtgarageid, 'file_1' => $txtfile1, 'file_2' => $txtfile2, 'file_3' => $txtfile3, 'file_4' => $txtfile4,         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'transaction_date' => date("Y-m-d H:i:s", strtotime($txttransactiondate)), 'transaction_time_hour' => $txttransactiontimehour, 'transaction_time_minute' => $txttransactiontimeminute, 'damage_description' => $txtdamagedescription, 'garage_id' => $txtgarageid, 'file_1' => $txtfile1, 'file_2' => $txtfile2, 'file_3' => $txtfile3, 'file_4' => $txtfile4,              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+                $rs_damagetable = getByQuery("select * from damagetable where row_id = ".$txtrowid);
+                if($rs_damagetable != "") {
+                    foreach($rs_damagetable as $row) {
+                        
+                $rs_damagetable = getByQuery("select * from damagetable where row_id = ".$txtrowid);
+                if($rs_damagetable != "") {
+                    foreach($rs_damagetable as $row) {
+                        
+                $rs_damagetable = getByQuery("select * from damagetable where row_id = ".$txtrowid);
+                if($rs_damagetable != "") {
+                    foreach($rs_damagetable as $row) {
+                        
+                $rs_damagetable = getByQuery("select * from damagetable where row_id = ".$txtrowid);
+                if($rs_damagetable != "") {
+                    foreach($rs_damagetable as $row) {
+                        unlink('uploaded/'.$row->file_1); 
+
+                    }
+                }
+              unlink('uploaded/'.$row->file_2); 
+
+                    }
+                }
+              unlink('uploaded/'.$row->file_3); 
+
+                    }
+                }
+              unlink('uploaded/'.$row->file_4); 
+
+                    }
+                }
+              
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

@@ -1,0 +1,20 @@
+CREATE TABLE coder (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  d INT NULL, xx INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_coderlist as 
+              select 
+                coder.row_id 
+                ,coder.d 
+,coder.sss as coder_sss 
+,coder.xx 
+,w.w as w_w 
+ 
+              from coder 
+              left join coder on coder.ss = coder.d 
+left join w on w.w = coder.xx 
+ 
+            

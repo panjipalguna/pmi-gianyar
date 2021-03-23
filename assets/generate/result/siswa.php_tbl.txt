@@ -1,0 +1,21 @@
+CREATE TABLE data_siswa (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_siswa INT NULL, nama_siswa VARCHAR(255) NULL, tgl_lahir DATETIME NULL, alamat VARCHAR(255) NULL, kelas VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_siswa)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_data_siswalist as 
+              select 
+                data_siswa.row_id 
+                ,data_siswa.id_siswa 
+,siswatable.siswa as siswatable_siswa 
+,data_siswa.nama_siswa 
+,data_siswa.tgl_lahir 
+,data_siswa.alamat 
+,data_siswa.kelas 
+ 
+              from data_siswa 
+              inner join siswatable on siswatable.siswa_id = data_siswa.id_siswa 
+ 
+            

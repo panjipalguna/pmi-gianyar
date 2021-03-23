@@ -1,0 +1,17 @@
+CREATE TABLE Surveys (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Name INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Surveyslist as 
+              select 
+                Surveys.row_id 
+                ,Surveys.Name 
+,surveys.surveys as surveys_surveys 
+ 
+              from Surveys 
+              inner join surveys on surveys.su = Surveys.Name 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE testadmin (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id VARCHAR(255) NULL, aname VARCHAR(255) NULL, aemail VARCHAR(255) NULL, apassword VARCHAR(255) NULL, datetime DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

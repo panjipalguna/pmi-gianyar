@@ -1,0 +1,7 @@
+CREATE TABLE Test (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  yyyyyyyy VARCHAR(255) NULL, yyyyy VARCHAR(255) NULL, yyyy VARCHAR(255) NULL, yy VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

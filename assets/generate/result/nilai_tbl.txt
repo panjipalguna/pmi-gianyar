@@ -1,0 +1,7 @@
+CREATE TABLE nilau_un (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nilai_1 INT NULL, nilai_2 INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

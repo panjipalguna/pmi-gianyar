@@ -1,0 +1,17 @@
+CREATE TABLE ddd (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ddd INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_dddlist as 
+              select 
+                ddd.row_id 
+                ,ddd.ddd 
+,ddd.ddd as ddd_ddd 
+ 
+              from ddd 
+              left join ddd on ddd. = ddd.ddd 
+ 
+            

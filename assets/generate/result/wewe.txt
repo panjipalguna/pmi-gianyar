@@ -1,0 +1,215 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Wewe extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = "werwerwe";
+    public $controller = "wewe";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            'rs_sdfsd' => getByQuery('select * from sdfsd'),
+                'rs_fawefwe' => getByQuery('select * from fawefwe'),
+                
+        );
+        $this->layout->display('page/wewe_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'saas', 'sdfsd');
+        $table = "vw_werwerwelist";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.$line->sdfsd_sdsdf.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->fawefwe_wee.'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtsaas = ''; 
+$sdfsd_list = "";$txtsdfsdsdsdf = ''; 
+$txtsdfsd = ''; 
+$fawefwe_list = "";$txtfawefwewee = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from vw_werwerwelist where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtsaas = $rs[0]->saas; 
+$txtsdfsdsdsdf = $rs[0]->sdfsd_sdsdf; 
+$txtsdfsd = date('Y-m-d', strtotime($rs[0]->sdfsd)); 
+$txtfawefwewee = $rs[0]->fawefwe_wee; 
+
+            }
+        }
+
+        
+                  $rs_sdfsd = getByQuery("select * from sdfsd");
+                  if($rs_sdfsd != "") {
+                      foreach($rs_sdfsd as $row_sdfsd) {
+                          $selected = ($row_sdfsd->sdfsd == $txtsaas) ? "selected" : "";
+                          $sdfsd_list .= "<option value='".$row_sdfsd->sdfsd."' ".$selected." >".$row_sdfsd->sdsdf."</option>";
+                      }
+                  }
+                
+                  $rs_fawefwe = getByQuery("select * from fawefwe");
+                  if($rs_fawefwe != "") {
+                      foreach($rs_fawefwe as $row_fawefwe) {
+                          $selected = ($row_fawefwe->wewe == $txtsdfsd) ? "selected" : "";
+                          $fawefwe_list .= "<option value='".$row_fawefwe->wewe."' ".$selected." >".$row_fawefwe->wee."</option>";
+                      }
+                  }
+                
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Sdfsdfsd: <span style="color: #ff0000">*</span></label>
+                      <select id="txtsaas" name="txtsaas" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$sdfsd_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Dfdfsd:</label>
+                      <select id="txtsdfsd" name="txtsdfsd" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$fawefwe_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtsaas = ''; 
+$sdfsd_list = "";$txtsdfsdsdsdf = ''; 
+$txtsdfsd = ''; 
+$fawefwe_list = "";$txtfawefwewee = ''; 
+
+        
+        $qry = "select * from vw_werwerwelist where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtsaas = $rs[0]->saas; 
+$txtsdfsdsdsdf = $rs[0]->sdfsd_sdsdf; 
+$txtsdfsd = date('Y-m-d', strtotime($rs[0]->sdfsd)); 
+$txtfawefwewee = $rs[0]->fawefwe_wee; 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Sdfsdfsd:</td>
+                      <td class="view-txt">'.$txtsdfsdsdsdf.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">Dfdfsd:</td>
+                      <td class="view-txt">'.$txtfawefwewee.'</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtsaas = $this->input->post("txtsaas"); $txtsdfsd = $this->input->post("txtsdfsd"); 
+        
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'saas' => $txtsaas, 'sdfsd' => date("Y-m-d H:i:s", strtotime($txtsdfsd)),         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'saas' => $txtsaas, 'sdfsd' => date("Y-m-d H:i:s", strtotime($txtsdfsd)),              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

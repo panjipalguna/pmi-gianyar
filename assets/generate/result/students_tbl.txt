@@ -1,0 +1,7 @@
+CREATE TABLE students (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  user_name TEXT NULL, dob DATETIME NULL, education TEXT NULL, address VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (user_name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

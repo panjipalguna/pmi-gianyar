@@ -1,0 +1,20 @@
+CREATE TABLE adsasd (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  a INT NULL, b INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (b)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_adsasdlist as 
+              select 
+                adsasd.row_id 
+                ,adsasd.a 
+,a.a as a_a 
+,adsasd.b 
+,a.a as a_a 
+ 
+              from adsasd 
+              left join a on a.a = adsasd.a 
+inner join a on a.a = adsasd.b 
+ 
+            

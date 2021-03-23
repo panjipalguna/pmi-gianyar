@@ -1,0 +1,7 @@
+CREATE TABLE housemums (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  first_name TEXT NULL, last_name TEXT NULL, Age INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (first_name,last_name,Age)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

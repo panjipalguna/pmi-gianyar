@@ -1,0 +1,17 @@
+CREATE TABLE vv (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ads INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_vvlist as 
+              select 
+                vv.row_id 
+                ,vv.ads 
+,111.fasdfasd as 111_fasdfasd 
+ 
+              from vv 
+              left join 111 on 111.222 = vv.ads 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE urunler (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  urunID INT NULL, urunad VARCHAR(255) NULL, aciklama TEXT NULL, fiyat DOUBLE NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (urunID)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

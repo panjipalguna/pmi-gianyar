@@ -1,0 +1,21 @@
+CREATE TABLE somos_base (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, teste INT NULL, abc DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_somos_baselist as 
+              select 
+                somos_base.row_id 
+                ,somos_base.id 
+,11. as 11_ 
+,somos_base.teste 
+,32. as 32_ 
+,somos_base.abc 
+ 
+              from somos_base 
+              inner join 11 on 11. = somos_base.id 
+left join 32 on 32. = somos_base.teste 
+ 
+            

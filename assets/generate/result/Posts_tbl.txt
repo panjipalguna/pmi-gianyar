@@ -1,0 +1,19 @@
+CREATE TABLE Post (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  post_id INT NULL, title TEXT NULL, category_id INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Postlist as 
+              select 
+                Post.row_id 
+                ,Post.post_id 
+,Post.title 
+,Post.category_id 
+,Category. as Category_ 
+ 
+              from Post 
+              left join Category on Category.category_id = Post.category_id 
+ 
+            

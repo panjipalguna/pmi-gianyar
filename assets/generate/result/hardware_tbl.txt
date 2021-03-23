@@ -1,0 +1,7 @@
+CREATE TABLE hardware (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  brand TEXT NULL, type TEXT NULL, mac TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

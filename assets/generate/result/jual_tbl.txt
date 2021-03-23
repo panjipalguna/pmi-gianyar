@@ -1,0 +1,7 @@
+CREATE TABLE t_jual (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_jual INT NULL, tgl DATETIME NULL, nama VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_jual)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

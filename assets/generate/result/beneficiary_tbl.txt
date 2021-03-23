@@ -1,0 +1,7 @@
+CREATE TABLE beneficiary (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Id INT NULL, Beneficiary VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

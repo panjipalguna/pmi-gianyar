@@ -1,0 +1,17 @@
+CREATE TABLE test (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  admin INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (admin)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_testlist as 
+              select 
+                test.row_id 
+                ,test.admin 
+,wrr. as wrr_ 
+ 
+              from test 
+              inner join wrr on wrr.41 = test.admin 
+ 
+            

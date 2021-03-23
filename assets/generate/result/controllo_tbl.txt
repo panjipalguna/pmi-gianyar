@@ -1,0 +1,7 @@
+CREATE TABLE tabellina (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  users TEXT NULL, category VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (category)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,7 @@
+CREATE TABLE login (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  username VARCHAR(255) NULL, password VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

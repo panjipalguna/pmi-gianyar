@@ -1,0 +1,25 @@
+CREATE TABLE damagetable (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  transaction_date DATETIME NULL, transaction_time_hour VARCHAR(255) NULL, transaction_time_minute VARCHAR(255) NULL, damage_description TEXT NULL, garage_id INT NULL, file_1 varchar(20) NULL, file_2 varchar(20) NULL, file_3 varchar(20) NULL, file_4 varchar(20) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (garage_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_damagetablelist as 
+              select 
+                damagetable.row_id 
+                ,damagetable.transaction_date 
+,damagetable.transaction_time_hour 
+,damagetable.transaction_time_minute 
+,damagetable.damage_description 
+,damagetable.garage_id 
+,garagetable.name as garagetable_name 
+,damagetable.file_1 
+,damagetable.file_2 
+,damagetable.file_3 
+,damagetable.file_4 
+ 
+              from damagetable 
+              inner join garagetable on garagetable.row_id = damagetable.garage_id 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE personel (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Ad? TEXT NULL, Soyad? TEXT NULL, e-posta TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

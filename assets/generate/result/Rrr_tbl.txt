@@ -1,0 +1,7 @@
+CREATE TABLE Rrrr (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Rrr TEXT NULL, Aaa INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

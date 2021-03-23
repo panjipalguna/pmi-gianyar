@@ -1,0 +1,7 @@
+CREATE TABLE agencias (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  agencia_id INT NULL, agencia_name TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (agencia_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

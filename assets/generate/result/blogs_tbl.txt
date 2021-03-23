@@ -1,0 +1,7 @@
+CREATE TABLE blogs (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  title VARCHAR(255) NULL, content TEXT NULL, image varchar(20) NULL, slug TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

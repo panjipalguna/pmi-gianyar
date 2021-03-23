@@ -1,0 +1,26 @@
+CREATE TABLE 222 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Field Name INT NULL, Field Name 2 INT NULL, Field Name 3 INT NULL, Field Name 4 INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Field Name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_222list as 
+              select 
+                222.row_id 
+                ,222.Field Name 
+,Rel. Table. as Rel. Table_ 
+,222.Field Name 2 
+,Rel. Table. as Rel. Table_ 
+,222.Field Name 3 
+,Rel. Table. as Rel. Table_ 
+,222.Field Name 4 
+,Rel. Table. as Rel. Table_ 
+ 
+              from 222 
+              left join Rel. Table on Rel. Table. = 222.Field Name 
+left join Rel. Table on Rel. Table. = 222.Field Name 2 
+left join Rel. Table on Rel. Table. = 222.Field Name 3 
+left join Rel. Table on Rel. Table. = 222.Field Name 4 
+ 
+            

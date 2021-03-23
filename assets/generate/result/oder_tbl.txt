@@ -1,0 +1,7 @@
+CREATE TABLE oder (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  oder_no INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (oder_no)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

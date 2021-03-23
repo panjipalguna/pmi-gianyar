@@ -1,0 +1,7 @@
+CREATE TABLE peson (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  First Name VARCHAR(255) NULL, Last Name VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

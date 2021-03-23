@@ -1,0 +1,18 @@
+CREATE TABLE dev (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  imei TEXT NULL, devtype INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (devtype)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_devlist as 
+              select 
+                dev.row_id 
+                ,dev.imei 
+,dev.devtype 
+,types.device type as types_device type 
+ 
+              from dev 
+              inner join types on types.devtype.id = dev.devtype 
+ 
+            

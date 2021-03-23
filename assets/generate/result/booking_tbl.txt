@@ -1,0 +1,17 @@
+CREATE TABLE table1 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_table1list as 
+              select 
+                table1.row_id 
+                ,table1.id 
+,table1. as table1_ 
+ 
+              from table1 
+              left join table1 on table1.1 = table1.id 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE staff_leads (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  First_name VARCHAR(255) NULL, middle_name VARCHAR(255) NULL, last_name VARCHAR(255) NULL, phone VARCHAR(255) NULL, email VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

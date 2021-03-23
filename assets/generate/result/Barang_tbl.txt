@@ -1,0 +1,7 @@
+CREATE TABLE Barang (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  kode VARCHAR(255) NULL, nama VARCHAR(255) NULL, jumlah INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (kode)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

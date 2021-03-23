@@ -1,0 +1,182 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <span class="title-page"><?= strtoupper($lbl_controller) ?></span>
+      <small>List of Data</small>
+    </h1>
+  </section>
+
+  <section class="content">
+    <div class="row">
+    
+              <div class="col-xs-12">
+                <div  style="clear:both; border-top: 3px solid #d2d6de; height: 17px"></div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name1filter" name="txtField Name1filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name2filter" name="txtField Name2filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name3filter" name="txtField Name3filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name4filter" name="txtField Name4filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name5filter" name="txtField Name5filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name6filter" name="txtField Name6filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name7filter" name="txtField Name7filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtField Name8filter" name="txtField Name8filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All </option>
+                      <?php
+                      if($rs_ TABLNAME != "") {
+                          foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                              echo "<option value='".$row_ TABLNAME->Field Id."'>".$row_ TABLNAME->Field Text."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+              </div>
+            
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-body">
+            <div id='callback_msg'></div>
+            <table id="tablelist" class="table table-bordered table-striped" style="width: 100%">
+              <thead>
+                <tr>
+                  <th style="width:3%"></th>
+                  <th style='width:20%'></th> 
+<th style='width:20%'></th> 
+<th style='width:20%'></th> 
+<th style='width:20%'></th> 
+<th style='width:20%'></th> 
+<th style='width:20%'></th> 
+<th style='width:20%'></th> 
+
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal fade" id="modalForm" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><?= strtoupper($lbl_controller) ?> FORM</h4>
+      </div>
+      <div class="modal-body">
+        <div id="tableModal"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+        <button type="button" id="btnSave" class="btn btn-success">SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="<?= base_url("controller") ?>/CONTROLLERNAME.js"></script>

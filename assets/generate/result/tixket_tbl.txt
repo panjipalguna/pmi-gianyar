@@ -1,0 +1,17 @@
+CREATE TABLE tixket (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  tixket INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (tixket)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_tixketlist as 
+              select 
+                tixket.row_id 
+                ,tixket.tixket 
+,tixket.1 as tixket_1 
+ 
+              from tixket 
+              inner join tixket on tixket.2 = tixket.tixket 
+ 
+            

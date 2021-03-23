@@ -1,0 +1,7 @@
+CREATE TABLE employees (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  employee_id INT NULL, first_name VARCHAR(255) NULL, last_name VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (employee_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

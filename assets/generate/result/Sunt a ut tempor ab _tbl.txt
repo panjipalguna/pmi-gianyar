@@ -1,0 +1,17 @@
+CREATE TABLE Suscipit ab ipsum s (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Officiis in deserunt INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Officiis in deserunt)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Suscipit ab ipsum slist as 
+              select 
+                Suscipit ab ipsum s.row_id 
+                ,Suscipit ab ipsum s.Officiis in deserunt 
+,Sunt perferendis quo.Dolorum dolor est i as Sunt perferendis quo_Dolorum dolor est i 
+ 
+              from Suscipit ab ipsum s 
+              inner join Sunt perferendis quo on Sunt perferendis quo.Hic mollitia enim nu = Suscipit ab ipsum s.Officiis in deserunt 
+ 
+            

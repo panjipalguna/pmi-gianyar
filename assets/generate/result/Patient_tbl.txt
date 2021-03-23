@@ -1,0 +1,30 @@
+CREATE TABLE patiens (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Nom_prenom VARCHAR(255) NULL, IPP VARCHAR(255) NULL, N_dossier VARCHAR(255) NULL, Diagnostic_id INT NULL, Professeur_id INT NULL, Date_entree DATETIME NULL, Lit VARCHAR(255) NULL, Date_operation DATETIME NULL, Date_sortie DATETIME NULL, CS varchar(20) NULL, CRO varchar(20) NULL, obs TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Diagnostic_id,Professeur_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_patienslist as 
+              select 
+                patiens.row_id 
+                ,patiens.Nom_prenom 
+,patiens.IPP 
+,patiens.N_dossier 
+,patiens.Diagnostic_id 
+,diagnostics.nom as diagnostics_nom 
+,patiens.Professeur_id 
+,professeurs.nom as professeurs_nom 
+,patiens.Date_entree 
+,patiens.Lit 
+,patiens.Date_operation 
+,patiens.Date_sortie 
+,patiens.CS 
+,patiens.CRO 
+,patiens.obs 
+ 
+              from patiens 
+              inner join diagnostics on diagnostics.row_id = patiens.Diagnostic_id 
+inner join professeurs on professeurs.row_id = patiens.Professeur_id 
+ 
+            

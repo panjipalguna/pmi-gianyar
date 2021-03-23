@@ -1,0 +1,7 @@
+CREATE TABLE Jmit (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  job VARCHAR(255) NULL, Gender VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

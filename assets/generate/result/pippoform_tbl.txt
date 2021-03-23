@@ -1,0 +1,7 @@
+CREATE TABLE nominativi (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(255) NULL, cognome VARCHAR(255) NULL, userid VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

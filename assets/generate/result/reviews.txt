@@ -1,0 +1,250 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Reviews extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = "Reviews";
+    public $controller = "reviews";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            'rs_stores' => getByQuery('select * from stores'),
+                
+        );
+        $this->layout->display('page/reviews_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'id_store', 'Name', 'Email', 'Review', 'Stars');
+        $table = "vw_Reviewslist";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.$line->stores_Title.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->Name.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->Email.'</div>'; 
+$row[] = '<div style="text-align:left">'.$line->Review.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->Stars.'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtidstore = ''; 
+$stores_list = "";$txtstoresTitle = ''; 
+$txtName = ''; 
+$txtEmail = ''; 
+$txtReview = ''; 
+$txtStars = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from vw_Reviewslist where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtidstore = $rs[0]->id_store; 
+$txtstoresTitle = $rs[0]->stores_Title; 
+$txtName = $rs[0]->Name; 
+$txtEmail = $rs[0]->Email; 
+$txtReview = $rs[0]->Review; 
+$txtStars = $rs[0]->Stars; 
+
+            }
+        }
+
+        
+                  $rs_stores = getByQuery("select * from stores");
+                  if($rs_stores != "") {
+                      foreach($rs_stores as $row_stores) {
+                          $selected = ($row_stores->row_id == $txtidstore) ? "selected" : "";
+                          $stores_list .= "<option value='".$row_stores->row_id."' ".$selected." >".$row_stores->Title."</option>";
+                      }
+                  }
+                
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtidstore" name="txtidstore" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$stores_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="text" id="txtName" name="txtName" class="form-control" value="'.$txtName.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="text" id="txtEmail" name="txtEmail" class="form-control" value="'.$txtEmail.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>:</label>
+                        <textarea id="txtReview" name="txtReview" rows="4" class="form-control">'.$txtReview.'</textarea>
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="number" step="1" " id="txtStars" name="txtStars" class="form-control" value="'.$txtStars.'" />
+                      </div>
+                    </div>
+                  
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtidstore = ''; 
+$stores_list = "";$txtstoresTitle = ''; 
+$txtName = ''; 
+$txtEmail = ''; 
+$txtReview = ''; 
+$txtStars = ''; 
+
+        
+        $qry = "select * from vw_Reviewslist where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtidstore = $rs[0]->id_store; 
+$txtstoresTitle = $rs[0]->stores_Title; 
+$txtName = $rs[0]->Name; 
+$txtEmail = $rs[0]->Email; 
+$txtReview = $rs[0]->Review; 
+$txtStars = $rs[0]->Stars; 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txtstoresTitle.'</td>
+                  </tr>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtName.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtEmail.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtReview.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtStars.'</td>
+                    </tr>
+                  
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtidstore = $this->input->post("txtidstore"); $txtName = $this->input->post("txtName"); $txtEmail = $this->input->post("txtEmail"); $txtReview = $this->input->post("txtReview"); $txtStars = $this->input->post("txtStars"); 
+        
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'id_store' => $txtidstore, 'Name' => $txtName, 'Email' => $txtEmail, 'Review' => $txtReview, 'Stars' => $txtStars,         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'id_store' => $txtidstore, 'Name' => $txtName, 'Email' => $txtEmail, 'Review' => $txtReview, 'Stars' => $txtStars,              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

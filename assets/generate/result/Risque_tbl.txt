@@ -1,0 +1,23 @@
+CREATE TABLE risque (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Risque1 INT NULL, Risque2 INT NULL, Risque3 INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Risque1,Risque2,Risque3)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_risquelist as 
+              select 
+                risque.row_id 
+                ,risque.Risque1 
+,2124364.321654 as 2124364_321654 
+,risque.Risque2 
+,54231.9879978 as 54231_9879978 
+,risque.Risque3 
+,3214564.3285644 as 3214564_3285644 
+ 
+              from risque 
+              inner join 2124364 on 2124364.32132 = risque.Risque1 
+inner join 54231 on 54231.32987 = risque.Risque2 
+inner join 3214564 on 3214564.321265 = risque.Risque3 
+ 
+            

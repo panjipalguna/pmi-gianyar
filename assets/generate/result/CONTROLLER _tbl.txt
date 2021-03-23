@@ -1,0 +1,17 @@
+CREATE TABLE TABLE  (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Name INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_TABLE list as 
+              select 
+                TABLE .row_id 
+                ,TABLE .Name 
+,Rel. Table.Rel. Field Text 	 as Rel. Table_Rel. Field Text 	 
+ 
+              from TABLE  
+              left join Rel. Table on Rel. Table.Rel. Field Id = TABLE .Name 
+ 
+            

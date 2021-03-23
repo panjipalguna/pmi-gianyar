@@ -1,0 +1,20 @@
+CREATE TABLE pessoatable (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, nome VARCHAR(255) NULL, endereco TEXT NULL, data DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_pessoatablelist as 
+              select 
+                pessoatable.row_id 
+                ,pessoatable.id 
+,pessoatable.NOME as pessoatable_NOME 
+,pessoatable.nome 
+,pessoatable.endereco 
+,pessoatable.data 
+ 
+              from pessoatable 
+              inner join pessoatable on pessoatable.teste_id = pessoatable.id 
+ 
+            

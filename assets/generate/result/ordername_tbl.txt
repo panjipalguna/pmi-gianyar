@@ -1,0 +1,7 @@
+CREATE TABLE ordertable (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  orderid VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (orderid)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

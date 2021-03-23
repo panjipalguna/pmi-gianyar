@@ -1,0 +1,7 @@
+CREATE TABLE caisse1 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  aaa VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (aaa)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

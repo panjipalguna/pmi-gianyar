@@ -1,0 +1,17 @@
+CREATE TABLE d-104 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  books INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (books)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_d-104list as 
+              select 
+                d-104.row_id 
+                ,d-104.books 
+,education.Paperless Education as education_Paperless Education 
+ 
+              from d-104 
+              inner join education on education.Education = d-104.books 
+ 
+            

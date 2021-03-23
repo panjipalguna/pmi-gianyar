@@ -1,0 +1,17 @@
+CREATE TABLE sdsw (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sds INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (sds)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_sdswlist as 
+              select 
+                sdsw.row_id 
+                ,sdsw.sds 
+,sd.sd as sd_sd 
+ 
+              from sdsw 
+              left join sd on sd.s = sdsw.sds 
+ 
+            

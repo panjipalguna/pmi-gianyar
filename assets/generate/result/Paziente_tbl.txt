@@ -1,0 +1,17 @@
+CREATE TABLE Paziente (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Nome INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Pazientelist as 
+              select 
+                Paziente.row_id 
+                ,Paziente.Nome 
+,Paziente.Nome as Paziente_Nome 
+ 
+              from Paziente 
+              left join Paziente on Paziente.Nome = Paziente.Nome 
+ 
+            

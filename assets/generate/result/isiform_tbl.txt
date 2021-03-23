@@ -1,0 +1,18 @@
+CREATE TABLE revisi (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  file1 varchar(20) NULL, kode_br INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (file1,kode_br)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_revisilist as 
+              select 
+                revisi.row_id 
+                ,revisi.file1 
+,revisi.kode_br 
+,username. as username_ 
+ 
+              from revisi 
+              inner join username on username.kodebr_user = revisi.kode_br 
+ 
+            

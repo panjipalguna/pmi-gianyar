@@ -1,0 +1,7 @@
+CREATE TABLE asdcds (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  as TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (as)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

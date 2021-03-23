@@ -1,0 +1,22 @@
+CREATE TABLE script (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, nome VARCHAR(255) NULL, type INT NULL, php TEXT NULL, javascript TEXT NULL, css TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_scriptlist as 
+              select 
+                script.row_id 
+                ,script.id 
+,script.nome 
+,script.type 
+,type. as type_ 
+,script.php 
+,script.javascript 
+,script.css 
+ 
+              from script 
+              left join type on type.id = script.type 
+ 
+            

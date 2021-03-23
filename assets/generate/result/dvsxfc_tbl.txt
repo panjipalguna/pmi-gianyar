@@ -1,0 +1,17 @@
+CREATE TABLE dfsd (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  dfsd INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (dfsd)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_dfsdlist as 
+              select 
+                dfsd.row_id 
+                ,dfsd.dfsd 
+,fsdfsdf.dfs as fsdfsdf_dfs 
+ 
+              from dfsd 
+              inner join fsdfsdf on fsdfsdf.sdfs = dfsd.dfsd 
+ 
+            

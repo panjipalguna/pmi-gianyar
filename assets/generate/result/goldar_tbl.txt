@@ -1,0 +1,7 @@
+CREATE TABLE goldar (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  goldar_nama VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (goldar_nama)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

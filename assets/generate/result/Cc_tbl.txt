@@ -1,0 +1,7 @@
+CREATE TABLE Tt (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Aa TEXT NULL, Bb TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Aa)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

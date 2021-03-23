@@ -1,0 +1,17 @@
+CREATE TABLE as (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  as INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (as)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_aslist as 
+              select 
+                as.row_id 
+                ,as.as 
+,as.as as as_as 
+ 
+              from as 
+              inner join as on as.as = as.as 
+ 
+            

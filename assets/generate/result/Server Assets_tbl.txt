@@ -1,0 +1,7 @@
+CREATE TABLE Server Assets (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Server Name TEXT NULL, Server IP DOUBLE NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Server IP)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

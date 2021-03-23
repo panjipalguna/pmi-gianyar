@@ -1,0 +1,17 @@
+CREATE TABLE det (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  rr INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (rr)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_detlist as 
+              select 
+                det.row_id 
+                ,det.rr 
+,56.67 as 56_67 
+ 
+              from det 
+              inner join 56 on 56.76 = det.rr 
+ 
+            

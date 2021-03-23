@@ -1,0 +1,17 @@
+CREATE TABLE Diputadas (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Id INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Diputadaslist as 
+              select 
+                Diputadas.row_id 
+                ,Diputadas.Id 
+,Employee.Age as Employee_Age 
+ 
+              from Diputadas 
+              inner join Employee on Employee.Age = Diputadas.Id 
+ 
+            

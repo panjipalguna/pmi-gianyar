@@ -1,0 +1,7 @@
+CREATE TABLE servent (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  name TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,7 @@
+CREATE TABLE atten (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, empname VARCHAR(255) NULL, frmdt DATETIME NULL, todt DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id,empname)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

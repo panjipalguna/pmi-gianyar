@@ -1,0 +1,7 @@
+CREATE TABLE tabla (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Producto VARCHAR(255) NULL, File VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

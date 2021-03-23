@@ -1,0 +1,18 @@
+CREATE TABLE jjustetst (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  welcom INT NULL, test DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (welcom)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_jjustetstlist as 
+              select 
+                jjustetst.row_id 
+                ,jjustetst.welcom 
+,a. as a_ 
+,jjustetst.test 
+ 
+              from jjustetst 
+              inner join a on a. = jjustetst.welcom 
+ 
+            

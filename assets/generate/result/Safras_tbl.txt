@@ -1,0 +1,22 @@
+CREATE TABLE safras (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  safra_id INT NULL, safra_cultura INT NULL, safra_ano VARCHAR(255) NULL, safra_lavoura INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (safra_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_safraslist as 
+              select 
+                safras.row_id 
+                ,safras.safra_id 
+,safras.safra_cultura 
+,culturas.cultura_nome as culturas_cultura_nome 
+,safras.safra_ano 
+,safras.safra_lavoura 
+,lavouras.lavoura_nome as lavouras_lavoura_nome 
+ 
+              from safras 
+              left join culturas on culturas.cultura_id = safras.safra_cultura 
+left join lavouras on lavouras.lavoura_id = safras.safra_lavoura 
+ 
+            

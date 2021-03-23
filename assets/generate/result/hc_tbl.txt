@@ -1,0 +1,7 @@
+CREATE TABLE clocks (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  holiday_name VARCHAR(255) NULL, clock_id VARCHAR(255) NULL, clock_date DATETIME NULL, img_id VARCHAR(255) NULL, ClockDone VARCHAR(255) NULL, id_num INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

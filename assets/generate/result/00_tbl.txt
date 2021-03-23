@@ -1,0 +1,17 @@
+CREATE TABLE 11 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  22 INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_11list as 
+              select 
+                11.row_id 
+                ,11.22 
+,55.77 as 55_77 
+ 
+              from 11 
+              left join 55 on 55.66 = 11.22 
+ 
+            

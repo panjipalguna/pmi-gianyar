@@ -1,0 +1,17 @@
+CREATE TABLE 666 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  000 INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_666list as 
+              select 
+                666.row_id 
+                ,666.000 
+,888.777 as 888_777 
+ 
+              from 666 
+              left join 888 on 888.999 = 666.000 
+ 
+            

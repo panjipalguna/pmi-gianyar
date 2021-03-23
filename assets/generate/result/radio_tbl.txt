@@ -1,0 +1,7 @@
+CREATE TABLE roka (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Server INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Server)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

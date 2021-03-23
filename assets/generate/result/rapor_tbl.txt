@@ -1,0 +1,7 @@
+CREATE TABLE rapor_bilgileri (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  adsoyad VARCHAR(255) NULL, sevkiyatno INT NULL, tarih INT NULL, plaka VARCHAR(255) NULL, rapor özeti TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

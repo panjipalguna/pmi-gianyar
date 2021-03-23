@@ -1,0 +1,17 @@
+CREATE TABLE banking (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  admin INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (admin)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_bankinglist as 
+              select 
+                banking.row_id 
+                ,banking.admin 
+,login.banklogin as login_banklogin 
+ 
+              from banking 
+              inner join login on login.bankid = banking.admin 
+ 
+            

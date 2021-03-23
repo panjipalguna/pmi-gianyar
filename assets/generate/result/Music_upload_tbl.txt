@@ -1,0 +1,7 @@
+CREATE TABLE music_upload (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  release_name VARCHAR(255) NULL, release_date DATETIME NULL, release_artwork varchar(20) NULL, release_label VARCHAR(255) NULL, release_upc VARCHAR(255) NULL, release_taken DATETIME NULL, release_id DOUBLE NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

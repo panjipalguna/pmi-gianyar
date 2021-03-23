@@ -1,0 +1,17 @@
+CREATE TABLE ewr (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  rewfew INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_ewrlist as 
+              select 
+                ewr.row_id 
+                ,ewr.rewfew 
+,rewr.rew as rewr_rew 
+ 
+              from ewr 
+              left join rewr on rewr.rew = ewr.rewfew 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE buku (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  buku_id INT NULL, buku_name VARCHAR(255) NULL, keterangan VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (buku_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

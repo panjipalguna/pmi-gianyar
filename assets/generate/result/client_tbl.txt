@@ -1,0 +1,7 @@
+CREATE TABLE Clients (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  code VARCHAR(255) NULL, nom VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (code)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

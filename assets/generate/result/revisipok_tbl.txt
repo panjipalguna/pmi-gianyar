@@ -1,0 +1,20 @@
+CREATE TABLE revisipoktbl (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  file1 varchar(20) NULL, dept INT NULL, koderevisi VARCHAR(255) NULL, file2 varchar(20) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (koderevisi)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_revisipoktbllist as 
+              select 
+                revisipoktbl.row_id 
+                ,revisipoktbl.file1 
+,revisipoktbl.dept 
+,userbiro.kodebr_label as userbiro_kodebr_label 
+,revisipoktbl.koderevisi 
+,revisipoktbl.file2 
+ 
+              from revisipoktbl 
+              left join userbiro on userbiro.kodebr_kode = revisipoktbl.dept 
+ 
+            

@@ -1,0 +1,17 @@
+CREATE TABLE ww (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ww INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_wwlist as 
+              select 
+                ww.row_id 
+                ,ww.ww 
+,ww.ww as ww_ww 
+ 
+              from ww 
+              left join ww on ww.ww = ww.ww 
+ 
+            

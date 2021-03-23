@@ -1,0 +1,7 @@
+CREATE TABLE impronto2 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  REFERENCIA VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

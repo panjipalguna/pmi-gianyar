@@ -1,0 +1,7 @@
+CREATE TABLE Mi tabla (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Titulo TEXT NULL, Imagen varchar(20) NULL, Descripcion TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

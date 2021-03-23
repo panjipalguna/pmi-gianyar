@@ -1,0 +1,7 @@
+CREATE TABLE Secciones (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Id_sec INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Id_sec)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

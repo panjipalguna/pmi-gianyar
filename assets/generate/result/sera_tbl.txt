@@ -1,0 +1,20 @@
+CREATE TABLE sera (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  vvffvf INT NULL, vfvfv INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (vvffvf)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_seralist as 
+              select 
+                sera.row_id 
+                ,sera.vvffvf 
+,vfv.vfvf as vfv_vfvf 
+,sera.vfvfv 
+,vfvfv.vfvf as vfvfv_vfvf 
+ 
+              from sera 
+              left join vfv on vfv.vfvfv = sera.vvffvf 
+inner join vfvfv on vfvfv.vfvf = sera.vfvfv 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE vivienda (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  calle VARCHAR(255) NULL, localidad VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

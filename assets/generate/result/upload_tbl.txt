@@ -1,0 +1,20 @@
+CREATE TABLE uploadmusic (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  tarck_name INT NULL, artist_name INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (tarck_name,artist_name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_uploadmusiclist as 
+              select 
+                uploadmusic.row_id 
+                ,uploadmusic.tarck_name 
+,uploadmusic.track name as uploadmusic_track name 
+,uploadmusic.artist_name 
+,uploadmusic.artist name as uploadmusic_artist name 
+ 
+              from uploadmusic 
+              inner join uploadmusic on uploadmusic.tarckname = uploadmusic.tarck_name 
+inner join uploadmusic on uploadmusic.artistname = uploadmusic.artist_name 
+ 
+            

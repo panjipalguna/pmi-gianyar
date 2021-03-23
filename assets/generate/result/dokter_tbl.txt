@@ -1,0 +1,7 @@
+CREATE TABLE dokter (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  dokter_nama VARCHAR(255) NULL, dokter_alamat VARCHAR(255) NULL, dokter_alamatkantor VARCHAR(255) NULL, dokter_instansi VARCHAR(255) NULL, dokter_foto varchar(20) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (dokter_nama)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

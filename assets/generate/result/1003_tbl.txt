@@ -1,0 +1,7 @@
+CREATE TABLE 1003 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Firstname TEXT NULL, Lastname TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Firstname,Lastname)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

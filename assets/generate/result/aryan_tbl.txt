@@ -1,0 +1,17 @@
+CREATE TABLE users (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  if INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (if)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_userslist as 
+              select 
+                users.row_id 
+                ,users.if 
+,cvhhg. as cvhhg_ 
+ 
+              from users 
+              left join cvhhg on cvhhg. = users.if 
+ 
+            

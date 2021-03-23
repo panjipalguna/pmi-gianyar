@@ -1,0 +1,334 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Music_upload extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = "music_upload";
+    public $controller = "Music_upload";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            
+        );
+        $this->layout->display('page/Music_upload_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'release_name', 'release_date', 'release_artwork', 'release_label', 'release_upc', 'release_taken', 'release_id');
+        $table = "music_upload";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.$line->release_name.'</div>'; 
+$row[] = '<div style="text-align:center">'.date("m/d/Y", strtotime($line->release_date)).'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->release_label.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->release_upc.'</div>'; 
+$row[] = '<div style="text-align:center">'.date("m/d/Y", strtotime($line->release_taken)).'</div>'; 
+$row[] = '<div style="text-align:right">'.number_format($line->release_id).'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtreleasename = ''; 
+$txtreleasedate = ''; 
+$txtreleaseartwork = ''; 
+$txtreleaselabel = ''; 
+$txtreleaseupc = ''; 
+$txtreleasetaken = ''; 
+$txtreleaseid = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from music_upload where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtreleasename = $rs[0]->release_name; 
+$txtreleasedate = date('Y-m-d', strtotime($rs[0]->release_date)); 
+$txtreleaseartwork = $rs[0]->release_artwork; 
+$txtreleaseartwork_hdn = $rs[0]->release_artwork; 
+$txtreleaselabel = $rs[0]->release_label; 
+$txtreleaseupc = $rs[0]->release_upc; 
+$txtreleasetaken = date('Y-m-d', strtotime($rs[0]->release_taken)); 
+$txtreleaseid = $rs[0]->release_id; 
+
+            }
+        }
+
+        
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="text" id="txtreleasename" name="txtreleasename" class="form-control" value="'.$txtreleasename.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="date" id="txtreleasedate" name="txtreleasedate" class="form-control" value="'.$txtreleasedate.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>: <span style="font-size:10px">(leave it blank if you do not want to update)</span></label>
+                        <input type="file" id="txtreleaseartwork" name="txtreleaseartwork" class="form-control" />
+                        <input type="hidden" id="txtreleaseartwork_hdn" name="txtreleaseartwork_hdn" class="form-control" value="'.$txtreleaseartwork.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="text" id="txtreleaselabel" name="txtreleaselabel" class="form-control" value="'.$txtreleaselabel.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="text" id="txtreleaseupc" name="txtreleaseupc" class="form-control" value="'.$txtreleaseupc.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>:</label>
+                        <input type="date" id="txtreleasetaken" name="txtreleasetaken" class="form-control" value="'.$txtreleasetaken.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Rel ID: <span style="color: #ff0000">*</span></label>
+                        <input type="number" step="0.01" id="txtreleaseid" name="txtreleaseid" class="form-control" value="'.$txtreleaseid.'" />
+                      </div>
+                    </div>
+                  
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtreleasename = ''; 
+$txtreleasedate = ''; 
+$txtreleaseartwork = ''; 
+$txtreleaselabel = ''; 
+$txtreleaseupc = ''; 
+$txtreleasetaken = ''; 
+$txtreleaseid = ''; 
+
+        
+        $qry = "select * from music_upload where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtreleasename = $rs[0]->release_name; 
+$txtreleasedate = date('Y-m-d', strtotime($rs[0]->release_date)); 
+$txtreleaseartwork = $rs[0]->release_artwork; 
+$txtreleaseartwork_hdn = $rs[0]->release_artwork; 
+$txtreleaselabel = $rs[0]->release_label; 
+$txtreleaseupc = $rs[0]->release_upc; 
+$txtreleasetaken = date('Y-m-d', strtotime($rs[0]->release_taken)); 
+$txtreleaseid = $rs[0]->release_id; 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtreleasename.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtreleasedate.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt"><img style="width:100px" src="'.base_url("uploaded/".$txtreleaseartwork).'" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtreleaselabel.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtreleaseupc.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">:</td>
+                        <td class="view-txt">'.$txtreleasetaken.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Rel ID:</td>
+                        <td class="view-txt">'.number_format($txtreleaseid).'</td>
+                    </tr>
+                  
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtreleasename = $this->input->post("txtreleasename"); $txtreleasedate = $this->input->post("txtreleasedate"); $txtreleaseartwork = $this->input->post("txtreleaseartwork"); $txtreleaseartwork_hdn = $this->input->post("txtreleaseartwork_hdn"); $txtreleaselabel = $this->input->post("txtreleaselabel"); $txtreleaseupc = $this->input->post("txtreleaseupc"); $txtreleasetaken = $this->input->post("txtreleasetaken"); $txtreleaseid = $this->input->post("txtreleaseid"); 
+        
+                $txtreleaseartwork =  $txtreleaseartwork_hdn;
+                if($_FILES['txtreleaseartwork']['name'] != '')
+                {
+                     $ext = pathinfo($_FILES['txtreleaseartwork']['name'], PATHINFO_EXTENSION);
+                     $file_name = date('YmdHis').'.'.$ext;
+                     $config = array(
+                        'upload_path' => 'uploaded',
+                        'allowed_types' => 'gif|jpg|png|jpeg|pdf|docx|xls|xlsx|doc|txt',
+                        'overwrite' => TRUE,
+                        'file_name' =>  $file_name
+                    );
+                     $this->upload->initialize( $config);
+                    if( $this->upload->do_upload('txtreleaseartwork'))
+                    {
+                         $data = $this->upload->data();
+                        $txtreleaseartwork =  $file_name;
+                        if($txtreleaseartwork_hdn != '')
+                          unlink('uploaded/'.$txtreleaseartwork_hdn);
+                    }
+                    else
+                    {
+                        $data['msg'] = $this->upload->display_errors();
+                        $data['type'] = 0;
+                        echo json_encode($data);
+                        exit();
+                    }
+                }
+              
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'release_name' => $txtreleasename, 'release_date' => date("Y-m-d H:i:s", strtotime($txtreleasedate)), 'release_artwork' => $txtreleaseartwork, 'release_label' => $txtreleaselabel, 'release_upc' => $txtreleaseupc, 'release_taken' => date("Y-m-d H:i:s", strtotime($txtreleasetaken)), 'release_id' => $txtreleaseid,         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'release_name' => $txtreleasename, 'release_date' => date("Y-m-d H:i:s", strtotime($txtreleasedate)), 'release_artwork' => $txtreleaseartwork, 'release_label' => $txtreleaselabel, 'release_upc' => $txtreleaseupc, 'release_taken' => date("Y-m-d H:i:s", strtotime($txtreleasetaken)), 'release_id' => $txtreleaseid,              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+                $rs_music_upload = getByQuery("select * from music_upload where row_id = ".$txtrowid);
+                if($rs_music_upload != "") {
+                    foreach($rs_music_upload as $row) {
+                        
+                $rs_music_upload = getByQuery("select * from music_upload where row_id = ".$txtrowid);
+                if($rs_music_upload != "") {
+                    foreach($rs_music_upload as $row) {
+                        
+                $rs_music_upload = getByQuery("select * from music_upload where row_id = ".$txtrowid);
+                if($rs_music_upload != "") {
+                    foreach($rs_music_upload as $row) {
+                        
+                $rs_music_upload = getByQuery("select * from music_upload where row_id = ".$txtrowid);
+                if($rs_music_upload != "") {
+                    foreach($rs_music_upload as $row) {
+                        
+                $rs_music_upload = getByQuery("select * from music_upload where row_id = ".$txtrowid);
+                if($rs_music_upload != "") {
+                    foreach($rs_music_upload as $row) {
+                        unlink('uploaded/'.$row->release_artwork); 
+
+                    }
+                }
+              
+                    }
+                }
+              
+                    }
+                }
+              
+                    }
+                }
+              
+                    }
+                }
+              
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

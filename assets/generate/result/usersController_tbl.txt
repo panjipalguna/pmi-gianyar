@@ -1,0 +1,18 @@
+CREATE TABLE Users (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  user_id VARCHAR(255) NULL, name INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Userslist as 
+              select 
+                Users.row_id 
+                ,Users.user_id 
+,Users.name 
+,Roles. as Roles_ 
+ 
+              from Users 
+              left join Roles on Roles.role_id = Users.name 
+ 
+            

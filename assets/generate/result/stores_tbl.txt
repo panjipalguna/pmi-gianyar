@@ -1,0 +1,23 @@
+CREATE TABLE Stores (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Title VARCHAR(255) NULL, Shop_link VARCHAR(255) NULL, Coupon_link VARCHAR(255) NULL, Circular_link VARCHAR(255) NULL, Store_card VARCHAR(255) NULL, Logo varchar(20) NULL, id_sub INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_sub)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Storeslist as 
+              select 
+                Stores.row_id 
+                ,Stores.Title 
+,Stores.Shop_link 
+,Stores.Coupon_link 
+,Stores.Circular_link 
+,Stores.Store_card 
+,Stores.Logo 
+,Stores.id_sub 
+,sub_categories.Name as sub_categories_Name 
+ 
+              from Stores 
+              inner join sub_categories on sub_categories.row_id = Stores.id_sub 
+ 
+            

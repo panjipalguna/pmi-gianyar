@@ -1,0 +1,17 @@
+CREATE TABLE txxx (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  jjj INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (jjj)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_txxxlist as 
+              select 
+                txxx.row_id 
+                ,txxx.jjj 
+,111.111 as 111_111 
+ 
+              from txxx 
+              inner join 111 on 111.111 = txxx.jjj 
+ 
+            

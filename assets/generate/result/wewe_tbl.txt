@@ -1,0 +1,20 @@
+CREATE TABLE werwerwe (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  saas INT NULL, sdfsd INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (saas)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_werwerwelist as 
+              select 
+                werwerwe.row_id 
+                ,werwerwe.saas 
+,sdfsd.sdsdf as sdfsd_sdsdf 
+,werwerwe.sdfsd 
+,fawefwe.wee as fawefwe_wee 
+ 
+              from werwerwe 
+              inner join sdfsd on sdfsd.sdfsd = werwerwe.saas 
+left join fawefwe on fawefwe.wewe = werwerwe.sdfsd 
+ 
+            

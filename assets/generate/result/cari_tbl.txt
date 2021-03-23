@@ -1,0 +1,7 @@
+CREATE TABLE cari (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  adi VARCHAR(255) NULL, soyadi VARCHAR(255) NULL, firma_adi VARCHAR(255) NULL, tarih DATETIME NULL, il VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

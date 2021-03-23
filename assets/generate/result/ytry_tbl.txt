@@ -1,0 +1,17 @@
+CREATE TABLE rtyrty (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  rty INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_rtyrtylist as 
+              select 
+                rtyrty.row_id 
+                ,rtyrty.rty 
+,rtyrty.rty as rtyrty_rty 
+ 
+              from rtyrty 
+              left join rtyrty on rtyrty.try = rtyrty.rty 
+ 
+            

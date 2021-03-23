@@ -1,0 +1,17 @@
+CREATE TABLE TABLS (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  NAME INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (NAME)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_TABLSlist as 
+              select 
+                TABLS.row_id 
+                ,TABLS.NAME 
+,TABLE.TEXT as TABLE_TEXT 
+ 
+              from TABLS 
+              inner join TABLE on TABLE.ID = TABLS.NAME 
+ 
+            

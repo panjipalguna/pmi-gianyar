@@ -1,0 +1,7 @@
+CREATE TABLE zamzam (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  prenom VARCHAR(255) NULL, nom VARCHAR(255) NULL, email VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,20 @@
+CREATE TABLE 3232 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  vc INT NULL, 232 INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (vc,232)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_3232list as 
+              select 
+                3232.row_id 
+                ,3232.vc 
+,32.32 as 32_32 
+,3232.232 
+,323.323 as 323_323 
+ 
+              from 3232 
+              left join 32 on 32.3 = 3232.vc 
+left join 323 on 323.232 = 3232.232 
+ 
+            

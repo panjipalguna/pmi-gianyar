@@ -1,0 +1,17 @@
+CREATE TABLE warta (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  cali INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (cali)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_wartalist as 
+              select 
+                warta.row_id 
+                ,warta.cali 
+,t.waaw as t_waaw 
+ 
+              from warta 
+              inner join t on t.y = warta.cali 
+ 
+            

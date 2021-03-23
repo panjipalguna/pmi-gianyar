@@ -1,0 +1,7 @@
+CREATE TABLE Lieferant (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  LIeferant TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (LIeferant)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

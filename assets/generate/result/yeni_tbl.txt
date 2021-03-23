@@ -1,0 +1,7 @@
+CREATE TABLE yenit (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ad VARCHAR(255) NULL, soyad TEXT NULL, sayi INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

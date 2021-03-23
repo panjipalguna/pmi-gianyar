@@ -1,0 +1,7 @@
+CREATE TABLE categorie (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  idcat INT NULL, nomecat VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (idcat)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

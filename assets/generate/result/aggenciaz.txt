@@ -1,0 +1,245 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Aggenciaz extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = "categoria1";
+    public $controller = "aggenciaz";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            
+        );
+        $this->layout->display('page/aggenciaz_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'id', 'Imagem', 'nome');
+        $table = "categoria1";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.$line->id.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line->nome.'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtid = ''; 
+$txtImagem = ''; 
+$txtnome = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from categoria1 where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtid = $rs[0]->id; 
+$txtImagem = $rs[0]->Imagem; 
+$txtImagem_hdn = $rs[0]->Imagem; 
+$txtnome = $rs[0]->nome; 
+
+            }
+        }
+
+        
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Id Do Usuario: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtid" name="txtid" class="form-control" value="'.$txtid.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Imagem Do Usupario: <span style="color: #ff0000">*</span> <span style="font-size:10px">(leave it blank if you do not want to update)</span></label>
+                        <input type="file" id="txtImagem" name="txtImagem" class="form-control" />
+                        <input type="hidden" id="txtImagem_hdn" name="txtImagem_hdn" class="form-control" value="'.$txtImagem.'" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Nome Do Usupario: <span style="color: #ff0000">*</span></label>
+                        <input type="text" id="txtnome" name="txtnome" class="form-control" value="'.$txtnome.'" />
+                      </div>
+                    </div>
+                  
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtid = ''; 
+$txtImagem = ''; 
+$txtnome = ''; 
+
+        
+        $qry = "select * from categoria1 where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtid = $rs[0]->id; 
+$txtImagem = $rs[0]->Imagem; 
+$txtImagem_hdn = $rs[0]->Imagem; 
+$txtnome = $rs[0]->nome; 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Id Do Usuario:</td>
+                        <td class="view-txt">'.$txtid.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Imagem Do Usupario:</td>
+                        <td class="view-txt"><img style="width:100px" src="'.base_url("uploaded/".$txtImagem).'" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Nome Do Usupario:</td>
+                        <td class="view-txt">'.$txtnome.'</td>
+                    </tr>
+                  
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtid = $this->input->post("txtid"); $txtImagem = $this->input->post("txtImagem"); $txtImagem_hdn = $this->input->post("txtImagem_hdn"); $txtnome = $this->input->post("txtnome"); 
+        
+                $txtImagem =  $txtImagem_hdn;
+                if($_FILES['txtImagem']['name'] != '')
+                {
+                     $ext = pathinfo($_FILES['txtImagem']['name'], PATHINFO_EXTENSION);
+                     $file_name = date('YmdHis').'.'.$ext;
+                     $config = array(
+                        'upload_path' => 'uploaded',
+                        'allowed_types' => 'gif|jpg|png|jpeg|pdf|docx|xls|xlsx|doc|txt',
+                        'overwrite' => TRUE,
+                        'file_name' =>  $file_name
+                    );
+                     $this->upload->initialize( $config);
+                    if( $this->upload->do_upload('txtImagem'))
+                    {
+                         $data = $this->upload->data();
+                        $txtImagem =  $file_name;
+                        if($txtImagem_hdn != '')
+                          unlink('uploaded/'.$txtImagem_hdn);
+                    }
+                    else
+                    {
+                        $data['msg'] = $this->upload->display_errors();
+                        $data['type'] = 0;
+                        echo json_encode($data);
+                        exit();
+                    }
+                }
+              
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'id' => $txtid, 'Imagem' => $txtImagem, 'nome' => $txtnome,         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'id' => $txtid, 'Imagem' => $txtImagem, 'nome' => $txtnome,              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+                $rs_categoria1 = getByQuery("select * from categoria1 where row_id = ".$txtrowid);
+                if($rs_categoria1 != "") {
+                    foreach($rs_categoria1 as $row) {
+                        
+                $rs_categoria1 = getByQuery("select * from categoria1 where row_id = ".$txtrowid);
+                if($rs_categoria1 != "") {
+                    foreach($rs_categoria1 as $row) {
+                        unlink('uploaded/'.$row->Imagem); 
+
+                    }
+                }
+              
+                    }
+                }
+              
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

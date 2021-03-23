@@ -1,0 +1,7 @@
+CREATE TABLE dfsdsf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sdaf VARCHAR(255) NULL, asdfdsa VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (sdaf)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

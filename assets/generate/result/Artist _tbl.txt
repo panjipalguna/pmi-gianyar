@@ -1,0 +1,7 @@
+CREATE TABLE Artist  (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Artist Name  VARCHAR(255) NULL, Artist Bio TEXT NULL, Artist Label  TEXT NULL, Artist Inage varchar(20) NULL, Artist Location  TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Artist Inage,Artist Location )  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

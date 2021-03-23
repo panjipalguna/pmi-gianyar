@@ -1,0 +1,17 @@
+CREATE TABLE esempio (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nome INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_esempiolist as 
+              select 
+                esempio.row_id 
+                ,esempio.nome 
+,Employee. as Employee_ 
+ 
+              from esempio 
+              left join Employee on Employee.1 = esempio.nome 
+ 
+            

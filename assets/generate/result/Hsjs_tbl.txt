@@ -1,0 +1,7 @@
+CREATE TABLE Wijsb (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Ajjsb VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Ajjsb)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

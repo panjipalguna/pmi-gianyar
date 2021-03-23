@@ -1,0 +1,17 @@
+CREATE TABLE asdfgh (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  d INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_asdfghlist as 
+              select 
+                asdfgh.row_id 
+                ,asdfgh.d 
+,d.d as d_d 
+ 
+              from asdfgh 
+              inner join d on d.d = asdfgh.d 
+ 
+            

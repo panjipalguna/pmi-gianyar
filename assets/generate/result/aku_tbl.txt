@@ -1,0 +1,7 @@
+CREATE TABLE akutable (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nama TEXT NULL, id INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

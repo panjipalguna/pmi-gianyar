@@ -1,0 +1,7 @@
+CREATE TABLE dfdfdf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

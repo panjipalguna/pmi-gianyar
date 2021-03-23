@@ -1,0 +1,7 @@
+CREATE TABLE job (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ID INT NULL, REg TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (ID)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

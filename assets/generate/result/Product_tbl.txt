@@ -1,0 +1,7 @@
+CREATE TABLE Products (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  product_id INT NULL, product_name VARCHAR(255) NULL, qty INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (product_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

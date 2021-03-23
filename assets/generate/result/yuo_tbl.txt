@@ -1,0 +1,7 @@
+CREATE TABLE loi (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  cane TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (cane)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,19 @@
+CREATE TABLE prova1 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, id_prova INT NULL, descrizion VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_prova1list as 
+              select 
+                prova1.row_id 
+                ,prova1.id 
+,prova1.id_prova 
+,prova.descrizione as prova_descrizione 
+,prova1.descrizion 
+ 
+              from prova1 
+              left join prova on prova.id = prova1.id_prova 
+ 
+            

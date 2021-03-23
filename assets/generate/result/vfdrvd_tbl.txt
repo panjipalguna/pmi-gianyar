@@ -1,0 +1,17 @@
+CREATE TABLE dvdv (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  hiu INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_dvdvlist as 
+              select 
+                dvdv.row_id 
+                ,dvdv.hiu 
+,hi.d as hi_d 
+ 
+              from dvdv 
+              left join hi on hi.d = dvdv.hiu 
+ 
+            

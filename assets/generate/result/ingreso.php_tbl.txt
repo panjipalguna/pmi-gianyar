@@ -1,0 +1,7 @@
+CREATE TABLE personas (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nombre TEXT NULL, d DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (nombre)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

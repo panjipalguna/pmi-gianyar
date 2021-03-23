@@ -1,0 +1,7 @@
+CREATE TABLE PatientName (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Patient Name TEXT NULL, Date DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

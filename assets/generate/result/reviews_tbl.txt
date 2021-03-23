@@ -1,0 +1,21 @@
+CREATE TABLE Reviews (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_store INT NULL, Name VARCHAR(255) NULL, Email VARCHAR(255) NULL, Review TEXT NULL, Stars INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_store)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_Reviewslist as 
+              select 
+                Reviews.row_id 
+                ,Reviews.id_store 
+,stores.Title as stores_Title 
+,Reviews.Name 
+,Reviews.Email 
+,Reviews.Review 
+,Reviews.Stars 
+ 
+              from Reviews 
+              inner join stores on stores.row_id = Reviews.id_store 
+ 
+            

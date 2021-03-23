@@ -1,0 +1,18 @@
+CREATE TABLE sub_categories (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_cat INT NULL, Name VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_cat)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_sub_categorieslist as 
+              select 
+                sub_categories.row_id 
+                ,sub_categories.id_cat 
+,categories.Name as categories_Name 
+,sub_categories.Name 
+ 
+              from sub_categories 
+              inner join categories on categories.row_id = sub_categories.id_cat 
+ 
+            

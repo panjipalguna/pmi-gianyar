@@ -1,0 +1,7 @@
+CREATE TABLE kkkkkkkkkkkkkkkkkkkkko (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  jgfjfjgfj DATETIME NULL, jfgjgf INT NULL, fgj DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

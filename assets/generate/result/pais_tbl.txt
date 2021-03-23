@@ -1,0 +1,7 @@
+CREATE TABLE pais (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  pais_id INT NULL, pais_nombre VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (pais_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

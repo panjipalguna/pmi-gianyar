@@ -1,0 +1,17 @@
+CREATE TABLE imagesupload (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  image ipload INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (image ipload)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_imagesuploadlist as 
+              select 
+                imagesupload.row_id 
+                ,imagesupload.image ipload 
+,35. as 35_ 
+ 
+              from imagesupload 
+              inner join 35 on 35. = imagesupload.image ipload 
+ 
+            

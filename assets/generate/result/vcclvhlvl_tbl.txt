@@ -1,0 +1,17 @@
+CREATE TABLE hvlvlvl (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  vlvl INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (vlvl)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_hvlvlvllist as 
+              select 
+                hvlvlvl.row_id 
+                ,hvlvlvl.vlvl 
+,jlvlvvl.llllllllll as jlvlvvl_llllllllll 
+ 
+              from hvlvlvl 
+              inner join jlvlvvl on jlvlvvl.jklvllkl = hvlvlvl.vlvl 
+ 
+            

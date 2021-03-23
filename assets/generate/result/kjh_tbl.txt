@@ -1,0 +1,17 @@
+CREATE TABLE 56 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  asd INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_56list as 
+              select 
+                56.row_id 
+                ,56.asd 
+,x. as x_ 
+ 
+              from 56 
+              left join x on x.x = 56.asd 
+ 
+            

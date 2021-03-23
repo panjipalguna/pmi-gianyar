@@ -1,0 +1,17 @@
+CREATE TABLE wer (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  wer INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_werlist as 
+              select 
+                wer.row_id 
+                ,wer.wer 
+,wer.ewr as wer_ewr 
+ 
+              from wer 
+              left join wer on wer.wer = wer.wer 
+ 
+            

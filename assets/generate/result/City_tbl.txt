@@ -1,0 +1,7 @@
+CREATE TABLE City (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Name TEXT NULL, ID INT NULL, Country TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (ID)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,7 @@
+CREATE TABLE gnc (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  c TEXT NULL, hn VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (hn)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

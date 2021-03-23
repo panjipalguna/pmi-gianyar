@@ -1,0 +1,7 @@
+CREATE TABLE sampleta (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sid INT NULL, names TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (sid)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

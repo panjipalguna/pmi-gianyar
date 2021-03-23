@@ -1,0 +1,22 @@
+CREATE TABLE educ_curso_disciplina (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  curso_id INT NULL, diciplina_id INT NULL, operador_id INT NULL, data_acesso DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (curso_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_educ_curso_disciplinalist as 
+              select 
+                educ_curso_disciplina.row_id 
+                ,educ_curso_disciplina.curso_id 
+,educ_curso_disciplina.diciplina_id 
+,educ_disicplina.{diciplina_id}-{nome} as educ_disicplina_{diciplina_id}-{nome} 
+,educ_curso_disciplina.operador_id 
+,educ_operador.{operador_id}-{nome} as educ_operador_{operador_id}-{nome} 
+,educ_curso_disciplina.data_acesso 
+ 
+              from educ_curso_disciplina 
+              left join educ_disicplina on educ_disicplina.diciplina_id = educ_curso_disciplina.diciplina_id 
+left join educ_operador on educ_operador.operador_id = educ_curso_disciplina.operador_id 
+ 
+            

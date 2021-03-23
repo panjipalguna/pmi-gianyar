@@ -1,0 +1,20 @@
+CREATE TABLE books (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  book_name TEXT NULL, book_price INT NULL, book_image varchar(20) NULL, book_owner INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_bookslist as 
+              select 
+                books.row_id 
+                ,books.book_name 
+,books.book_price 
+,books.book_image 
+,books.book_owner 
+,user.Fullname as user_Fullname 
+ 
+              from books 
+              left join user on user.Fullname = books.book_owner 
+ 
+            

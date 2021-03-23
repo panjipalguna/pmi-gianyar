@@ -1,0 +1,7 @@
+CREATE TABLE ticket (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ticket_id INT NULL, ticket_title TEXT NULL, ticket_content TEXT NULL, ticket_status INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

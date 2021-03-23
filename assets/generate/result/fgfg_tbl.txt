@@ -1,0 +1,18 @@
+CREATE TABLE fgfg (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  name INT NULL, gfgfg TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_fgfglist as 
+              select 
+                fgfg.row_id 
+                ,fgfg.name 
+,gfg.gf as gfg_gf 
+,fgfg.gfgfg 
+ 
+              from fgfg 
+              left join gfg on gfg.fg = fgfg.name 
+ 
+            

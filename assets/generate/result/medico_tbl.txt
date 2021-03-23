@@ -1,0 +1,7 @@
+CREATE TABLE medico (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Nome TEXT NULL, endereço TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Nome,endereço)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

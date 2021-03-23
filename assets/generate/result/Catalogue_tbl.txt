@@ -1,0 +1,7 @@
+CREATE TABLE catalogue (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  IDCatalogue INT NULL, Pays TEXT NULL, IDYvert TEXT NULL, Description TEXT NULL, ValeurFaciale TEXT NULL, Annee INT NULL, NonEmis INT NULL, Photo varchar(20) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (IDCatalogue,Pays,IDYvert,Description,Annee)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

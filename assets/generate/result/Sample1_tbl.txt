@@ -1,0 +1,25 @@
+CREATE TABLE table1 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  t1_id INT NULL, t1_fk1 INT NULL, t1_fk2 INT NULL, t1_field VARCHAR(255) NULL, t1_img varchar(20) NULL, t1_date DATETIME NULL, t1_fieeld2 TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (t1_id,t1_fieeld2)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_table1list as 
+              select 
+                table1.row_id 
+                ,table1.t1_id 
+,table1.t1_fk1 
+,table2.file type as table2_file type 
+,table1.t1_fk2 
+,table3.user name as table3_user name 
+,table1.t1_field 
+,table1.t1_img 
+,table1.t1_date 
+,table1.t1_fieeld2 
+ 
+              from table1 
+              inner join table2 on table2.t2_id = table1.t1_fk1 
+inner join table3 on table3.t3_id = table1.t1_fk2 
+ 
+            

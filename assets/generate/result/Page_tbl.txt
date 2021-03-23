@@ -1,0 +1,7 @@
+CREATE TABLE pages (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  page_id INT NULL, page_title VARCHAR(255) NULL, page_body TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (page_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,17 @@
+CREATE TABLE sadf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sadf INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (sadf)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_sadflist as 
+              select 
+                sadf.row_id 
+                ,sadf.sadf 
+,asfd.sadf as asfd_sadf 
+ 
+              from sadf 
+              inner join asfd on asfd.sadf = sadf.sadf 
+ 
+            

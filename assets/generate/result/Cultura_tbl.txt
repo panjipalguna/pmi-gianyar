@@ -1,0 +1,7 @@
+CREATE TABLE cultura (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  cultura_id INT NULL, cultura_nome VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (cultura_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,17 @@
+CREATE TABLE adad (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  test INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (test)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_adadlist as 
+              select 
+                adad.row_id 
+                ,adad.test 
+,dasd. as dasd_ 
+ 
+              from adad 
+              left join dasd on dasd. = adad.test 
+ 
+            

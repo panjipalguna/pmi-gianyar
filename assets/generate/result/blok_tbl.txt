@@ -1,0 +1,7 @@
+CREATE TABLE blok (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  blok_name TEXT NULL, blok_desc TEXT NULL, blok_hsp TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (blok_name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

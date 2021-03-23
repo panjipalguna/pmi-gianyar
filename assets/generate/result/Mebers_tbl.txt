@@ -1,0 +1,17 @@
+CREATE TABLE ship (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Member INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_shiplist as 
+              select 
+                ship.row_id 
+                ,ship.Member 
+,A.l as A_l 
+ 
+              from ship 
+              left join A on A.o = ship.Member 
+ 
+            

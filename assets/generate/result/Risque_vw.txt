@@ -1,0 +1,103 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <span class="title-page"><?= strtoupper($lbl_controller) ?></span>
+      <small>List of Data</small>
+    </h1>
+  </section>
+
+  <section class="content">
+    <div class="row">
+    
+              <div class="col-xs-12">
+                <div  style="clear:both; border-top: 3px solid #d2d6de; height: 17px"></div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtRisque1filter" name="txtRisque1filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All Test</option>
+                      <?php
+                      if($rs_2124364 != "") {
+                          foreach($rs_2124364 as $row_2124364) {
+                              echo "<option value='".$row_2124364->32132."'>".$row_2124364->321654."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtRisque2filter" name="txtRisque2filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All Qd</option>
+                      <?php
+                      if($rs_54231 != "") {
+                          foreach($rs_54231 as $row_54231) {
+                              echo "<option value='".$row_54231->32987."'>".$row_54231->9879978."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtRisque3filter" name="txtRisque3filter" class="form-control" onchange="generateTable()">
+                      <option value="">View All Zera</option>
+                      <?php
+                      if($rs_3214564 != "") {
+                          foreach($rs_3214564 as $row_3214564) {
+                              echo "<option value='".$row_3214564->321265."'>".$row_3214564->3285644."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+              </div>
+            
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-body">
+            <div id='callback_msg'></div>
+            <table id="tablelist" class="table table-bordered table-striped" style="width: 100%">
+              <thead>
+                <tr>
+                  <th style="width:3%"></th>
+                  <th style='width:20%'>Test</th> 
+<th style='width:20%'>Qd</th> 
+<th style='width:20%'>Zera</th> 
+
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal fade" id="modalForm" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><?= strtoupper($lbl_controller) ?> FORM</h4>
+      </div>
+      <div class="modal-body">
+        <div id="tableModal"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+        <button type="button" id="btnSave" class="btn btn-success">SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="<?= base_url("controller") ?>/Risque.js"></script>

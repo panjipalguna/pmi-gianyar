@@ -1,0 +1,21 @@
+CREATE TABLE registration (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  user INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (user)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_registrationlist as 
+              select 
+                registration.row_id 
+                ,registration.user 
+,age.register as age_register 
+ 
+              from registration 
+              inner join age on age.id = registration.user 
+ 
+            
+         inner join age on age.id = registration.user 
+inner join age on age.id = registration.user 
+ 
+            

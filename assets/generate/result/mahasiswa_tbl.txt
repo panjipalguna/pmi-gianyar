@@ -1,0 +1,17 @@
+CREATE TABLE mahasiswa (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  No INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (No)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_mahasiswalist as 
+              select 
+                mahasiswa.row_id 
+                ,mahasiswa.No 
+,mahasiswa. as mahasiswa_ 
+ 
+              from mahasiswa 
+              inner join mahasiswa on mahasiswa. = mahasiswa.No 
+ 
+            

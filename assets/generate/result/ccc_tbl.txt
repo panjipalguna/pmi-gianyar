@@ -1,0 +1,7 @@
+CREATE TABLE ccc (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  ascs VARCHAR(255) NULL, sas VARCHAR(255) NULL, ss VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (ss)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

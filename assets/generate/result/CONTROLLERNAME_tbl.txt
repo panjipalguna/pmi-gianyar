@@ -1,0 +1,38 @@
+CREATE TABLE  TABLNAME (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Field Name1 INT NULL, Field Name2 INT NULL, Field Name3 INT NULL, Field Name4 INT NULL, Field Name5 INT NULL, Field Name6 INT NULL, Field Name7 INT NULL, Field Name8 INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Field Name1)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_ TABLNAMElist as 
+              select 
+                 TABLNAME.row_id 
+                , TABLNAME.Field Name1 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name2 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name3 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name4 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name5 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name6 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name7 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+, TABLNAME.Field Name8 
+, TABLNAME.Field Text as  TABLNAME_Field Text 
+ 
+              from  TABLNAME 
+              inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name1 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name2 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name3 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name4 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name5 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name6 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name7 
+inner join  TABLNAME on  TABLNAME.Field Id =  TABLNAME.Field Name8 
+ 
+            

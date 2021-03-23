@@ -1,0 +1,7 @@
+CREATE TABLE claro (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, id_2 INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id,id_2)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

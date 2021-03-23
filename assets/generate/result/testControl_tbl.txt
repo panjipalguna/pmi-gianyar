@@ -1,0 +1,17 @@
+CREATE TABLE texttable (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  test1 INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_texttablelist as 
+              select 
+                texttable.row_id 
+                ,texttable.test1 
+,testrel.text text as testrel_text text 
+ 
+              from texttable 
+              inner join testrel on testrel.testid = texttable.test1 
+ 
+            

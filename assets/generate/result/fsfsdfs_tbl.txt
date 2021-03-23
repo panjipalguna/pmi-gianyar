@@ -1,0 +1,17 @@
+CREATE TABLE sdfsdfsdfsdf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sf INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_sdfsdfsdfsdflist as 
+              select 
+                sdfsdfsdfsdf.row_id 
+                ,sdfsdfsdfsdf.sf 
+,fs. as fs_ 
+ 
+              from sdfsdfsdfsdf 
+              left join fs on fs. = sdfsdfsdfsdf.sf 
+ 
+            

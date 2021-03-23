@@ -1,0 +1,222 @@
+var base_url = window.location + "/";
+
+$(document).ready(function() {
+  generateTable();
+
+  $("#btnSave").click(function(){
+    doSave();
+  });
+});
+
+function generateTable()
+{   
+  var where = "";      
+  
+                  var txtField Name1filter = $("#txtField Name1filter").val();
+                  if(txtField Name1filter != "") {
+                    if(where == "") {
+                      where = "Field Name1 = '"+txtField Name1filter+"'";
+                    }
+                    else {
+                      where += " and Field Name1 = '"+txtField Name1filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name2filter = $("#txtField Name2filter").val();
+                  if(txtField Name2filter != "") {
+                    if(where == "") {
+                      where = "Field Name2 = '"+txtField Name2filter+"'";
+                    }
+                    else {
+                      where += " and Field Name2 = '"+txtField Name2filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name3filter = $("#txtField Name3filter").val();
+                  if(txtField Name3filter != "") {
+                    if(where == "") {
+                      where = "Field Name3 = '"+txtField Name3filter+"'";
+                    }
+                    else {
+                      where += " and Field Name3 = '"+txtField Name3filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name4filter = $("#txtField Name4filter").val();
+                  if(txtField Name4filter != "") {
+                    if(where == "") {
+                      where = "Field Name4 = '"+txtField Name4filter+"'";
+                    }
+                    else {
+                      where += " and Field Name4 = '"+txtField Name4filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name5filter = $("#txtField Name5filter").val();
+                  if(txtField Name5filter != "") {
+                    if(where == "") {
+                      where = "Field Name5 = '"+txtField Name5filter+"'";
+                    }
+                    else {
+                      where += " and Field Name5 = '"+txtField Name5filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name6filter = $("#txtField Name6filter").val();
+                  if(txtField Name6filter != "") {
+                    if(where == "") {
+                      where = "Field Name6 = '"+txtField Name6filter+"'";
+                    }
+                    else {
+                      where += " and Field Name6 = '"+txtField Name6filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name7filter = $("#txtField Name7filter").val();
+                  if(txtField Name7filter != "") {
+                    if(where == "") {
+                      where = "Field Name7 = '"+txtField Name7filter+"'";
+                    }
+                    else {
+                      where += " and Field Name7 = '"+txtField Name7filter+"'";                    
+                    }
+                  }
+                
+                  var txtField Name8filter = $("#txtField Name8filter").val();
+                  if(txtField Name8filter != "") {
+                    if(where == "") {
+                      where = "Field Name8 = '"+txtField Name8filter+"'";
+                    }
+                    else {
+                      where += " and Field Name8 = '"+txtField Name8filter+"'";                    
+                    }
+                  }
+                
+  var table = $('#tablelist').DataTable( {
+    ajax: {
+      "url": base_url + "gridview",
+      "type": "POST",
+      "data" : {'where': where}
+    }, 
+    processing: true, 
+    serverSide: true,
+    scrollCollapse: true,
+    destroy: true,
+    iDisplayLength: 10,
+    order: [[ 0, "desc" ]],
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            text: '<i class="fa fa-plus"></i> Add New',
+            action: function ( e, dt, node, config ) {
+                generateModalForm('add', '');
+            }
+        }
+    ]
+  });
+}
+
+
+
+function reloadDatatable()
+{
+  $('#tablelist').DataTable().ajax.reload();
+}
+
+function generateModalForm(state, row_id) {
+  $('#modalForm').modal('show');
+  $.ajax({
+      type: 'post',
+      async: true,
+      url: base_url + 'form',
+      data: {'txtstate': state, 'txtrowid': row_id},
+      success: function(ret) {
+          var data = JSON.parse(ret); 
+          $('#btnSave').show();
+          $('#tableModal').html(data['table']);
+      }
+  });
+}
+
+function generateModalView(row_id) {
+  $.ajax({
+      type: 'post',
+      async: true,
+      url: base_url + 'view',
+      data: {'txtrowid': row_id},
+      success: function(ret) {
+          var data = JSON.parse(ret); 
+          $('#btnSave').hide();
+          $('#tableModal').html(data['table']);
+          $('#txtField Name1').select2();$('#txtField Name2').select2();$('#txtField Name3').select2();$('#txtField Name4').select2();$('#txtField Name5').select2();$('#txtField Name6').select2();$('#txtField Name7').select2();$('#txtField Name8').select2();
+      }
+  });
+}
+
+function doSave(){
+
+  var formData = new FormData($('.formInput')[0]);
+
+  var txtField Name1 = $('#txtField Name1').val(); 
+var txtField Name2 = $('#txtField Name2').val(); 
+var txtField Name3 = $('#txtField Name3').val(); 
+var txtField Name4 = $('#txtField Name4').val(); 
+var txtField Name5 = $('#txtField Name5').val(); 
+var txtField Name6 = $('#txtField Name6').val(); 
+var txtField Name7 = $('#txtField Name7').val(); 
+var txtField Name7_hdn = $('#txtField Name7_hdn').val(); 
+var txtField Name8 = $('#txtField Name8').val(); 
+
+  if(txtField Name1 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name2 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name3 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name4 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name5 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name6 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name7 == '') {infoStatus(' must be filled', 0); exit();}if(txtField Name8 == '') {infoStatus(' must be filled', 0); exit();}
+
+  $("#btnSave").html("Loading...");
+
+  $.ajax({
+    type: 'post',
+      async: true,
+    url: base_url + 'save',
+    data: formData,
+    mimeType: "multipart/form-data",
+    contentType: false,
+    cache: false,
+    processData: false,
+    success: function(ret) {
+      var data = JSON.parse(ret); 
+      $('#modalForm').modal('hide');
+      $("#btnSave").html("SAVE");
+      reloadDatatable();
+      infoStatus(data['msg'], data['type']);
+    }
+  });
+}
+
+function doDelete(row_id) {
+  bootbox.confirm({
+    message: "<span class='alert-txt'><i class='fa fa-question-circle'></i>&nbsp;&nbsp;  Are you sure?<span>",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+      if(result == true) {
+        $.ajax({
+            type: 'post',
+            async: false,
+            url: base_url + 'delete',
+            data: {'txtrowid': row_id},
+            success: function(ret) {
+              var data = JSON.parse(ret); 
+              reloadDatatable();
+              infoStatus(data['msg'], data['type']);
+            }
+        });
+      }
+    }
+  });
+}

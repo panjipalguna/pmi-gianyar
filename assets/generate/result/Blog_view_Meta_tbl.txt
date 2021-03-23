@@ -1,0 +1,7 @@
+CREATE TABLE blog_view_meta (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  blog_meta_title TEXT NULL, blog_meta_description TEXT NULL, blog_meta_keywords TEXT NULL, blog_meta_robots TEXT NULL, blog_meta_page_topic TEXT NULL, blog_meta_copyright TEXT NULL, blog_meta_author TEXT NULL, blog_meta_publisher TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

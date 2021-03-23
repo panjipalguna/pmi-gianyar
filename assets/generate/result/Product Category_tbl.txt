@@ -1,0 +1,7 @@
+CREATE TABLE prod_cat (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  pro_cat_id INT NULL, pro_cat_name VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,17 @@
+CREATE TABLE dua (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nama INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (nama)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_dualist as 
+              select 
+                dua.row_id 
+                ,dua.nama 
+,2.2 as 2_2 
+ 
+              from dua 
+              inner join 2 on 2.2 = dua.nama 
+ 
+            

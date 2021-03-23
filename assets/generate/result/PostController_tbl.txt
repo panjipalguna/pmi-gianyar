@@ -1,0 +1,7 @@
+CREATE TABLE posts (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  title VARCHAR(255) NULL, views INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

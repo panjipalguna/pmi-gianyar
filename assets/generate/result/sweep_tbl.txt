@@ -1,0 +1,7 @@
+CREATE TABLE sweep4d (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  date_draw DATETIME NULL, draw_id VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

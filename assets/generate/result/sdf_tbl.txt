@@ -1,0 +1,7 @@
+CREATE TABLE sdf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  idx INT NULL, name TEXT NULL, phone VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (idx)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

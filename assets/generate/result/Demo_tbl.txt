@@ -1,0 +1,17 @@
+CREATE TABLE demo (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  demos INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (demos)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_demolist as 
+              select 
+                demo.row_id 
+                ,demo.demos 
+,ded.ddd as ded_ddd 
+ 
+              from demo 
+              inner join ded on ded.ddd = demo.demos 
+ 
+            

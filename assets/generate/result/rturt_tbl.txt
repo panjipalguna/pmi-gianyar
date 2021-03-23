@@ -1,0 +1,20 @@
+CREATE TABLE zurtzurtzu (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  rtzur INT NULL, rtzurtzur INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_zurtzurtzulist as 
+              select 
+                zurtzurtzu.row_id 
+                ,zurtzurtzu.rtzur 
+,rtzurt.zurtzu as rtzurt_zurtzu 
+,zurtzurtzu.rtzurtzur 
+,rtzurtzu.zurtzu as rtzurtzu_zurtzu 
+ 
+              from zurtzurtzu 
+              left join rtzurt on rtzurt.zurtzurt = zurtzurtzu.rtzur 
+left join rtzurtzu on rtzurtzu.rtzurt = zurtzurtzu.rtzurtzur 
+ 
+            

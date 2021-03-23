@@ -1,0 +1,17 @@
+CREATE TABLE tb_rekammedis (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_dokter INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_dokter)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_tb_rekammedislist as 
+              select 
+                tb_rekammedis.row_id 
+                ,tb_rekammedis.id_dokter 
+,tb_dokter.nama_dokter as tb_dokter_nama_dokter 
+ 
+              from tb_rekammedis 
+              inner join tb_dokter on tb_dokter.nama_dokter = tb_rekammedis.id_dokter 
+ 
+            

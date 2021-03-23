@@ -1,0 +1,7 @@
+CREATE TABLE Pago (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Id INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

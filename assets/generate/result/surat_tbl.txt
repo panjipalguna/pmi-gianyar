@@ -1,0 +1,7 @@
+CREATE TABLE surat (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id_surat INT NULL, nomor_surat VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

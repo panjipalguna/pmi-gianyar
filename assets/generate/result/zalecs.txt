@@ -1,0 +1,182 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Zalecs extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+    }
+
+    public $table_db = "zalecs";
+    public $controller = "zalecs";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            
+        );
+        $this->layout->display('page/zalecs_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'zalecs', 'date');
+        $table = "zalecs";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:left">'.$line->zalecs.'</div>'; 
+$row[] = '<div style="text-align:center">'.date("m/d/Y", strtotime($line->date)).'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtzalecs = ''; 
+$txtdate = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from zalecs where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtzalecs = $rs[0]->zalecs; 
+$txtdate = date('Y-m-d', strtotime($rs[0]->date)); 
+
+            }
+        }
+
+        
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Zalecs:</label>
+                        <textarea id="txtzalecs" name="txtzalecs" rows="4" class="form-control">'.$txtzalecs.'</textarea>
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Date:</label>
+                        <input type="date" id="txtdate" name="txtdate" class="form-control" value="'.$txtdate.'" />
+                      </div>
+                    </div>
+                  
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtzalecs = ''; 
+$txtdate = ''; 
+
+        
+        $qry = "select * from zalecs where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtzalecs = $rs[0]->zalecs; 
+$txtdate = date('Y-m-d', strtotime($rs[0]->date)); 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                    <tr>
+                        <td class="view-title" style="width: 30%">Zalecs:</td>
+                        <td class="view-txt">'.$txtzalecs.'</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="view-title" style="width: 30%">Date:</td>
+                        <td class="view-txt">'.$txtdate.'</td>
+                    </tr>
+                  
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtzalecs = $this->input->post("txtzalecs"); $txtdate = $this->input->post("txtdate"); 
+        
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'zalecs' => $txtzalecs, 'date' => date("Y-m-d H:i:s", strtotime($txtdate)),         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'zalecs' => $txtzalecs, 'date' => date("Y-m-d H:i:s", strtotime($txtdate)),              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

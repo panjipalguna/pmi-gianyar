@@ -1,0 +1,7 @@
+CREATE TABLE tes (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nama_tes VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id_tes)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

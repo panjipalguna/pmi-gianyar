@@ -1,0 +1,7 @@
+CREATE TABLE asdf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  asdf VARCHAR(255) NULL, 32taweg DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

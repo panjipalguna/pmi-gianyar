@@ -1,0 +1,7 @@
+CREATE TABLE revisi_pok (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  file1 varchar(20) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,17 @@
+CREATE TABLE name (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  fff INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (fff)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_namelist as 
+              select 
+                name.row_id 
+                ,name.fff 
+,aa. as aa_ 
+ 
+              from name 
+              inner join aa on aa. = name.fff 
+ 
+            

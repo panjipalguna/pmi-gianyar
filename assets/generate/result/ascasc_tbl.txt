@@ -1,0 +1,17 @@
+CREATE TABLE dscdcsd (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  csda INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (csda)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_dscdcsdlist as 
+              select 
+                dscdcsd.row_id 
+                ,dscdcsd.csda 
+,dsc.cdcds as dsc_cdcds 
+ 
+              from dscdcsd 
+              inner join dsc on dsc.dscd = dscdcsd.csda 
+ 
+            

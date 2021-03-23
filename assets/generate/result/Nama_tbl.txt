@@ -1,0 +1,17 @@
+CREATE TABLE nama (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Nama INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_namalist as 
+              select 
+                nama.row_id 
+                ,nama.Nama 
+,nama.nama as nama_nama 
+ 
+              from nama 
+              left join nama on nama.id_nama = nama.Nama 
+ 
+            

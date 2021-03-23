@@ -1,0 +1,7 @@
+CREATE TABLE recipes (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  recipename VARCHAR(255) NULL, recipe TEXT NULL, attributed VARCHAR(255) NULL, submitted VARCHAR(255) NULL, stories TEXT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

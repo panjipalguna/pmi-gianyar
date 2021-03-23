@@ -1,0 +1,19 @@
+CREATE TABLE abcde (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+   dsfds VARCHAR(255) NULL, fdsf INT NULL, bbbb DATETIME NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` ( dsfds)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_abcdelist as 
+              select 
+                abcde.row_id 
+                ,abcde. dsfds 
+,abcde.fdsf 
+,fdsf.fdsf as fdsf_fdsf 
+,abcde.bbbb 
+ 
+              from abcde 
+              left join fdsf on fdsf.fdsf = abcde.fdsf 
+ 
+            

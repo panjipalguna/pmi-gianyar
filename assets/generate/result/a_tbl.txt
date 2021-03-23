@@ -1,0 +1,17 @@
+CREATE TABLE a (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  a INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_alist as 
+              select 
+                a.row_id 
+                ,a.a 
+,a.a as a_a 
+ 
+              from a 
+              left join a on a.a = a.a 
+ 
+            

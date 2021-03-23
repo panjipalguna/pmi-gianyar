@@ -1,0 +1,7 @@
+CREATE TABLE Curso (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  curso_id INT NULL, descricao VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (curso_id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

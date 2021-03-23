@@ -1,0 +1,17 @@
+CREATE TABLE xbvxf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  vx INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (vx)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_xbvxflist as 
+              select 
+                xbvxf.row_id 
+                ,xbvxf.vx 
+,f. as f_ 
+ 
+              from xbvxf 
+              inner join f on f.fff = xbvxf.vx 
+ 
+            

@@ -1,0 +1,7 @@
+CREATE TABLE zfzfe (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  zee VARCHAR(255) NULL, rgrg VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (zee)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

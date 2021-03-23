@@ -1,0 +1,441 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class CONTROLLERNAME extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+        islogin();
+    }
+
+    public $table_db = " TABLNAME";
+    public $controller = "CONTROLLERNAME";
+    
+    public function index() {
+        $lbl_controller = str_replace("_", " ", $this->controller);
+        $page_url = site_url($this->controller);
+		$data = array(
+            'controller' => $this->controller,
+            'lbl_controller' => $lbl_controller,
+            'page_url' => $page_url,
+            'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                'rs_ TABLNAME' => getByQuery('select * from  TABLNAME'),
+                
+        );
+        $this->layout->display('page/CONTROLLERNAME_vw', $data);
+    }
+
+    public function gridview() {
+        $where = $this->input->post("where");        
+        $database = "default";
+        $column = array('row_id', 'Field Name1', 'Field Name2', 'Field Name3', 'Field Name4', 'Field Name5', 'Field Name6', 'Field Name7', 'Field Name8');
+        $table = "vw_ TABLNAMElist";
+        $list = $this->datatables_mdl->get_datatables($database, $table, $column, $where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $line) 
+        {
+            $no++;          
+            $row = array();
+            $link = '
+                <div class="btn-group">
+                  <a href="javascript:void(0)" data-toggle="dropdown" style="color:#111"><i class="fa fa-folder-open"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" style="color:#111" data-toggle="modal" data-target="#modalForm" onclick="generateModalView(\''.$line->row_id.'\')">View</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="generateModalForm(\'edit\', \''.$line->row_id.'\')">Update</a></li>
+                    <li><a href="javascript:void(0)" style="color:#111" onclick="doDelete(\''.$line->row_id.'\')">Delete</a></li>
+                  </ul>
+                </div>
+            ';
+            $row[] = '<div style="text-align:center">'.$link.'</div>';
+            $row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+$row[] = '<div style="text-align:center">'.$line-> TABLNAME_Field Text.'</div>'; 
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->datatables_mdl->count_all($database, $table, $column),
+            "recordsFiltered" => $this->datatables_mdl->count_filtered($database, $table, $column, $where),
+            "data" => $data,
+        );
+        
+        echo json_encode($output);
+    }
+
+    public function form() {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtField Name1 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name2 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name3 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name4 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name5 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name6 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name7 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name8 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+
+
+        if($txtstate == "edit") {
+            $qry = "select * from vw_ TABLNAMElist where row_id = '".$txtrowid."'";
+            $rs = getByQuery($qry);
+            if($rs != "") {
+                $txtField Name1 = $rs[0]->Field Name1; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name2 = $rs[0]->Field Name2; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name3 = date('Y-m-d', strtotime($rs[0]->Field Name3)); 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name4 = date('Y-m-d', strtotime($rs[0]->Field Name4)); 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name5 = $rs[0]->Field Name5; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name6 = $rs[0]->Field Name6; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name7 = $rs[0]->Field Name7; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name8 = $rs[0]->Field Name8; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+
+            }
+        }
+
+        
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name1) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name2) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name3) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name4) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name5) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name6) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name7) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+                  $rs_ TABLNAME = getByQuery("select * from  TABLNAME");
+                  if($rs_ TABLNAME != "") {
+                      foreach($rs_ TABLNAME as $row_ TABLNAME) {
+                          $selected = ($row_ TABLNAME->Field Id == $txtField Name8) ? "selected" : "";
+                          $ TABLNAME_list .= "<option value='".$row_ TABLNAME->Field Id."' ".$selected." >".$row_ TABLNAME->Field Text."</option>";
+                      }
+                  }
+                
+
+        $table = '
+            <div class="row">
+                <form method="POST" class="formInput" enctype="multipart/form-data">
+                    <input type="hidden" id="txtrowid" name="txtrowid" class="form-control" value="'.$txtrowid.'" style="background:#fff" readonly />
+                    <input type="hidden" id="txtstate" name="txtstate" class="form-control" value="'.$txtstate.'" />
+                    
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name1" name="txtField Name1" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name2" name="txtField Name2" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name3" name="txtField Name3" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name4" name="txtField Name4" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name5" name="txtField Name5" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name6" name="txtField Name6" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name7" name="txtField Name7" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>: <span style="color: #ff0000">*</span></label>
+                      <select id="txtField Name8" name="txtField Name8" class="form-control select2"  required>
+                        <option value=""></option>
+                        '.$ TABLNAME_list.'
+                      </select>
+                    </div>
+                  </div>
+                
+                </form>
+            </div>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function view() {
+        $txtrowid = $this->input->post("txtrowid");
+        $txtField Name1 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name2 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name3 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name4 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name5 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name6 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name7 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+$txtField Name8 = ''; 
+$ TABLNAME_list = "";$txt TABLNAMEField Text = ''; 
+
+        
+        $qry = "select * from vw_ TABLNAMElist where row_id = '".$txtrowid."'";
+        $rs = getByQuery($qry);
+        if($rs != "") {
+                $txtField Name1 = $rs[0]->Field Name1; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name2 = $rs[0]->Field Name2; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name3 = date('Y-m-d', strtotime($rs[0]->Field Name3)); 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name4 = date('Y-m-d', strtotime($rs[0]->Field Name4)); 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name5 = $rs[0]->Field Name5; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name6 = $rs[0]->Field Name6; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name7 = $rs[0]->Field Name7; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+$txtField Name8 = $rs[0]->Field Name8; 
+$txt TABLNAMEField Text = $rs[0]-> TABLNAME_Field Text; 
+
+        }        
+
+        $table = '
+            <table id="tablelist" class="table table-striped">
+              <tbody>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+                  <tr>
+                      <td class="view-title" style="width: 30%">:</td>
+                      <td class="view-txt">'.$txt TABLNAMEField Text.'</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+        ';
+
+        $data['table'] = $table;
+        echo json_encode($data);
+    }
+
+    public function save()
+    {
+        $txtstate = $this->input->post("txtstate");
+        $txtrowid = $this->input->post("txtrowid");
+        $txtField Name1 = $this->input->post("txtField Name1"); $txtField Name2 = $this->input->post("txtField Name2"); $txtField Name3 = $this->input->post("txtField Name3"); $txtField Name4 = $this->input->post("txtField Name4"); $txtField Name5 = $this->input->post("txtField Name5"); $txtField Name6 = $this->input->post("txtField Name6"); $txtField Name7 = $this->input->post("txtField Name7"); $txtField Name7_hdn = $this->input->post("txtField Name7_hdn"); $txtField Name8 = $this->input->post("txtField Name8"); 
+        
+                $txtField Name7 =  $txtField Name7_hdn;
+                if($_FILES['txtField Name7']['name'] != '')
+                {
+                     $ext = pathinfo($_FILES['txtField Name7']['name'], PATHINFO_EXTENSION);
+                     $file_name = date('YmdHis').'.'.$ext;
+                     $config = array(
+                        'upload_path' => 'uploaded',
+                        'allowed_types' => 'gif|jpg|png|jpeg|pdf|docx|xls|xlsx|doc|txt',
+                        'overwrite' => TRUE,
+                        'file_name' =>  $file_name
+                    );
+                     $this->upload->initialize( $config);
+                    if( $this->upload->do_upload('txtField Name7'))
+                    {
+                         $data = $this->upload->data();
+                        $txtField Name7 =  $file_name;
+                        if($txtField Name7_hdn != '')
+                          unlink('uploaded/'.$txtField Name7_hdn);
+                    }
+                    else
+                    {
+                        $data['msg'] = $this->upload->display_errors();
+                        $data['type'] = 0;
+                        echo json_encode($data);
+                        exit();
+                    }
+                }
+              
+
+        if($txtstate == 'add')
+        {
+            $insert = array(
+                'Field Name1' => $txtField Name1, 'Field Name2' => $txtField Name2, 'Field Name3' => date("Y-m-d H:i:s", strtotime($txtField Name3)), 'Field Name4' => date("Y-m-d H:i:s", strtotime($txtField Name4)), 'Field Name5' => $txtField Name5, 'Field Name6' => $txtField Name6, 'Field Name7' => $txtField Name7, 'Field Name8' => $txtField Name8,         
+            );
+            insertData($this->table_db, $insert);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+        else
+        {            
+            $update = array(
+                'Field Name1' => $txtField Name1, 'Field Name2' => $txtField Name2, 'Field Name3' => date("Y-m-d H:i:s", strtotime($txtField Name3)), 'Field Name4' => date("Y-m-d H:i:s", strtotime($txtField Name4)), 'Field Name5' => $txtField Name5, 'Field Name6' => $txtField Name6, 'Field Name7' => $txtField Name7, 'Field Name8' => $txtField Name8,              
+            );
+            updateData($this->table_db, $update, "row_id = '".$txtrowid."'", $txtrowid);
+            $data['msg'] = "Process successful";
+            $data['type'] = 1;
+            echo json_encode($data);
+        }
+    }
+
+    public function delete(){
+        $txtrowid = $this->input->post("txtrowid");
+        
+        deleteData($this->table_db, "row_id = '".$txtrowid."'");
+        $data['msg'] = "Process successful";
+        $data['type'] = 1;
+        echo json_encode($data);
+    }
+}	

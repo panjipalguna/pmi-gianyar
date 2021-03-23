@@ -1,0 +1,7 @@
+CREATE TABLE lamp (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nama VARCHAR(255) NULL, nim VARCHAR(255) NULL, jumlah INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,17 @@
+CREATE TABLE fdg (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  gdfgdfgdf INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (gdfgdfgdf)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_fdglist as 
+              select 
+                fdg.row_id 
+                ,fdg.gdfgdfgdf 
+,dfgdfg.fgddfgd as dfgdfg_fgddfgd 
+ 
+              from fdg 
+              inner join dfgdfg on dfgdfg.fgdfg = fdg.gdfgdfgdf 
+ 
+            

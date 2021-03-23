@@ -1,0 +1,17 @@
+CREATE TABLE sdfsdfds (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  fghg fg INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_sdfsdfdslist as 
+              select 
+                sdfsdfds.row_id 
+                ,sdfsdfds.fghg fg 
+,fgh gfh.fdgh fgh  as fgh gfh_fdgh fgh  
+ 
+              from sdfsdfds 
+              left join fgh gfh on fgh gfh.fdgh fgh = sdfsdfds.fghg fg 
+ 
+            

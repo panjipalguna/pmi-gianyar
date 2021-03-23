@@ -1,0 +1,17 @@
+CREATE TABLE ads (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sdas INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (sdas)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_adslist as 
+              select 
+                ads.row_id 
+                ,ads.sdas 
+,wefr.w3rf as wefr_w3rf 
+ 
+              from ads 
+              inner join wefr on wefr.w3erf = ads.sdas 
+ 
+            

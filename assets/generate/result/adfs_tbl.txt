@@ -1,0 +1,17 @@
+CREATE TABLE adfsadfs (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  adsf INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_adfsadfslist as 
+              select 
+                adfsadfs.row_id 
+                ,adfsadfs.adsf 
+,dsaf.adsf as dsaf_adsf 
+ 
+              from adfsadfs 
+              left join dsaf on dsaf.dfsa = adfsadfs.adsf 
+ 
+            

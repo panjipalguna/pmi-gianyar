@@ -1,0 +1,17 @@
+CREATE TABLE cbbrreeee (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  hkjhjkhk INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (hkjhjkhk)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_cbbrreeeelist as 
+              select 
+                cbbrreeee.row_id 
+                ,cbbrreeee.hkjhjkhk 
+,vvbnvbv.ccvbcbv as vvbnvbv_ccvbcbv 
+ 
+              from cbbrreeee 
+              inner join vvbnvbv on vvbnvbv.fhgfhgfg = cbbrreeee.hkjhjkhk 
+ 
+            

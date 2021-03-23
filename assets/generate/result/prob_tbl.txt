@@ -1,0 +1,7 @@
+CREATE TABLE User (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  prob TEXT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (prob)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

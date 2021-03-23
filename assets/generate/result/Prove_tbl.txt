@@ -1,0 +1,17 @@
+CREATE TABLE teste (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  nome INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (nome)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_testelist as 
+              select 
+                teste.row_id 
+                ,teste.nome 
+,teste.viere as teste_viere 
+ 
+              from teste 
+              inner join teste on teste.compens = teste.nome 
+ 
+            

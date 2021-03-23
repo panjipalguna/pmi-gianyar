@@ -1,0 +1,17 @@
+CREATE TABLE dsfgdf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sds sdf  INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (sds sdf )  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_dsfgdflist as 
+              select 
+                dsfgdf.row_id 
+                ,dsfgdf.sds sdf  
+,sdf.f as sdf_f 
+ 
+              from dsfgdf 
+              inner join sdf on sdf.sdfsd = dsfgdf.sds sdf  
+ 
+            

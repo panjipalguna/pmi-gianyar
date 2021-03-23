@@ -1,0 +1,7 @@
+CREATE TABLE artikel (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Naam VARCHAR(255) NULL, Barcode INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Barcode)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

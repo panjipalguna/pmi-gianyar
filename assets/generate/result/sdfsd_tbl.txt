@@ -1,0 +1,7 @@
+CREATE TABLE sdfsdf (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sdfds VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

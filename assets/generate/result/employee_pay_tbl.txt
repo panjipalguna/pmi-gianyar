@@ -1,0 +1,18 @@
+CREATE TABLE employee_pay (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, emplyee_name INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id,emplyee_name)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_employee_paylist as 
+              select 
+                employee_pay.row_id 
+                ,employee_pay.id 
+,employee_pay.emplyee_name 
+,employee. as employee_ 
+ 
+              from employee_pay 
+              inner join employee on employee.employee_name = employee_pay.emplyee_name 
+ 
+            

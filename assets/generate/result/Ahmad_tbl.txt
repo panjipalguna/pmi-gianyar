@@ -1,0 +1,17 @@
+CREATE TABLE cd_admin (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  sad INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_cd_adminlist as 
+              select 
+                cd_admin.row_id 
+                ,cd_admin.sad 
+,sad.asd as sad_asd 
+ 
+              from cd_admin 
+              left join sad on sad.234 = cd_admin.sad 
+ 
+            

@@ -1,0 +1,17 @@
+CREATE TABLE qweqwe (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Jose INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (Jose)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_qweqwelist as 
+              select 
+                qweqwe.row_id 
+                ,qweqwe.Jose 
+,qwe.wqe as qwe_wqe 
+ 
+              from qweqwe 
+              inner join qwe on qwe.qwe = qweqwe.Jose 
+ 
+            

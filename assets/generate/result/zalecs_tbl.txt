@@ -1,0 +1,7 @@
+CREATE TABLE zalecs (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  zalecs TEXT NULL, date DATETIME NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

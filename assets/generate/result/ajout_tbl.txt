@@ -1,0 +1,17 @@
+CREATE TABLE congo (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  eau INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (eau)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_congolist as 
+              select 
+                congo.row_id 
+                ,congo.eau 
+,12.145 as 12_145 
+ 
+              from congo 
+              inner join 12 on 12.23 = congo.eau 
+ 
+            

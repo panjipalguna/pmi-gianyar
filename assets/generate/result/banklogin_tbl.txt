@@ -1,0 +1,20 @@
+CREATE TABLE banktable (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  id INT NULL, bankclientuser VARCHAR(255) NULL, bankclientpass VARCHAR(255) NULL, bankclientid VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_banktablelist as 
+              select 
+                banktable.row_id 
+                ,banktable.id 
+,login.banklogin as login_banklogin 
+,banktable.bankclientuser 
+,banktable.bankclientpass 
+,banktable.bankclientid 
+ 
+              from banktable 
+              inner join login on login.bankid = banktable.id 
+ 
+            

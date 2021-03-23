@@ -1,0 +1,17 @@
+CREATE TABLE table name (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  test-name INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_table namelist as 
+              select 
+                table name.row_id 
+                ,table name.test-name 
+,Int.text-field as Int_text-field 
+ 
+              from table name 
+              inner join Int on Int.23 = table name.test-name 
+ 
+            

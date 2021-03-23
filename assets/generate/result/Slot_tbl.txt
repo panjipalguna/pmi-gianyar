@@ -1,0 +1,7 @@
+CREATE TABLE slot (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  Slotd VARCHAR(255) NULL, Name VARCHAR(255) NULL, Price INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

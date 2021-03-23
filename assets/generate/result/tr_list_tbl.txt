@@ -1,0 +1,17 @@
+CREATE TABLE tr_list (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  tr_name INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_tr_listlist as 
+              select 
+                tr_list.row_id 
+                ,tr_list.tr_name 
+,rel_name. as rel_name_ 
+ 
+              from tr_list 
+              left join rel_name on rel_name. = tr_list.tr_name 
+ 
+            

@@ -1,0 +1,17 @@
+CREATE TABLE 33 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  3 INT NULL, 
+  PRIMARY KEY (`row_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_33list as 
+              select 
+                33.row_id 
+                ,33.3 
+,3. as 3_ 
+ 
+              from 33 
+              inner join 3 on 3. = 33.3 
+ 
+            

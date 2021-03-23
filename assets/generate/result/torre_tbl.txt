@@ -1,0 +1,17 @@
+CREATE TABLE torre (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  torre INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (torre)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_torrelist as 
+              select 
+                torre.row_id 
+                ,torre.torre 
+,torre.torre as torre_torre 
+ 
+              from torre 
+              left join torre on torre.torre = torre.torre 
+ 
+            

@@ -1,0 +1,17 @@
+CREATE TABLE q23eq3eq2 (
+  row_id int(11) NOT NULL AUTO_INCREMENT,
+  qwdqwed INT NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (qwdqwed)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+              create view vw_q23eq3eq2list as 
+              select 
+                q23eq3eq2.row_id 
+                ,q23eq3eq2.qwdqwed 
+,qdedqw.qwedqwed as qdedqw_qwedqwed 
+ 
+              from q23eq3eq2 
+              inner join qdedqw on qdedqw.qwedqwed = q23eq3eq2.qwdqwed 
+ 
+            
