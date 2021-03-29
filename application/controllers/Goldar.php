@@ -7,7 +7,7 @@ class Goldar extends CI_Controller {
     }
 
     public $table_db = "goldar";
-    public $controller = "goldar";
+    public $controller = "Goldar";
     
     public function index() {
         $lbl_controller = str_replace("_", " ", $this->controller);

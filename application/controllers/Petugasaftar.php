@@ -7,7 +7,7 @@ class Petugasaftar extends CI_Controller {
     }
 
     public $table_db = "petugasaftar";
-    public $controller = "petugasaftar";
+    public $controller = "Petugasaftar";
     
     public function index() {
         $lbl_controller = str_replace("_", " ", $this->controller);

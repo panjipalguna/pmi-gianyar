@@ -1,6 +1,7 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
+    <link rel="icon" href="pmi.png" type="image/png" sizes="16x16">
       <span class="title-page">PMI Gianyar</span>
       <small>Palang Merah Indonesia Wilayah Gianyar</small>
     </h1>

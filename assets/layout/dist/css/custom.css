@@ -132,7 +132,7 @@ input, select, textarea {
 }
 
 .modal-content {
-	background: #fff !important;
+	background: rgb(255, 255, 255) !important;
 }
 
 .content-header {border: none}

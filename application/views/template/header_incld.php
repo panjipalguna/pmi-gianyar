@@ -2,7 +2,7 @@
   <a href="#" class="logo">
     <span class="logo-mini logo-title">PMI</span>
     <span class="logo-lg logo-title"> PMI GIanyar</span>
-  </a>
+    <link rel="icon" href="pmi.png" type="image/png" sizes="16x16">
   <nav class="navbar navbar-static-top">
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
       <span class="sr-only">Toggle navigation</span>

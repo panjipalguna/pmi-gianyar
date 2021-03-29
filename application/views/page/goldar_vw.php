@@ -1,7 +1,8 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      <span class="title-page"><?= "Golongan Darah"?></span>
+      <span class="title-page"><?= "Golongan Darah"?> </span>
+      <link rel="shortcut icon" href="pmi.png">
       <small>List of Data</small>
     </h1>
   </section>

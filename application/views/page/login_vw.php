@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Login</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="shortcut icon" href="pmi.png">
   <link rel="stylesheet" href="<?= base_url("assets/layout") ?>/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url("assets/layout") ?>/plugins/custom/font-awesome.min.css">
   <link rel="stylesheet" href="<?= base_url("assets/layout") ?>/plugins/custom/ionicons.min.css">

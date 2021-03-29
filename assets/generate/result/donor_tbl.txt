@@ -1,103 +1,105 @@
-CREATE TABLE donor_1 (
+CREATE TABLE ref_donor (
   row_id int(11) NOT NULL AUTO_INCREMENT,
-  donor_id INT NULL, donor_no_ktp INT NULL, donor_nama VARCHAR(255) NULL, donor_jeniskelamin INT NULL, donor_status INT NULL, donor_alamat TEXT NULL, donor_nohp INT NULL, donor_kelurahan INT NULL, donor_kecamatan INT NULL, donor_wilayah INT NULL, donor_alamatkantor VARCHAR(255) NULL, donor_pekerjaan INT NULL, donor_tempatkelahiran VARCHAR(255) NULL, donor_apharesis INT NULL, donor_penghargaan INT NULL, donor_puasa INT NULL, donor_butuh INT NULL, donor_terakhir DATETIME NULL, donor_ke VARCHAR(255) NULL, donor_namadokter INT NULL, donor_riwayatmedis TEXT NULL, donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# VARCHAR(255) NULL, donor_kantong INT NULL, donor_tekanandarah INT NULL, donor_alattekanandarah INT NULL, donor_nadi INT NULL, donor_beratbadan VARCHAR(255) NULL, donor_alatberatbadan VARCHAR(255) NULL, donor_suhu VARCHAR(255) NULL, donor_alatsuhu VARCHAR(255) NULL, donor_keadaanumum TEXT NULL, donor_petugasadministrasi INT NULL, donor_validasi VARCHAR(255) NULL, donor_petugashb INT NULL, donor_macamdonor INT NULL, donor_metodepangambilan INT NULL, donor_hb INT NULL, donor_goldar INT NULL, donor_namapetugasaftar INT NULL, donor_lengan INT NULL, donor_kodekantong VARCHAR(255) NULL, donor_penusukanulang INT NULL, donor_lamapengambilan INT NULL, No Kantong VARCHAR(255) NULL, No Kantong Ganti I VARCHAR(255) NULL, No Kantong Ganti II VARCHAR(255) NULL, Donor DATETIME NULL, 
-  PRIMARY KEY (`row_id`), KEY `IDX` (donor_id)  
+  donor_id INT NULL, donor_noktp INT NULL, donor_namalengkap VARCHAR(255) NULL, donor_jeniskelamin INT NULL, donor_status INT NULL, donor_alamatrumah TEXT NULL, donor_nohp VARCHAR(255) NULL, donor_kelurahan INT NULL, donor_kecamatan INT NULL, donor_wilayah INT NULL, donor_alamatkantor TEXT NULL, donor_pekerjaan INT NULL, donor_tempatlahir VARCHAR(255) NULL, donor_apharesis INT NULL, donor_penghargaan INT NULL, donor_puasa INT NULL, donor_butuh INT NULL, donor_terakhir DATETIME NULL, donor_ke INT NULL, donor_dokter INT NULL, donor_riwayatmedis TEXT NULL, donor_diambilsebanyak INT NULL, donor_kantong INT NULL, donor_tekanandarah INT NULL, donor_kodetekanandarah VARCHAR(255) NULL, donor_nadi INT NULL, donor_beratbadan INT NULL, donor_kodeberatbadan VARCHAR(255) NULL, donor_tinggibadan VARCHAR(255) NULL, donor_kodetinggibadan TEXT NULL, donor_suhu VARCHAR(255) NULL, donor_kodesuhu VARCHAR(255) NULL, donor_keadaanumum TEXT NULL, donor_petugasadministrasi INT NULL, donor_petugashb INT NULL, donor_macamdonor INT NULL, donor_metode INT NULL, donor_hb INT NULL, donor_goldar INT NULL, donor_petugasaftar INT NULL, donor_lengan INT NULL, donor_kodekantong VARCHAR(255) NULL, donor_penusukanulang INT NULL, donor_lamapengambilan INT NULL, donor_nokantong VARCHAR(255) NULL, donor_nokantong1 VARCHAR(255) NULL, donor_nokantong2 VARCHAR(255) NULL, 
+  PRIMARY KEY (`row_id`), KEY `IDX` (donor_id,donor_noktp,donor_namalengkap)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-              create view vw_donor_1list as 
+              create view vw_ref_donorlist as 
               select 
-                donor_1.row_id 
-                ,donor_1.donor_id 
-,donor_1.donor_no_ktp 
-,donor_1.donor_nama 
-,donor_1.donor_jeniskelamin 
+                ref_donor.row_id 
+                ,ref_donor.donor_id 
+,ref_donor.donor_noktp 
+,ref_donor.donor_namalengkap 
+,ref_donor.donor_jeniskelamin 
 ,jeniskelamin.jeniskelamin_nama as jeniskelamin_jeniskelamin_nama 
-,donor_1.donor_status 
+,ref_donor.donor_status 
 ,status.status_nama as status_status_nama 
-,donor_1.donor_alamat 
-,donor_1.donor_nohp 
-,donor_1.donor_kelurahan 
+,ref_donor.donor_alamatrumah 
+,ref_donor.donor_nohp 
+,ref_donor.donor_kelurahan 
 ,kelurahan.kelurahan_nama as kelurahan_kelurahan_nama 
-,donor_1.donor_kecamatan 
+,ref_donor.donor_kecamatan 
 ,kecamatan.kecamatan_nama as kecamatan_kecamatan_nama 
-,donor_1.donor_wilayah 
+,ref_donor.donor_wilayah 
 ,wilayah.wilayah_nama as wilayah_wilayah_nama 
-,donor_1.donor_alamatkantor 
-,donor_1.donor_pekerjaan 
+,ref_donor.donor_alamatkantor 
+,ref_donor.donor_pekerjaan 
 ,pekerjaan.pekerjaan_nama as pekerjaan_pekerjaan_nama 
-,donor_1.donor_tempatkelahiran 
-,donor_1.donor_apharesis 
+,ref_donor.donor_tempatlahir 
+,ref_donor.donor_apharesis 
 ,apharesis.apharesis_nama as apharesis_apharesis_nama 
-,donor_1.donor_penghargaan 
+,ref_donor.donor_penghargaan 
 ,penghargaan.penghargaan_nama as penghargaan_penghargaan_nama 
-,donor_1.donor_puasa 
+,ref_donor.donor_puasa 
 ,puasa.puasa_nama as puasa_puasa_nama 
-,donor_1.donor_butuh 
+,ref_donor.donor_butuh 
 ,butuh.butuh_nama as butuh_butuh_nama 
-,donor_1.donor_terakhir 
-,donor_1.donor_ke 
-,donor_1.donor_namadokter 
+,ref_donor.donor_terakhir 
+,ref_donor.donor_ke 
+,ref_donor.donor_dokter 
 ,dokter.dokter_nama as dokter_dokter_nama 
-,donor_1.donor_riwayatmedis 
-,donor_1.donor_diambilsebanyakhttp://localhost/pmi-gianyar/index.php/generate# 
-,donor_1.donor_kantong 
+,ref_donor.donor_riwayatmedis 
+,ref_donor.donor_diambilsebanyak 
+,diambilsebanyak.diambilsebanyak_nama as diambilsebanyak_diambilsebanyak_nama 
+,ref_donor.donor_kantong 
 ,kantong.kantong_nama as kantong_kantong_nama 
-,donor_1.donor_tekanandarah 
-,donor_1.donor_alattekanandarah 
-,donor_1.donor_nadi 
-,donor_1.donor_beratbadan 
-,donor_1.donor_alatberatbadan 
-,donor_1.donor_suhu 
-,donor_1.donor_alatsuhu 
-,donor_1.donor_keadaanumum 
-,donor_1.donor_petugasadministrasi 
+,ref_donor.donor_tekanandarah 
+,ref_donor.donor_kodetekanandarah 
+,ref_donor.donor_nadi 
+,ref_donor.donor_beratbadan 
+,ref_donor.donor_kodeberatbadan 
+,ref_donor.donor_tinggibadan 
+,ref_donor.donor_kodetinggibadan 
+,ref_donor.donor_suhu 
+,ref_donor.donor_kodesuhu 
+,ref_donor.donor_keadaanumum 
+,ref_donor.donor_petugasadministrasi 
 ,petugasadministrasi.petugasadministrasi_nama as petugasadministrasi_petugasadministrasi_nama 
-,donor_1.donor_validasi 
-,donor_1.donor_petugashb 
+,ref_donor.donor_petugashb 
 ,petugashb.petugashb_nama as petugashb_petugashb_nama 
-,donor_1.donor_macamdonor 
+,ref_donor.donor_macamdonor 
 ,macamdonor.macamdonor_nama as macamdonor_macamdonor_nama 
-,donor_1.donor_metodepangambilan 
+,ref_donor.donor_metode 
 ,metode_ambil_darah.metode_nama as metode_ambil_darah_metode_nama 
-,donor_1.donor_hb 
-,donor_1.donor_goldar 
+,ref_donor.donor_hb 
+,ref_donor.donor_goldar 
 ,goldar.goldar_nama as goldar_goldar_nama 
-,donor_1.donor_namapetugasaftar 
+,ref_donor.donor_petugasaftar 
 ,petugasaftar.petugasaftar_nama as petugasaftar_petugasaftar_nama 
-,donor_1.donor_lengan 
+,ref_donor.donor_lengan 
 ,lengan.lengan_nama as lengan_lengan_nama 
-,donor_1.donor_kodekantong 
-,donor_1.donor_penusukanulang 
+,ref_donor.donor_kodekantong 
+,ref_donor.donor_penusukanulang 
 ,penusukanulang.penusukanulang_nama as penusukanulang_penusukanulang_nama 
-,donor_1.donor_lamapengambilan 
+,ref_donor.donor_lamapengambilan 
 ,lamapengambilan.lamapengambilan_nama as lamapengambilan_lamapengambilan_nama 
-,donor_1.No Kantong 
-,donor_1.No Kantong Ganti I 
-,donor_1.No Kantong Ganti II 
-,donor_1.Donor 
+,ref_donor.donor_nokantong 
+,ref_donor.donor_nokantong1 
+,ref_donor.donor_nokantong2 
  
-              from donor_1 
-              inner join jeniskelamin on jeniskelamin.jeniskelamin_id = donor_1.donor_jeniskelamin 
-inner join status on status.status_id = donor_1.donor_status 
-inner join kelurahan on kelurahan.kelurahan_id = donor_1.donor_kelurahan 
-inner join kecamatan on kecamatan.kecamatan_id = donor_1.donor_kecamatan 
-inner join wilayah on wilayah.wilayah_id = donor_1.donor_wilayah 
-inner join pekerjaan on pekerjaan.pekerjaan_Id = donor_1.donor_pekerjaan 
-inner join apharesis on apharesis.apharesis_id = donor_1.donor_apharesis 
-inner join penghargaan on penghargaan.penghargaan_id = donor_1.donor_penghargaan 
-inner join puasa on puasa.puasa_id = donor_1.donor_puasa 
-inner join butuh on butuh.butuh_id = donor_1.donor_butuh 
-inner join dokter on dokter.row_id = donor_1.donor_namadokter 
-inner join kantong on kantong.kantong_id = donor_1.donor_kantong 
-inner join petugasadministrasi on petugasadministrasi.petugasadministrasi_id = donor_1.donor_petugasadministrasi 
-inner join petugashb on petugashb.row_id = donor_1.donor_petugashb 
-inner join macamdonor on macamdonor.macamdonor_id = donor_1.donor_macamdonor 
-inner join metode_ambil_darah on metode_ambil_darah.metode_id = donor_1.donor_metodepangambilan 
-inner join goldar on goldar.row_id = donor_1.donor_goldar 
-inner join petugasaftar on petugasaftar.row_id = donor_1.donor_namapetugasaftar 
-inner join lengan on lengan.lengan_id = donor_1.donor_lengan 
-inner join penusukanulang on penusukanulang.penusukanulang_id = donor_1.donor_penusukanulang 
-inner join lamapengambilan on lamapengambilan.lamapengambilan_id = donor_1.donor_lamapengambilan 
+              from ref_donor 
+              inner join jeniskelamin on jeniskelamin.jeniskelamin_id = ref_donor.donor_jeniskelamin 
+inner join status on status.status_id = ref_donor.donor_status 
+inner join kelurahan on kelurahan.kelurahan_id = ref_donor.donor_kelurahan 
+inner join kecamatan on kecamatan.kecamatan_id = ref_donor.donor_kecamatan 
+inner join wilayah on wilayah.wilayah_id = ref_donor.donor_wilayah 
+inner join pekerjaan on pekerjaan.pekerjaan_id = ref_donor.donor_pekerjaan 
+inner join apharesis on apharesis.apharesis_id = ref_donor.donor_apharesis 
+inner join penghargaan on penghargaan.penghargaan_id = ref_donor.donor_penghargaan 
+inner join puasa on puasa.puasa_id = ref_donor.donor_puasa 
+inner join butuh on butuh.butuh_id = ref_donor.donor_butuh 
+inner join dokter on dokter.row_id = ref_donor.donor_dokter 
+inner join diambilsebanyak on diambilsebanyak.diambilsebanyak_id = ref_donor.donor_diambilsebanyak 
+inner join kantong on kantong.kantong_id = ref_donor.donor_kantong 
+inner join petugasadministrasi on petugasadministrasi.petugasadministrasi_id = ref_donor.donor_petugasadministrasi 
+inner join petugashb on petugashb.row_id = ref_donor.donor_petugashb 
+inner join macamdonor on macamdonor.macamdonor_id = ref_donor.donor_macamdonor 
+inner join metode_ambil_darah on metode_ambil_darah.metode_id = ref_donor.donor_metode 
+inner join goldar on goldar.row_id = ref_donor.donor_goldar 
+inner join petugasaftar on petugasaftar.row_id = ref_donor.donor_petugasaftar 
+inner join lengan on lengan.lengan_id = ref_donor.donor_lengan 
+left join penusukanulang on penusukanulang.penusukanulang_id = ref_donor.donor_penusukanulang 
+inner join lamapengambilan on lamapengambilan.lamapengambilan_id = ref_donor.donor_lamapengambilan 
  
             

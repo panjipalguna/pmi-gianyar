@@ -22,6 +22,7 @@
 <th style='width:20%'>Alamat Kantor</th> 
 <th style='width:20%'>Instansi </th> 
 
+
                 </tr>
               </thead>
               <tbody></tbody>

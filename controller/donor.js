@@ -15,10 +15,20 @@ function generateTable()
                   var txtdonorjeniskelaminfilter = $("#txtdonorjeniskelaminfilter").val();
                   if(txtdonorjeniskelaminfilter != "") {
                     if(where == "") {
-                      where = "donor_jenis_kelamin = '"+txtdonorjeniskelaminfilter+"'";
+                      where = "donor_jeniskelamin = '"+txtdonorjeniskelaminfilter+"'";
                     }
                     else {
-                      where += " and donor_jenis_kelamin = '"+txtdonorjeniskelaminfilter+"'";                    
+                      where += " and donor_jeniskelamin = '"+txtdonorjeniskelaminfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorstatusfilter = $("#txtdonorstatusfilter").val();
+                  if(txtdonorstatusfilter != "") {
+                    if(where == "") {
+                      where = "donor_status = '"+txtdonorstatusfilter+"'";
+                    }
+                    else {
+                      where += " and donor_status = '"+txtdonorstatusfilter+"'";                    
                     }
                   }
                 
@@ -62,6 +72,16 @@ function generateTable()
                     }
                   }
                 
+                  var txtdonorapharesisfilter = $("#txtdonorapharesisfilter").val();
+                  if(txtdonorapharesisfilter != "") {
+                    if(where == "") {
+                      where = "donor_apharesis = '"+txtdonorapharesisfilter+"'";
+                    }
+                    else {
+                      where += " and donor_apharesis = '"+txtdonorapharesisfilter+"'";                    
+                    }
+                  }
+                
                   var txtdonorpenghargaanfilter = $("#txtdonorpenghargaanfilter").val();
                   if(txtdonorpenghargaanfilter != "") {
                     if(where == "") {
@@ -89,6 +109,126 @@ function generateTable()
                     }
                     else {
                       where += " and donor_butuh = '"+txtdonorbutuhfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonordokterfilter = $("#txtdonordokterfilter").val();
+                  if(txtdonordokterfilter != "") {
+                    if(where == "") {
+                      where = "donor_dokter = '"+txtdonordokterfilter+"'";
+                    }
+                    else {
+                      where += " and donor_dokter = '"+txtdonordokterfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonordiambilsebanyakfilter = $("#txtdonordiambilsebanyakfilter").val();
+                  if(txtdonordiambilsebanyakfilter != "") {
+                    if(where == "") {
+                      where = "donor_diambilsebanyak = '"+txtdonordiambilsebanyakfilter+"'";
+                    }
+                    else {
+                      where += " and donor_diambilsebanyak = '"+txtdonordiambilsebanyakfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorkantongfilter = $("#txtdonorkantongfilter").val();
+                  if(txtdonorkantongfilter != "") {
+                    if(where == "") {
+                      where = "donor_kantong = '"+txtdonorkantongfilter+"'";
+                    }
+                    else {
+                      where += " and donor_kantong = '"+txtdonorkantongfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorpetugasadministrasifilter = $("#txtdonorpetugasadministrasifilter").val();
+                  if(txtdonorpetugasadministrasifilter != "") {
+                    if(where == "") {
+                      where = "donor_petugasadministrasi = '"+txtdonorpetugasadministrasifilter+"'";
+                    }
+                    else {
+                      where += " and donor_petugasadministrasi = '"+txtdonorpetugasadministrasifilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorpetugashbfilter = $("#txtdonorpetugashbfilter").val();
+                  if(txtdonorpetugashbfilter != "") {
+                    if(where == "") {
+                      where = "donor_petugashb = '"+txtdonorpetugashbfilter+"'";
+                    }
+                    else {
+                      where += " and donor_petugashb = '"+txtdonorpetugashbfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonormacamdonorfilter = $("#txtdonormacamdonorfilter").val();
+                  if(txtdonormacamdonorfilter != "") {
+                    if(where == "") {
+                      where = "donor_macamdonor = '"+txtdonormacamdonorfilter+"'";
+                    }
+                    else {
+                      where += " and donor_macamdonor = '"+txtdonormacamdonorfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonormetodefilter = $("#txtdonormetodefilter").val();
+                  if(txtdonormetodefilter != "") {
+                    if(where == "") {
+                      where = "donor_metode = '"+txtdonormetodefilter+"'";
+                    }
+                    else {
+                      where += " and donor_metode = '"+txtdonormetodefilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorgoldarfilter = $("#txtdonorgoldarfilter").val();
+                  if(txtdonorgoldarfilter != "") {
+                    if(where == "") {
+                      where = "donor_goldar = '"+txtdonorgoldarfilter+"'";
+                    }
+                    else {
+                      where += " and donor_goldar = '"+txtdonorgoldarfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorpetugasaftarfilter = $("#txtdonorpetugasaftarfilter").val();
+                  if(txtdonorpetugasaftarfilter != "") {
+                    if(where == "") {
+                      where = "donor_petugasaftar = '"+txtdonorpetugasaftarfilter+"'";
+                    }
+                    else {
+                      where += " and donor_petugasaftar = '"+txtdonorpetugasaftarfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorlenganfilter = $("#txtdonorlenganfilter").val();
+                  if(txtdonorlenganfilter != "") {
+                    if(where == "") {
+                      where = "donor_lengan = '"+txtdonorlenganfilter+"'";
+                    }
+                    else {
+                      where += " and donor_lengan = '"+txtdonorlenganfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorpenusukanulangfilter = $("#txtdonorpenusukanulangfilter").val();
+                  if(txtdonorpenusukanulangfilter != "") {
+                    if(where == "") {
+                      where = "donor_penusukanulang = '"+txtdonorpenusukanulangfilter+"'";
+                    }
+                    else {
+                      where += " and donor_penusukanulang = '"+txtdonorpenusukanulangfilter+"'";                    
+                    }
+                  }
+                
+                  var txtdonorlamapengambilanfilter = $("#txtdonorlamapengambilanfilter").val();
+                  if(txtdonorlamapengambilanfilter != "") {
+                    if(where == "") {
+                      where = "donor_lamapengambilan = '"+txtdonorlamapengambilanfilter+"'";
+                    }
+                    else {
+                      where += " and donor_lamapengambilan = '"+txtdonorlamapengambilanfilter+"'";                    
                     }
                   }
                 
@@ -148,7 +288,7 @@ function generateModalView(row_id) {
           var data = JSON.parse(ret); 
           $('#btnSave').hide();
           $('#tableModal').html(data['table']);
-          $('#txtdonorjeniskelamin').select2();$('#txtdonorkelurahan').select2();$('#txtdonorkecamatan').select2();$('#txtdonorwilayah').select2();$('#txtdonorpekerjaan').select2();$('#txtdonorpenghargaan').select2();$('#txtdonorpuasa').select2();$('#txtdonorbutuh').select2();
+          $('#txtdonorjeniskelamin').select2();$('#txtdonorstatus').select2();$('#txtdonorkelurahan').select2();$('#txtdonorkecamatan').select2();$('#txtdonorwilayah').select2();$('#txtdonorpekerjaan').select2();$('#txtdonorapharesis').select2();$('#txtdonorpenghargaan').select2();$('#txtdonorpuasa').select2();$('#txtdonorbutuh').select2();$('#txtdonordokter').select2();$('#txtdonordiambilsebanyak').select2();$('#txtdonorkantong').select2();$('#txtdonorpetugasadministrasi').select2();$('#txtdonorpetugashb').select2();$('#txtdonormacamdonor').select2();$('#txtdonormetode').select2();$('#txtdonorgoldar').select2();$('#txtdonorpetugasaftar').select2();$('#txtdonorlengan').select2();$('#txtdonorpenusukanulang').select2();$('#txtdonorlamapengambilan').select2();
       }
   });
 }
@@ -159,22 +299,53 @@ function doSave(){
 
   var txtdonorid = $('#txtdonorid').val(); 
 var txtdonornoktp = $('#txtdonornoktp').val(); 
-var txtdonornama = $('#txtdonornama').val(); 
+var txtdonornamalengkap = $('#txtdonornamalengkap').val(); 
 var txtdonorjeniskelamin = $('#txtdonorjeniskelamin').val(); 
-var txtdonortelepon = $('#txtdonortelepon').val(); 
+var txtdonorstatus = $('#txtdonorstatus').val(); 
+var txtdonoralamatrumah = $('#txtdonoralamatrumah').val(); 
+var txtdonornohp = $('#txtdonornohp').val(); 
 var txtdonorkelurahan = $('#txtdonorkelurahan').val(); 
 var txtdonorkecamatan = $('#txtdonorkecamatan').val(); 
 var txtdonorwilayah = $('#txtdonorwilayah').val(); 
-var txtdonoralamat = $('#txtdonoralamat').val(); 
+var txtdonoralamatkantor = $('#txtdonoralamatkantor').val(); 
 var txtdonorpekerjaan = $('#txtdonorpekerjaan').val(); 
 var txtdonortempatlahir = $('#txtdonortempatlahir').val(); 
-var txtdonortanggallahir = $('#txtdonortanggallahir').val(); 
+var txtdonorapharesis = $('#txtdonorapharesis').val(); 
 var txtdonorpenghargaan = $('#txtdonorpenghargaan').val(); 
 var txtdonorpuasa = $('#txtdonorpuasa').val(); 
 var txtdonorbutuh = $('#txtdonorbutuh').val(); 
-var txtdonortanggal = $('#txtdonortanggal').val(); 
+var txtdonorterakhir = $('#txtdonorterakhir').val(); 
+var txtdonorke = $('#txtdonorke').val(); 
+var txtdonordokter = $('#txtdonordokter').val(); 
+var txtdonorriwayatmedis = $('#txtdonorriwayatmedis').val(); 
+var txtdonordiambilsebanyak = $('#txtdonordiambilsebanyak').val(); 
+var txtdonorkantong = $('#txtdonorkantong').val(); 
+var txtdonortekanandarah = $('#txtdonortekanandarah').val(); 
+var txtdonorkodetekanandarah = $('#txtdonorkodetekanandarah').val(); 
+var txtdonornadi = $('#txtdonornadi').val(); 
+var txtdonorberatbadan = $('#txtdonorberatbadan').val(); 
+var txtdonorkodeberatbadan = $('#txtdonorkodeberatbadan').val(); 
+var txtdonortinggibadan = $('#txtdonortinggibadan').val(); 
+var txtdonorkodetinggibadan = $('#txtdonorkodetinggibadan').val(); 
+var txtdonorsuhu = $('#txtdonorsuhu').val(); 
+var txtdonorkodesuhu = $('#txtdonorkodesuhu').val(); 
+var txtdonorkeadaanumum = $('#txtdonorkeadaanumum').val(); 
+var txtdonorpetugasadministrasi = $('#txtdonorpetugasadministrasi').val(); 
+var txtdonorpetugashb = $('#txtdonorpetugashb').val(); 
+var txtdonormacamdonor = $('#txtdonormacamdonor').val(); 
+var txtdonormetode = $('#txtdonormetode').val(); 
+var txtdonorhb = $('#txtdonorhb').val(); 
+var txtdonorgoldar = $('#txtdonorgoldar').val(); 
+var txtdonorpetugasaftar = $('#txtdonorpetugasaftar').val(); 
+var txtdonorlengan = $('#txtdonorlengan').val(); 
+var txtdonorkodekantong = $('#txtdonorkodekantong').val(); 
+var txtdonorpenusukanulang = $('#txtdonorpenusukanulang').val(); 
+var txtdonorlamapengambilan = $('#txtdonorlamapengambilan').val(); 
+var txtdonornokantong = $('#txtdonornokantong').val(); 
+var txtdonornokantong1 = $('#txtdonornokantong1').val(); 
+var txtdonornokantong2 = $('#txtdonornokantong2').val(); 
 
-  if(txtdonorid == '') {infoStatus('Donor must be filled', 0); exit();}if(txtdonornoktp == '') {infoStatus('No KTP must be filled', 0); exit();}if(txtdonornama == '') {infoStatus('Nama Lengkap must be filled', 0); exit();}if(txtdonorjeniskelamin == '') {infoStatus('Jenis Kelamin must be filled', 0); exit();}if(txtdonortelepon == '') {infoStatus('No Telepon must be filled', 0); exit();}if(txtdonorkelurahan == '') {infoStatus('Kelurahan must be filled', 0); exit();}if(txtdonorkecamatan == '') {infoStatus('Kecamatan must be filled', 0); exit();}if(txtdonorwilayah == '') {infoStatus('Wilayah must be filled', 0); exit();}if(txtdonoralamat == '') {infoStatus('Alamat must be filled', 0); exit();}if(txtdonorpekerjaan == '') {infoStatus('Pekerjaan must be filled', 0); exit();}if(txtdonortempatlahir == '') {infoStatus('Tempat Lahir must be filled', 0); exit();}if(txtdonortanggallahir == '') {infoStatus('Tanggal Lahir must be filled', 0); exit();}if(txtdonorpenghargaan == '') {infoStatus('Penghargaan must be filled', 0); exit();}if(txtdonorpuasa == '') {infoStatus('Puasa must be filled', 0); exit();}if(txtdonorbutuh == '') {infoStatus('Kebutuhan must be filled', 0); exit();}if(txtdonortanggal == '') {infoStatus('Tanggal Donor must be filled', 0); exit();}
+  if(txtdonorid == '') {infoStatus('No Kartu Donor must be filled', 0); exit();}if(txtdonornoktp == '') {infoStatus('No KTP must be filled', 0); exit();}if(txtdonornamalengkap == '') {infoStatus('Nama Lengkap must be filled', 0); exit();}if(txtdonorjeniskelamin == '') {infoStatus('Jenis Kelamin must be filled', 0); exit();}if(txtdonorstatus == '') {infoStatus('Status must be filled', 0); exit();}if(txtdonoralamatrumah == '') {infoStatus('Alamat Rumah must be filled', 0); exit();}if(txtdonornohp == '') {infoStatus('No HP must be filled', 0); exit();}if(txtdonorkelurahan == '') {infoStatus('Kelurahan must be filled', 0); exit();}if(txtdonorkecamatan == '') {infoStatus('Kecamatan must be filled', 0); exit();}if(txtdonorwilayah == '') {infoStatus('Wilayah must be filled', 0); exit();}if(txtdonoralamatkantor == '') {infoStatus('Alamat Kantor must be filled', 0); exit();}if(txtdonorpekerjaan == '') {infoStatus('Pekerjaan must be filled', 0); exit();}if(txtdonortempatlahir == '') {infoStatus('Tempat Kelahiran must be filled', 0); exit();}if(txtdonorapharesis == '') {infoStatus('Apharesis must be filled', 0); exit();}if(txtdonorpenghargaan == '') {infoStatus('Penghargaan must be filled', 0); exit();}if(txtdonorpuasa == '') {infoStatus('Puasa must be filled', 0); exit();}if(txtdonorbutuh == '') {infoStatus('Donor Saat Dibutuhkan must be filled', 0); exit();}if(txtdonorterakhir == '') {infoStatus('Donor Terakhir must be filled', 0); exit();}if(txtdonorke == '') {infoStatus('Donor Ke must be filled', 0); exit();}if(txtdonordokter == '') {infoStatus('Nama Dokter must be filled', 0); exit();}if(txtdonorriwayatmedis == '') {infoStatus('Riwayat Medis must be filled', 0); exit();}if(txtdonordiambilsebanyak == '') {infoStatus('Diambil Sebanyak must be filled', 0); exit();}if(txtdonorkantong == '') {infoStatus('Kantong must be filled', 0); exit();}if(txtdonortekanandarah == '') {infoStatus('Tekanan Darah must be filled', 0); exit();}if(txtdonornadi == '') {infoStatus('Nadi must be filled', 0); exit();}if(txtdonorberatbadan == '') {infoStatus('Berat Badan (kg) must be filled', 0); exit();}if(txtdonortinggibadan == '') {infoStatus('Tinggi Badan (cm) must be filled', 0); exit();}if(txtdonorsuhu == '') {infoStatus('Suhu (Celcius) must be filled', 0); exit();}if(txtdonorpetugasadministrasi == '') {infoStatus('Petugas Administrasi must be filled', 0); exit();}if(txtdonorpetugashb == '') {infoStatus('Petugas Hemoglobin must be filled', 0); exit();}if(txtdonormacamdonor == '') {infoStatus('Macam Donor must be filled', 0); exit();}if(txtdonormetode == '') {infoStatus('Metode Pengambilan Darah must be filled', 0); exit();}if(txtdonorhb == '') {infoStatus('Kadar Hb (g/dL) must be filled', 0); exit();}if(txtdonorgoldar == '') {infoStatus('Golongan Darah must be filled', 0); exit();}if(txtdonorpetugasaftar == '') {infoStatus('Petugas Aftap must be filled', 0); exit();}if(txtdonorlengan == '') {infoStatus('Lengan must be filled', 0); exit();}if(txtdonorkodekantong == '') {infoStatus('Kode Timbangan Kantong must be filled', 0); exit();}if(txtdonorlamapengambilan == '') {infoStatus('Lama Pengambilan must be filled', 0); exit();}if(txtdonornokantong == '') {infoStatus('No Kantong must be filled', 0); exit();}
 
   $("#btnSave").html("Loading...");
 

@@ -7,7 +7,7 @@ class Dokter extends CI_Controller {
     }
 
     public $table_db = "dokter";
-    public $controller = "dokter";
+    public $controller = "Dokter";
     
     public function index() {
         $lbl_controller = str_replace("_", " ", $this->controller);
@@ -110,7 +110,7 @@ $txtdokterfoto_hdn = $rs[0]->dokter_foto;
                   
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Alamat Kantor: <span style="color: #ff0000">*</span></label>
+                        <label>Alamat Kantor: <span style="color: #ed3e8d">*</span></label>
                         <input type="text" id="txtdokteralamatkantor" name="txtdokteralamatkantor" class="form-control" value="'.$txtdokteralamatkantor.'" />
                       </div>
                     </div>

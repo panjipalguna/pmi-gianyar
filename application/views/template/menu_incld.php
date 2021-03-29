@@ -28,6 +28,7 @@
       <li class="<?= $employee_active  ?>"><a href="<?= site_url("petugashb") ?>"><i class="fa fa-file"></i> <span>Petugas Hemoglobin</span></a></li> 
       <li class="<?= $employee_active  ?>"><a href="<?= site_url("petugasaftar") ?>"><i class="fa fa-file"></i> <span>Petugas Aftar</span></a></li> 
       <li class="<?= $employee_active  ?>"><a href="<?= site_url("goldar") ?>"><i class="fa fa-file"></i> <span>Golongan Darah</span></a></li> 
+      <li class="<?= $employee_active  ?>"><a href="<?= site_url("print") ?>"><i class="fa fa-file"></i> <span>Print</span></a></li> 
       <li class="<?= $user_active  ?>"><a href="<?= site_url("user") ?>"><i class="fa fa-file"></i> <span>User</span></a></li> 
       <li><a href="<?= site_url("login/logout") ?>"><i class="fa fa-power-off"></i> <span>Logout</span></a></li> 
     </ul>

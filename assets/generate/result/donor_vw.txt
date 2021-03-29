@@ -94,7 +94,7 @@
                       <?php
                       if($rs_pekerjaan != "") {
                           foreach($rs_pekerjaan as $row_pekerjaan) {
-                              echo "<option value='".$row_pekerjaan->pekerjaan_Id."'>".$row_pekerjaan->pekerjaan_nama."</option>";
+                              echo "<option value='".$row_pekerjaan->pekerjaan_id."'>".$row_pekerjaan->pekerjaan_nama."</option>";
                           }
                       }
                       ?>
@@ -120,7 +120,7 @@
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
                     <select id="txtdonorpenghargaanfilter" name="txtdonorpenghargaanfilter" class="form-control" onchange="generateTable()">
-                      <option value="">View All Penghargaan Donor</option>
+                      <option value="">View All Penghargaan</option>
                       <?php
                       if($rs_penghargaan != "") {
                           foreach($rs_penghargaan as $row_penghargaan) {
@@ -150,7 +150,7 @@
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
                     <select id="txtdonorbutuhfilter" name="txtdonorbutuhfilter" class="form-control" onchange="generateTable()">
-                      <option value="">View All Butuh Donor</option>
+                      <option value="">View All Donor Saat Dibutuhkan</option>
                       <?php
                       if($rs_butuh != "") {
                           foreach($rs_butuh as $row_butuh) {
@@ -164,12 +164,27 @@
                 
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
-                    <select id="txtdonornamadokterfilter" name="txtdonornamadokterfilter" class="form-control" onchange="generateTable()">
+                    <select id="txtdonordokterfilter" name="txtdonordokterfilter" class="form-control" onchange="generateTable()">
                       <option value="">View All Nama Dokter</option>
                       <?php
                       if($rs_dokter != "") {
                           foreach($rs_dokter as $row_dokter) {
                               echo "<option value='".$row_dokter->row_id."'>".$row_dokter->dokter_nama."</option>";
+                          }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-md-2" style="padding-left: 0px;">
+                  <div class="form-group">
+                    <select id="txtdonordiambilsebanyakfilter" name="txtdonordiambilsebanyakfilter" class="form-control" onchange="generateTable()">
+                      <option value="">View All Diambil Sebanyak</option>
+                      <?php
+                      if($rs_diambilsebanyak != "") {
+                          foreach($rs_diambilsebanyak as $row_diambilsebanyak) {
+                              echo "<option value='".$row_diambilsebanyak->diambilsebanyak_id."'>".$row_diambilsebanyak->diambilsebanyak_nama."</option>";
                           }
                       }
                       ?>
@@ -195,7 +210,7 @@
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
                     <select id="txtdonorpetugasadministrasifilter" name="txtdonorpetugasadministrasifilter" class="form-control" onchange="generateTable()">
-                      <option value="">View All Nama Petugas Administrasi</option>
+                      <option value="">View All Petugas Administrasi</option>
                       <?php
                       if($rs_petugasadministrasi != "") {
                           foreach($rs_petugasadministrasi as $row_petugasadministrasi) {
@@ -210,7 +225,7 @@
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
                     <select id="txtdonorpetugashbfilter" name="txtdonorpetugashbfilter" class="form-control" onchange="generateTable()">
-                      <option value="">View All Nama Petugashb</option>
+                      <option value="">View All Petugas Hemoglobin</option>
                       <?php
                       if($rs_petugashb != "") {
                           foreach($rs_petugashb as $row_petugashb) {
@@ -239,7 +254,7 @@
                 
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
-                    <select id="txtdonormetodepangambilanfilter" name="txtdonormetodepangambilanfilter" class="form-control" onchange="generateTable()">
+                    <select id="txtdonormetodefilter" name="txtdonormetodefilter" class="form-control" onchange="generateTable()">
                       <option value="">View All Metode Pengambilan Darah</option>
                       <?php
                       if($rs_metode_ambil_darah != "") {
@@ -269,8 +284,8 @@
                 
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
-                    <select id="txtdonornamapetugasaftarfilter" name="txtdonornamapetugasaftarfilter" class="form-control" onchange="generateTable()">
-                      <option value="">View All Nama Petugas Aftar</option>
+                    <select id="txtdonorpetugasaftarfilter" name="txtdonorpetugasaftarfilter" class="form-control" onchange="generateTable()">
+                      <option value="">View All Petugas Aftap</option>
                       <?php
                       if($rs_petugasaftar != "") {
                           foreach($rs_petugasaftar as $row_petugasaftar) {
@@ -285,7 +300,7 @@
                 <div class="col-md-2" style="padding-left: 0px;">
                   <div class="form-group">
                     <select id="txtdonorlenganfilter" name="txtdonorlenganfilter" class="form-control" onchange="generateTable()">
-                      <option value="">View All Posisi Lengan</option>
+                      <option value="">View All Lengan</option>
                       <?php
                       if($rs_lengan != "") {
                           foreach($rs_lengan as $row_lengan) {
@@ -335,6 +350,8 @@
             <div id='callback_msg'></div>
             <table id="tablelist" class="table table-bordered table-striped" style="width: 100%">
               <thead>
+              <!-- <link rel="icon" href="/assets/images/favicon.ico" type="image/gif">  -->
+
                 <tr>
                   <th style="width:3%"></th>
                   <th style='width:20%'>No Kartu Donor</th> 
@@ -349,13 +366,13 @@
 <th style='width:20%'>Wilayah</th> 
 <th style='width:20%'>Alamat Kantor</th> 
 <th style='width:20%'>Pekerjaan</th> 
-<th style='width:20%'>Tempat Lahir</th> 
+<th style='width:20%'>Tempat Kelahiran</th> 
 <th style='width:20%'>Apharesis</th> 
-<th style='width:20%'>Penghargaan Donor</th> 
+<th style='width:20%'>Penghargaan</th> 
 <th style='width:20%'>Puasa</th> 
-<th style='width:20%'>Butuh Donor</th> 
-<th style='width:20%'>Terakhir Donor</th> 
-<th style='width:20%'>Sekarang Donor Ke-</th> 
+<th style='width:20%'>Donor Saat Dibutuhkan</th> 
+<th style='width:20%'>Donor Terakhir</th> 
+<th style='width:20%'>Donor Ke</th> 
 <th style='width:20%'>Nama Dokter</th> 
 <th style='width:20%'>Riwayat Medis</th> 
 <th style='width:20%'>Diambil Sebanyak</th> 
@@ -363,27 +380,27 @@
 <th style='width:20%'>Tekanan Darah</th> 
 <th style='width:20%'>Kode Alat Tekanan Darah</th> 
 <th style='width:20%'>Nadi</th> 
-<th style='width:20%'>Berat Badan</th> 
+<th style='width:20%'>Berat Badan (kg)</th> 
 <th style='width:20%'>Kode Alat Berat Badan</th> 
-<th style='width:20%'>Suhu</th> 
-<th style='width:20%'>Kode Alat Suhu</th> 
-<th style='width:20%'>Keadaan Umum Donor</th> 
-<th style='width:20%'>Nama Petugas Administrasi</th> 
-<th style='width:20%'>Cara Validasi</th> 
-<th style='width:20%'>Nama Petugashb</th> 
+<th style='width:20%'>Tinggi Badan (cm)</th> 
+<th style='width:20%'>Kode Alat Tinggi Badan</th> 
+<th style='width:20%'>Suhu (Celcius)</th> 
+<th style='width:20%'>Kode Alat Suhu </th> 
+<th style='width:20%'>Keadaan Umum</th> 
+<th style='width:20%'>Petugas Administrasi</th> 
+<th style='width:20%'>Petugas Hemoglobin</th> 
 <th style='width:20%'>Macam Donor</th> 
 <th style='width:20%'>Metode Pengambilan Darah</th> 
-<th style='width:20%'>Hb</th> 
+<th style='width:20%'>Kadar Hb (g/dL)</th> 
 <th style='width:20%'>Golongan Darah</th> 
-<th style='width:20%'>Nama Petugas Aftar</th> 
-<th style='width:20%'>Posisi Lengan</th> 
+<th style='width:20%'>Petugas Aftap</th> 
+<th style='width:20%'>Lengan</th> 
 <th style='width:20%'>Kode Timbangan Kantong</th> 
 <th style='width:20%'>Penusukan Ulang Ganti Kantong</th> 
 <th style='width:20%'>Lama Pengambilan</th> 
 <th style='width:20%'>No Kantong</th> 
-<th style='width:20%'>No Kantong Ganti I</th> 
-<th style='width:20%'>No Kantong Ganti II</th> 
-<th style='width:20%'>Tanggal Donor</th> 
+<th style='width:20%'>No Kantong Ganti 1</th> 
+<th style='width:20%'>No Kantong Ganti 2</th> 
 
                 </tr>
               </thead>

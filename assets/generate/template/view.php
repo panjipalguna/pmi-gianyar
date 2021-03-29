@@ -15,6 +15,8 @@
             <div id='callback_msg'></div>
             <table id="tablelist" class="table table-bordered table-striped" style="width: 100%">
               <thead>
+              <!-- <link rel="icon" href="/assets/images/favicon.ico" type="image/gif">  -->
+
                 <tr>
                   <th style="width:3%"></th>
                   [{GRIDVIEW_LABEL}]
